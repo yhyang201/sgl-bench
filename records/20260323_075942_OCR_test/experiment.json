@@ -1,0 +1,74 @@
+{
+  "experiment_id": "20260323_075942",
+  "description": "OCR test",
+  "gpu_ids": "0",
+  "started_at": "2026-03-23T07:59:42.808309",
+  "finished_at": "2026-03-23T08:03:32.061308",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 30000 --tp-size 1 --enable-multimodal",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "ocrbench"
+      ],
+      "extra_args": "--max-tokens 8192 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "575.57.08"
+  },
+  "sglang_info": {
+    "install_type": "pip",
+    "version": "0.5.9",
+    "location": "/root/.python/sglang/lib/python3.12/site-packages"
+  },
+  "server": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [
+    {
+      "task": "ocrbench",
+      "command": "uv run python eval.py ocrbench --model kimi/Qwen/Qwen3-VL-8B-Instruct --max-tokens 8192 --stream",
+      "returncode": 0
+    }
+  ]
+}
