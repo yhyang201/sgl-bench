@@ -1,0 +1,41 @@
+# Qwen2.5-VL-72B Image Benchmark Preset
+# Usage: sgl-bench run -c presets/qwen_vl_72b_image.toml -d "description" -g 0,1,2,3
+
+[server]
+model_path = "Qwen/Qwen2.5-VL-72B-Instruct"
+startup_timeout = 600
+extra_args = """
+    --port 30000
+    --tp-size 4
+    --enable-multimodal
+    --mem-fraction-static 0.85
+"""
+
+[benchmark]
+# Warmup fully follows this config, only seed and num-prompts differ
+extra_args = """
+    --backend sglang
+    --port 30000
+    --dataset-name image
+    --num-prompts 100
+    --request-rate inf
+    --random-input-len 512
+    --random-output-len 256
+    --image-count 1
+    --image-resolution 1080p
+    --image-format jpeg
+    --image-content random
+"""
+
+[warmup]
+enabled = true
+num_prompts = 3
+seed = 8413927
+
+[output]
+dir = "./records"
+auto_commit = true
+auto_push = false
+
+[run]
+runs = 1
