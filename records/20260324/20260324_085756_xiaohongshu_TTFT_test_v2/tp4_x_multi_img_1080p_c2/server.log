@@ -1,0 +1,828 @@
+/sgl-workspace/sglang/python/sglang/launch_server.py:51: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+[2026-03-24 09:09:36] INFO server_args.py:2240: Attention backend not specified. Use fa3 backend by default.
+/sgl-workspace/sglang/python/sglang/srt/entrypoints/http_server.py:175: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  from sglang.srt.utils.json_response import (
+[2026-03-24 09:09:36] server_args=ServerArgs(model_path='Qwen/Qwen3-VL-32B-Instruct', tokenizer_path='Qwen/Qwen3-VL-32B-Instruct', tokenizer_mode='auto', tokenizer_worker_num=1, skip_tokenizer_init=False, load_format='auto', model_loader_extra_config='{}', trust_remote_code=False, context_length=None, is_embedding=False, enable_multimodal=True, revision=None, model_impl='auto', host='127.0.0.1', port=30000, fastapi_root_path='', grpc_mode=False, skip_server_warmup=False, warmups=None, nccl_port=None, checkpoint_engine_wait_weights_before_ready=False, ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_keyfile_password=None, enable_ssl_refresh=False, dtype='auto', quantization=None, quantization_param_path=None, kv_cache_dtype='auto', enable_fp32_lm_head=False, modelopt_quant=None, modelopt_checkpoint_restore_path=None, modelopt_checkpoint_save_path=None, modelopt_export_path=None, quantize_and_serve=False, rl_quant_profile=None, mem_fraction_static=0.8322890624999999, max_running_requests=None, max_queued_requests=None, max_total_tokens=None, chunked_prefill_size=8192, enable_dynamic_chunking=False, max_prefill_tokens=16384, prefill_max_requests=None, schedule_policy='fcfs', enable_priority_scheduling=False, disable_priority_preemption=False, default_priority_value=None, abort_on_priority_when_disabled=False, schedule_low_priority_values_first=False, priority_scheduling_preemption_threshold=10, schedule_conservativeness=1.0, page_size=1, swa_full_tokens_ratio=0.8, disable_hybrid_swa_memory=False, radix_eviction_policy='lru', enable_prefill_delayer=False, prefill_delayer_max_delay_passes=30, prefill_delayer_token_usage_low_watermark=None, prefill_delayer_forward_passes_buckets=None, prefill_delayer_wait_seconds_buckets=None, device='cuda', tp_size=4, pp_size=1, pp_max_micro_batch_size=None, pp_async_batch_depth=0, stream_interval=1, incremental_streaming_output=False, enable_streaming_session=False, random_seed=229867762, constrained_json_whitespace_pattern=None, constrained_json_disable_any_whitespace=False, watchdog_timeout=300, soft_watchdog_timeout=None, dist_timeout=None, download_dir=None, model_checksum=None, base_gpu_id=0, gpu_id_step=1, sleep_on_idle=False, use_ray=False, custom_sigquit_handler=None, log_level='info', log_level_http=None, log_requests=False, log_requests_level=2, log_requests_format='text', log_requests_target=None, uvicorn_access_log_exclude_prefixes=[], crash_dump_folder=None, show_time_cost=False, enable_metrics=False, enable_metrics_for_all_schedulers=False, tokenizer_metrics_custom_labels_header='x-custom-labels', tokenizer_metrics_allowed_custom_labels=None, extra_metric_labels=None, bucket_time_to_first_token=None, bucket_inter_token_latency=None, bucket_e2e_request_latency=None, collect_tokens_histogram=False, prompt_tokens_buckets=None, generation_tokens_buckets=None, gc_warning_threshold_secs=0.0, decode_log_interval=40, enable_request_time_stats_logging=False, kv_events_config=None, enable_trace=False, otlp_traces_endpoint='localhost:4317', export_metrics_to_file=False, export_metrics_to_file_dir=None, api_key=None, admin_api_key=None, served_model_name='Qwen/Qwen3-VL-32B-Instruct', weight_version='default', chat_template=None, hf_chat_template_name=None, completion_template=None, file_storage_path='sglang_storage', enable_cache_report=False, reasoning_parser=None, tool_call_parser=None, tool_server=None, sampling_defaults='model', dp_size=1, load_balance_method='round_robin', attn_cp_size=1, moe_dp_size=1, dist_init_addr=None, nnodes=1, node_rank=0, json_model_override_args='{}', preferred_sampling_params=None, enable_lora=None, enable_lora_overlap_loading=None, max_lora_rank=None, lora_target_modules=None, lora_paths=None, max_loaded_loras=None, max_loras_per_batch=8, lora_eviction_policy='lru', lora_backend='csgmv', max_lora_chunk_size=16, attention_backend='fa3', decode_attention_backend=None, prefill_attention_backend=None, sampling_backend='flashinfer', grammar_backend='xgrammar', mm_attention_backend=None, fp8_gemm_runner_backend='auto', fp4_gemm_runner_backend='auto', nsa_prefill_backend=None, nsa_decode_backend=None, disable_flashinfer_autotune=False, mamba_backend='triton', speculative_algorithm=None, speculative_draft_model_path=None, speculative_draft_model_revision=None, speculative_draft_load_format=None, speculative_num_steps=None, speculative_eagle_topk=None, speculative_num_draft_tokens=None, speculative_accept_threshold_single=1.0, speculative_accept_threshold_acc=1.0, speculative_token_map=None, speculative_attention_mode='prefill', speculative_draft_attention_backend=None, speculative_moe_runner_backend='auto', speculative_moe_a2a_backend=None, speculative_draft_model_quantization=None, speculative_ngram_min_match_window_size=1, speculative_ngram_max_match_window_size=12, speculative_ngram_min_bfs_breadth=1, speculative_ngram_max_bfs_breadth=10, speculative_ngram_match_type='BFS', speculative_ngram_max_trie_depth=18, speculative_ngram_capacity=10000000, enable_multi_layer_eagle=False, ep_size=1, moe_a2a_backend='none', moe_runner_backend='auto', flashinfer_mxfp4_moe_precision='default', enable_flashinfer_allreduce_fusion=False, enable_aiter_allreduce_fusion=False, deepep_mode='auto', ep_num_redundant_experts=0, ep_dispatch_algorithm=None, init_expert_location='trivial', enable_eplb=False, eplb_algorithm='auto', eplb_rebalance_num_iterations=1000, eplb_rebalance_layers_per_chunk=None, eplb_min_rebalancing_utilization_threshold=1.0, expert_distribution_recorder_mode=None, expert_distribution_recorder_buffer_size=1000, enable_expert_distribution_metrics=False, deepep_config=None, moe_dense_tp_size=None, elastic_ep_backend=None, enable_elastic_expert_backup=False, mooncake_ib_device=None, max_mamba_cache_size=None, mamba_ssm_dtype=None, mamba_full_memory_ratio=0.9, mamba_scheduler_strategy='no_buffer', mamba_track_interval=256, linear_attn_backend='triton', linear_attn_decode_backend=None, linear_attn_prefill_backend=None, enable_hierarchical_cache=False, hicache_ratio=2.0, hicache_size=0, hicache_write_policy='write_through', hicache_io_backend='kernel', hicache_mem_layout='layer_first', disable_hicache_numa_detect=False, hicache_storage_backend=None, hicache_storage_prefetch_policy='best_effort', hicache_storage_backend_extra_config=None, enable_hisparse=False, hisparse_config=None, enable_lmcache=False, kt_weight_path=None, kt_method='AMXINT4', kt_cpuinfer=None, kt_threadpool_count=2, kt_num_gpu_experts=None, kt_max_deferred_experts_per_token=None, dllm_algorithm=None, dllm_algorithm_config=None, enable_double_sparsity=False, ds_channel_config_path=None, ds_heavy_channel_num=32, ds_heavy_token_num=256, ds_heavy_channel_type='qk', ds_sparse_decode_threshold=4096, cpu_offload_gb=0, offload_group_size=-1, offload_num_in_group=1, offload_prefetch_step=1, offload_mode='cpu', multi_item_scoring_delimiter=None, disable_radix_cache=False, cuda_graph_max_bs=512, cuda_graph_bs=[1, 2, 4, 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], disable_cuda_graph=False, disable_cuda_graph_padding=False, enable_profile_cuda_graph=False, enable_cudagraph_gc=False, enable_layerwise_nvtx_marker=False, enable_nccl_nvls=False, enable_symm_mem=False, disable_flashinfer_cutlass_moe_fp4_allgather=False, enable_tokenizer_batch_encode=False, disable_tokenizer_batch_decode=False, disable_outlines_disk_cache=False, disable_custom_all_reduce=False, enable_mscclpp=False, enable_torch_symm_mem=False, pre_warm_nccl=False, disable_overlap_schedule=False, enable_mixed_chunk=False, enable_dp_attention=False, enable_dp_lm_head=False, enable_two_batch_overlap=False, enable_single_batch_overlap=False, tbo_token_distribution_threshold=0.48, enable_torch_compile=False, disable_piecewise_cuda_graph=True, enforce_piecewise_cuda_graph=False, enable_torch_compile_debug_mode=False, torch_compile_max_bs=32, piecewise_cuda_graph_max_tokens=8192, piecewise_cuda_graph_tokens=[4, 8, 12, 16, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 832, 896, 960, 1024, 1280, 1536, 1792, 2048, 2304, 2560, 2816, 3072, 3328, 3584, 3840, 4096, 4608, 5120, 5632, 6144, 6656, 7168, 7680, 8192], piecewise_cuda_graph_compiler='eager', torchao_config='', enable_nan_detection=False, enable_p2p_check=False, triton_attention_reduce_in_fp32=False, triton_attention_num_kv_splits=8, triton_attention_split_tile_size=None, num_continuous_decode_steps=1, delete_ckpt_after_loading=False, enable_memory_saver=False, enable_weights_cpu_backup=False, enable_draft_weights_cpu_backup=False, allow_auto_truncate=False, enable_custom_logit_processor=False, flashinfer_mla_disable_ragged=False, disable_shared_experts_fusion=False, disable_chunked_prefix_cache=False, disable_fast_image_processor=False, keep_mm_feature_on_device=False, enable_return_hidden_states=False, enable_return_routed_experts=False, scheduler_recv_interval=1, numa_node=None, enable_deterministic_inference=False, rl_on_policy_target=None, enable_attn_tp_input_scattered=False, enable_nsa_prefill_context_parallel=False, nsa_prefill_cp_mode='round-robin-split', enable_fused_qk_norm_rope=False, enable_precise_embedding_interpolation=False, enable_fused_moe_sum_all_reduce=False, enable_prefill_context_parallel=False, prefill_cp_mode='in-seq-split', enable_dynamic_batch_tokenizer=False, dynamic_batch_tokenizer_batch_size=32, dynamic_batch_tokenizer_batch_timeout=0.002, debug_tensor_dump_output_folder=None, debug_tensor_dump_layers=None, debug_tensor_dump_input_file=None, debug_tensor_dump_inject=False, disaggregation_mode='null', disaggregation_transfer_backend='mooncake', disaggregation_bootstrap_port=8998, disaggregation_ib_device=None, disaggregation_decode_enable_offload_kvcache=False, num_reserved_decode_tokens=512, disaggregation_decode_polling_interval=1, encoder_only=False, language_only=False, encoder_transfer_backend='zmq_to_scheduler', encoder_urls=[], enable_adaptive_dispatch_to_encoder=False, custom_weight_loader=[], weight_loader_disable_mmap=False, remote_instance_weight_loader_seed_instance_ip=None, remote_instance_weight_loader_seed_instance_service_port=None, remote_instance_weight_loader_send_weights_group_ports=None, remote_instance_weight_loader_backend='nccl', remote_instance_weight_loader_start_seed_via_transfer_engine=False, modelexpress_config=None, enable_pdmux=False, pdmux_config_path=None, sm_group_num=8, mm_max_concurrent_calls=32, mm_per_request_timeout=10.0, enable_broadcast_mm_inputs_process=False, enable_prefix_mm_cache=False, mm_enable_dp_encoder=False, mm_process_config={}, limit_mm_data_per_request=None, enable_mm_global_cache=False, decrypted_config_file=None, decrypted_draft_config_file=None, forward_hooks=None)
+[2026-03-24 09:09:40] Using default HuggingFace chat template with detected content format: openai
+[2026-03-24 09:09:47 TP0] Init torch distributed begin.
+[2026-03-24 09:09:47 TP2] Init torch distributed begin.
+[2026-03-24 09:09:48 TP3] Init torch distributed begin.
+[2026-03-24 09:09:48 TP1] Init torch distributed begin.
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[2026-03-24 09:09:48 TP0] sglang is using nccl==2.27.5
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[2026-03-24 09:09:49 TP0] Init torch distributed ends. elapsed=1.91 s, mem usage=1.24 GB
+[2026-03-24 09:09:49 TP3] Init torch distributed ends. elapsed=1.78 s, mem usage=1.06 GB
+[2026-03-24 09:09:49 TP2] Init torch distributed ends. elapsed=1.85 s, mem usage=1.29 GB
+[2026-03-24 09:09:49 TP1] Init torch distributed ends. elapsed=1.72 s, mem usage=1.29 GB
+[2026-03-24 09:09:50 TP2] Load weight begin. avail mem=137.99 GB
+[2026-03-24 09:09:50 TP3] Load weight begin. avail mem=138.23 GB
+[2026-03-24 09:09:50 TP0] Load weight begin. avail mem=138.04 GB
+[2026-03-24 09:09:50 TP1] Load weight begin. avail mem=137.99 GB
+[2026-03-24 09:09:50 TP2] Multimodal attention backend not set. Use fa3.
+[2026-03-24 09:09:50 TP2] Using fa3 as multimodal attention backend.
+[2026-03-24 09:09:50 TP3] Multimodal attention backend not set. Use fa3.
+[2026-03-24 09:09:50 TP3] Using fa3 as multimodal attention backend.
+[2026-03-24 09:09:50 TP0] Multimodal attention backend not set. Use fa3.
+[2026-03-24 09:09:50 TP0] Using fa3 as multimodal attention backend.
+[2026-03-24 09:09:50 TP1] Multimodal attention backend not set. Use fa3.
+[2026-03-24 09:09:50 TP1] Using fa3 as multimodal attention backend.
+[2026-03-24 09:09:50 TP0] Found local HF snapshot for Qwen/Qwen3-VL-32B-Instruct at /root/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Instruct/snapshots/0cfaf48183f594c314753d30a4c4974bc75f3ccb; skipping download.
+Loading safetensors checkpoint shards:   0% Completed | 0/14 [00:00<?, ?it/s]Loading safetensors checkpoint shards:   7% Completed | 1/14 [00:00<00:06,  2.13it/s]Loading safetensors checkpoint shards:  14% Completed | 2/14 [00:01<00:06,  1.97it/s]Loading safetensors checkpoint shards:  21% Completed | 3/14 [00:01<00:05,  1.98it/s]Loading safetensors checkpoint shards:  29% Completed | 4/14 [00:01<00:05,  2.00it/s]Loading safetensors checkpoint shards:  36% Completed | 5/14 [00:02<00:04,  2.01it/s]Loading safetensors checkpoint shards:  43% Completed | 6/14 [00:02<00:03,  2.05it/s]Loading safetensors checkpoint shards:  50% Completed | 7/14 [00:03<00:03,  2.04it/s]Loading safetensors checkpoint shards:  57% Completed | 8/14 [00:03<00:03,  1.99it/s]Loading safetensors checkpoint shards:  64% Completed | 9/14 [00:04<00:02,  2.28it/s]Loading safetensors checkpoint shards:  71% Completed | 10/14 [00:04<00:01,  2.22it/s]Loading safetensors checkpoint shards:  79% Completed | 11/14 [00:05<00:01,  2.12it/s]Loading safetensors checkpoint shards:  86% Completed | 12/14 [00:05<00:00,  2.05it/s]Loading safetensors checkpoint shards:  93% Completed | 13/14 [00:06<00:00,  1.84it/s]Loading safetensors checkpoint shards: 100% Completed | 14/14 [00:07<00:00,  1.68it/s]Loading safetensors checkpoint shards: 100% Completed | 14/14 [00:07<00:00,  1.95it/s]
+[2026-03-24 09:09:58 TP2] Load weight end. elapsed=8.02 s, type=Qwen3VLForConditionalGeneration, avail mem=122.09 GB, mem usage=15.91 GB.
+[2026-03-24 09:09:58 TP0] Load weight end. elapsed=8.01 s, type=Qwen3VLForConditionalGeneration, avail mem=122.14 GB, mem usage=15.91 GB.
+[2026-03-24 09:09:58 TP3] Load weight end. elapsed=8.02 s, type=Qwen3VLForConditionalGeneration, avail mem=122.32 GB, mem usage=15.91 GB.
+[2026-03-24 09:09:58 TP1] Load weight end. elapsed=8.00 s, type=Qwen3VLForConditionalGeneration, avail mem=122.09 GB, mem usage=15.91 GB.
+[2026-03-24 09:09:58 TP0] Using KV cache dtype: torch.bfloat16
+[2026-03-24 09:09:58 TP1] KV Cache is allocated. #tokens: 1620479, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-24 09:09:58 TP1] Memory pool end. avail mem=19.96 GB
+[2026-03-24 09:09:58 TP2] KV Cache is allocated. #tokens: 1620479, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-24 09:09:58 TP2] Memory pool end. avail mem=19.96 GB
+[2026-03-24 09:09:58 TP0] KV Cache is allocated. #tokens: 1620479, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-24 09:09:58 TP0] Memory pool end. avail mem=20.00 GB
+[2026-03-24 09:09:58 TP3] KV Cache is allocated. #tokens: 1620479, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-24 09:09:58 TP3] Memory pool end. avail mem=20.19 GB
+[2026-03-24 09:09:58 TP1] Capture cuda graph begin. This can take up to several minutes. avail mem=19.86 GB
+[2026-03-24 09:09:58 TP2] Capture cuda graph begin. This can take up to several minutes. avail mem=19.86 GB
+[2026-03-24 09:09:58 TP0] Capture cuda graph begin. This can take up to several minutes. avail mem=19.91 GB
+[2026-03-24 09:09:58 TP0] Capture cuda graph bs [1, 2, 4, 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512]
+[2026-03-24 09:09:58 TP3] Capture cuda graph begin. This can take up to several minutes. avail mem=20.10 GB
+  0%|          | 0/52 [00:00<?, ?it/s]Capturing batches (bs=512 avail_mem=19.12 GB):   0%|          | 0/52 [00:00<?, ?it/s]Capturing batches (bs=512 avail_mem=19.12 GB):   2%|▏         | 1/52 [00:01<00:59,  1.17s/it]Capturing batches (bs=496 avail_mem=18.67 GB):   2%|▏         | 1/52 [00:01<00:59,  1.17s/it]Capturing batches (bs=496 avail_mem=18.67 GB):   4%|▍         | 2/52 [00:01<00:29,  1.70it/s]Capturing batches (bs=480 avail_mem=18.66 GB):   4%|▍         | 2/52 [00:01<00:29,  1.70it/s]Capturing batches (bs=480 avail_mem=18.66 GB):   6%|▌         | 3/52 [00:01<00:18,  2.70it/s]Capturing batches (bs=464 avail_mem=18.65 GB):   6%|▌         | 3/52 [00:01<00:18,  2.70it/s]Capturing batches (bs=464 avail_mem=18.65 GB):   8%|▊         | 4/52 [00:01<00:12,  3.78it/s]Capturing batches (bs=448 avail_mem=18.64 GB):   8%|▊         | 4/52 [00:01<00:12,  3.78it/s]Capturing batches (bs=448 avail_mem=18.64 GB):  10%|▉         | 5/52 [00:01<00:09,  4.84it/s]Capturing batches (bs=432 avail_mem=18.63 GB):  10%|▉         | 5/52 [00:01<00:09,  4.84it/s]Capturing batches (bs=432 avail_mem=18.63 GB):  12%|█▏        | 6/52 [00:01<00:07,  5.79it/s]Capturing batches (bs=416 avail_mem=18.62 GB):  12%|█▏        | 6/52 [00:01<00:07,  5.79it/s]Capturing batches (bs=416 avail_mem=18.62 GB):  13%|█▎        | 7/52 [00:01<00:06,  6.70it/s]Capturing batches (bs=400 avail_mem=18.61 GB):  13%|█▎        | 7/52 [00:01<00:06,  6.70it/s]Capturing batches (bs=400 avail_mem=18.61 GB):  15%|█▌        | 8/52 [00:01<00:05,  7.35it/s]Capturing batches (bs=384 avail_mem=18.59 GB):  15%|█▌        | 8/52 [00:01<00:05,  7.35it/s]Capturing batches (bs=384 avail_mem=18.59 GB):  17%|█▋        | 9/52 [00:02<00:05,  7.82it/s]Capturing batches (bs=368 avail_mem=18.58 GB):  17%|█▋        | 9/52 [00:02<00:05,  7.82it/s]Capturing batches (bs=368 avail_mem=18.58 GB):  19%|█▉        | 10/52 [00:02<00:05,  7.65it/s]Capturing batches (bs=352 avail_mem=18.57 GB):  19%|█▉        | 10/52 [00:02<00:05,  7.65it/s]Capturing batches (bs=352 avail_mem=18.57 GB):  21%|██        | 11/52 [00:02<00:05,  7.53it/s]Capturing batches (bs=336 avail_mem=18.56 GB):  21%|██        | 11/52 [00:02<00:05,  7.53it/s]Capturing batches (bs=336 avail_mem=18.56 GB):  23%|██▎       | 12/52 [00:02<00:05,  7.87it/s]Capturing batches (bs=320 avail_mem=18.55 GB):  23%|██▎       | 12/52 [00:02<00:05,  7.87it/s]Capturing batches (bs=320 avail_mem=18.55 GB):  25%|██▌       | 13/52 [00:02<00:05,  7.69it/s]Capturing batches (bs=304 avail_mem=18.54 GB):  25%|██▌       | 13/52 [00:02<00:05,  7.69it/s]Capturing batches (bs=304 avail_mem=18.54 GB):  27%|██▋       | 14/52 [00:02<00:05,  6.86it/s]Capturing batches (bs=288 avail_mem=18.53 GB):  27%|██▋       | 14/52 [00:02<00:05,  6.86it/s]Capturing batches (bs=288 avail_mem=18.53 GB):  29%|██▉       | 15/52 [00:03<00:06,  5.74it/s]Capturing batches (bs=272 avail_mem=18.52 GB):  29%|██▉       | 15/52 [00:03<00:06,  5.74it/s]Capturing batches (bs=272 avail_mem=18.52 GB):  31%|███       | 16/52 [00:03<00:06,  5.42it/s]Capturing batches (bs=256 avail_mem=18.51 GB):  31%|███       | 16/52 [00:03<00:06,  5.42it/s]Capturing batches (bs=256 avail_mem=18.51 GB):  33%|███▎      | 17/52 [00:03<00:05,  6.18it/s]Capturing batches (bs=248 avail_mem=18.50 GB):  33%|███▎      | 17/52 [00:03<00:05,  6.18it/s]Capturing batches (bs=248 avail_mem=18.50 GB):  35%|███▍      | 18/52 [00:03<00:04,  6.89it/s]Capturing batches (bs=240 avail_mem=18.48 GB):  35%|███▍      | 18/52 [00:03<00:04,  6.89it/s]Capturing batches (bs=240 avail_mem=18.48 GB):  37%|███▋      | 19/52 [00:03<00:04,  7.50it/s]Capturing batches (bs=232 avail_mem=18.48 GB):  37%|███▋      | 19/52 [00:03<00:04,  7.50it/s]Capturing batches (bs=232 avail_mem=18.48 GB):  38%|███▊      | 20/52 [00:03<00:03,  8.05it/s]Capturing batches (bs=224 avail_mem=18.47 GB):  38%|███▊      | 20/52 [00:03<00:03,  8.05it/s]Capturing batches (bs=224 avail_mem=18.47 GB):  40%|████      | 21/52 [00:03<00:03,  8.47it/s]Capturing batches (bs=216 avail_mem=18.46 GB):  40%|████      | 21/52 [00:03<00:03,  8.47it/s]Capturing batches (bs=216 avail_mem=18.46 GB):  42%|████▏     | 22/52 [00:03<00:03,  8.63it/s]Capturing batches (bs=208 avail_mem=18.44 GB):  42%|████▏     | 22/52 [00:03<00:03,  8.63it/s]Capturing batches (bs=208 avail_mem=18.44 GB):  44%|████▍     | 23/52 [00:03<00:03,  8.91it/s]Capturing batches (bs=200 avail_mem=18.43 GB):  44%|████▍     | 23/52 [00:03<00:03,  8.91it/s]Capturing batches (bs=200 avail_mem=18.43 GB):  46%|████▌     | 24/52 [00:04<00:03,  9.01it/s]Capturing batches (bs=192 avail_mem=18.42 GB):  46%|████▌     | 24/52 [00:04<00:03,  9.01it/s]Capturing batches (bs=192 avail_mem=18.42 GB):  48%|████▊     | 25/52 [00:04<00:02,  9.09it/s]Capturing batches (bs=184 avail_mem=18.41 GB):  48%|████▊     | 25/52 [00:04<00:02,  9.09it/s]Capturing batches (bs=184 avail_mem=18.41 GB):  50%|█████     | 26/52 [00:04<00:02,  9.25it/s]Capturing batches (bs=176 avail_mem=18.40 GB):  50%|█████     | 26/52 [00:04<00:02,  9.25it/s]Capturing batches (bs=176 avail_mem=18.40 GB):  52%|█████▏    | 27/52 [00:04<00:02,  9.38it/s]Capturing batches (bs=168 avail_mem=18.39 GB):  52%|█████▏    | 27/52 [00:04<00:02,  9.38it/s]Capturing batches (bs=168 avail_mem=18.39 GB):  54%|█████▍    | 28/52 [00:04<00:02,  9.24it/s]Capturing batches (bs=160 avail_mem=18.38 GB):  54%|█████▍    | 28/52 [00:04<00:02,  9.24it/s]Capturing batches (bs=160 avail_mem=18.38 GB):  56%|█████▌    | 29/52 [00:04<00:02,  9.26it/s]Capturing batches (bs=152 avail_mem=18.37 GB):  56%|█████▌    | 29/52 [00:04<00:02,  9.26it/s]Capturing batches (bs=152 avail_mem=18.37 GB):  58%|█████▊    | 30/52 [00:04<00:02,  8.85it/s]Capturing batches (bs=144 avail_mem=18.36 GB):  58%|█████▊    | 30/52 [00:04<00:02,  8.85it/s]Capturing batches (bs=144 avail_mem=18.36 GB):  60%|█████▉    | 31/52 [00:04<00:02,  8.98it/s]Capturing batches (bs=136 avail_mem=18.35 GB):  60%|█████▉    | 31/52 [00:04<00:02,  8.98it/s]Capturing batches (bs=136 avail_mem=18.35 GB):  62%|██████▏   | 32/52 [00:04<00:02,  9.12it/s]Capturing batches (bs=128 avail_mem=18.34 GB):  62%|██████▏   | 32/52 [00:04<00:02,  9.12it/s]Capturing batches (bs=128 avail_mem=18.34 GB):  63%|██████▎   | 33/52 [00:05<00:02,  8.99it/s]Capturing batches (bs=120 avail_mem=18.33 GB):  63%|██████▎   | 33/52 [00:05<00:02,  8.99it/s]Capturing batches (bs=120 avail_mem=18.33 GB):  65%|██████▌   | 34/52 [00:05<00:02,  8.98it/s]Capturing batches (bs=112 avail_mem=18.32 GB):  65%|██████▌   | 34/52 [00:05<00:02,  8.98it/s]Capturing batches (bs=112 avail_mem=18.32 GB):  67%|██████▋   | 35/52 [00:05<00:01,  8.92it/s]Capturing batches (bs=104 avail_mem=18.30 GB):  67%|██████▋   | 35/52 [00:05<00:01,  8.92it/s]Capturing batches (bs=104 avail_mem=18.30 GB):  69%|██████▉   | 36/52 [00:05<00:01,  8.90it/s]Capturing batches (bs=96 avail_mem=18.29 GB):  69%|██████▉   | 36/52 [00:05<00:01,  8.90it/s] Capturing batches (bs=96 avail_mem=18.29 GB):  71%|███████   | 37/52 [00:05<00:01,  8.97it/s]Capturing batches (bs=88 avail_mem=18.28 GB):  71%|███████   | 37/52 [00:05<00:01,  8.97it/s]Capturing batches (bs=88 avail_mem=18.28 GB):  73%|███████▎  | 38/52 [00:05<00:01,  8.98it/s]Capturing batches (bs=80 avail_mem=18.27 GB):  73%|███████▎  | 38/52 [00:05<00:01,  8.98it/s]Capturing batches (bs=80 avail_mem=18.27 GB):  75%|███████▌  | 39/52 [00:05<00:01,  9.13it/s]Capturing batches (bs=72 avail_mem=18.25 GB):  75%|███████▌  | 39/52 [00:05<00:01,  9.13it/s]Capturing batches (bs=72 avail_mem=18.25 GB):  77%|███████▋  | 40/52 [00:05<00:01,  9.26it/s]Capturing batches (bs=64 avail_mem=18.24 GB):  77%|███████▋  | 40/52 [00:05<00:01,  9.26it/s]Capturing batches (bs=64 avail_mem=18.24 GB):  79%|███████▉  | 41/52 [00:05<00:01,  9.40it/s]Capturing batches (bs=56 avail_mem=18.23 GB):  79%|███████▉  | 41/52 [00:05<00:01,  9.40it/s]Capturing batches (bs=56 avail_mem=18.23 GB):  81%|████████  | 42/52 [00:06<00:01,  9.45it/s]Capturing batches (bs=48 avail_mem=18.22 GB):  81%|████████  | 42/52 [00:06<00:01,  9.45it/s]Capturing batches (bs=48 avail_mem=18.22 GB):  83%|████████▎ | 43/52 [00:06<00:00,  9.56it/s]Capturing batches (bs=40 avail_mem=18.21 GB):  83%|████████▎ | 43/52 [00:06<00:00,  9.56it/s]Capturing batches (bs=40 avail_mem=18.21 GB):  85%|████████▍ | 44/52 [00:06<00:00,  9.55it/s]Capturing batches (bs=32 avail_mem=18.19 GB):  85%|████████▍ | 44/52 [00:06<00:00,  9.55it/s]Capturing batches (bs=32 avail_mem=18.19 GB):  87%|████████▋ | 45/52 [00:06<00:00,  9.59it/s]Capturing batches (bs=24 avail_mem=18.18 GB):  87%|████████▋ | 45/52 [00:06<00:00,  9.59it/s]Capturing batches (bs=24 avail_mem=18.18 GB):  88%|████████▊ | 46/52 [00:06<00:00,  9.59it/s]Capturing batches (bs=16 avail_mem=18.17 GB):  88%|████████▊ | 46/52 [00:06<00:00,  9.59it/s]Capturing batches (bs=16 avail_mem=18.17 GB):  90%|█████████ | 47/52 [00:06<00:00,  9.68it/s]Capturing batches (bs=12 avail_mem=18.15 GB):  90%|█████████ | 47/52 [00:06<00:00,  9.68it/s]Capturing batches (bs=8 avail_mem=18.14 GB):  90%|█████████ | 47/52 [00:06<00:00,  9.68it/s] Capturing batches (bs=8 avail_mem=18.14 GB):  94%|█████████▍| 49/52 [00:06<00:00,  9.85it/s]Capturing batches (bs=4 avail_mem=18.13 GB):  94%|█████████▍| 49/52 [00:06<00:00,  9.85it/s]Capturing batches (bs=2 avail_mem=18.12 GB):  94%|█████████▍| 49/52 [00:06<00:00,  9.85it/s]Capturing batches (bs=2 avail_mem=18.12 GB):  98%|█████████▊| 51/52 [00:06<00:00, 10.21it/s]Capturing batches (bs=1 avail_mem=18.11 GB):  98%|█████████▊| 51/52 [00:06<00:00, 10.21it/s]Capturing batches (bs=1 avail_mem=18.11 GB): 100%|██████████| 52/52 [00:07<00:00,  7.29it/s]
+[2026-03-24 09:10:05 TP0] Registering 6708 cuda graph addresses
+[2026-03-24 09:10:06 TP1] Capture cuda graph end. Time elapsed: 7.70 s. mem usage=1.81 GB. avail mem=18.05 GB.
+[2026-03-24 09:10:06 TP1] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-24 09:10:06 TP0] Capture cuda graph end. Time elapsed: 7.81 s. mem usage=1.81 GB. avail mem=18.10 GB.
+[2026-03-24 09:10:06 TP0] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-24 09:10:06 TP3] Capture cuda graph end. Time elapsed: 7.83 s. mem usage=1.81 GB. avail mem=18.28 GB.
+[2026-03-24 09:10:06 TP3] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-24 09:10:06 TP2] Capture cuda graph end. Time elapsed: 7.84 s. mem usage=1.81 GB. avail mem=18.05 GB.
+[2026-03-24 09:10:06 TP2] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-24 09:10:08 TP0] max_total_num_tokens=1620479, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=3164, context_len=262144, available_gpu_mem=18.10 GB
+[2026-03-24 09:10:09] INFO:     Started server process [1853708]
+[2026-03-24 09:10:09] INFO:     Waiting for application startup.
+[2026-03-24 09:10:09] Using default chat sampling params from model generation config: {'repetition_penalty': 1.0, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}
+[2026-03-24 09:10:09] INFO:     Application startup complete.
+[2026-03-24 09:10:09] INFO:     Uvicorn running on http://127.0.0.1:30000 (Press CTRL+C to quit)
+[2026-03-24 09:10:10] INFO:     127.0.0.1:48840 - "GET /model_info HTTP/1.1" 200 OK
+[2026-03-24 09:10:11 TP0] Prefill batch, #new-seq: 1, #new-token: 78, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.00
+[2026-03-24 09:10:12] INFO:     127.0.0.1:48842 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:10:12] The server is fired up and ready to roll!
+[2026-03-24 09:10:13 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 44.60
+[2026-03-24 09:10:14] INFO:     127.0.0.1:48848 - "GET /health_generate HTTP/1.1" 200 OK
+/root/.python/sglang/lib/python3.12/site-packages/fastapi/routing.py:116: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  response = await f(request)
+[2026-03-24 09:10:20] INFO:     127.0.0.1:35672 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-03-24 09:10:20] INFO:     127.0.0.1:35682 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-03-24 09:10:26] INFO:     127.0.0.1:54156 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:10:28 TP3] Multimodal embedding cache is full. This typically occurs when a single embedding exceeds the cache size limit. Consider increasing the `SGLANG_VLM_CACHE_SIZE_MB` environment variable or reducing the input embedding size.
+[2026-03-24 09:10:28 TP2] Multimodal embedding cache is full. This typically occurs when a single embedding exceeds the cache size limit. Consider increasing the `SGLANG_VLM_CACHE_SIZE_MB` environment variable or reducing the input embedding size.
+[2026-03-24 09:10:28 TP0] Multimodal embedding cache is full. This typically occurs when a single embedding exceeds the cache size limit. Consider increasing the `SGLANG_VLM_CACHE_SIZE_MB` environment variable or reducing the input embedding size.
+[2026-03-24 09:10:28 TP1] Multimodal embedding cache is full. This typically occurs when a single embedding exceeds the cache size limit. Consider increasing the `SGLANG_VLM_CACHE_SIZE_MB` environment variable or reducing the input embedding size.
+[2026-03-24 09:10:29 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.06
+[2026-03-24 09:10:29 TP0] Prefill batch, #new-seq: 1, #new-token: 8111, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 29719.67
+[2026-03-24 09:10:29 TP0] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 0.90, #queue-req: 0
+[2026-03-24 09:10:30] INFO:     127.0.0.1:54162 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:10:31] INFO:     127.0.0.1:54178 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:10:34 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 16306, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 1505.73
+[2026-03-24 09:10:35 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2.52
+[2026-03-24 09:10:35 TP0] Prefill batch, #new-seq: 1, #new-token: 5370, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 44708.83
+[2026-03-24 09:10:35 TP0] Decode batch, #running-req: 2, #token: 29949, token usage: 0.02, cuda graph: True, gen throughput (token/s): 13.07, #queue-req: 0
+[2026-03-24 09:10:36 TP0] Decode batch, #running-req: 1, #token: 13646, token usage: 0.01, cuda graph: True, gen throughput (token/s): 224.72, #queue-req: 0
+[2026-03-24 09:10:36] INFO:     127.0.0.1:54192 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:10:36 TP0] Decode batch, #running-req: 1, #token: 13686, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.45, #queue-req: 0
+[2026-03-24 09:10:38 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1583.74
+[2026-03-24 09:10:39 TP0] Prefill batch, #new-seq: 1, #new-token: 4075, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 62407.12
+[2026-03-24 09:10:39 TP0] Decode batch, #running-req: 1, #token: 13726, token usage: 0.01, cuda graph: True, gen throughput (token/s): 18.79, #queue-req: 0
+[2026-03-24 09:10:39 TP0] Decode batch, #running-req: 1, #token: 13766, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.69, #queue-req: 0
+[2026-03-24 09:10:39 TP0] Decode batch, #running-req: 1, #token: 13806, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.69, #queue-req: 0
+[2026-03-24 09:10:39] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-03-24 09:10:39] INFO:     127.0.0.1:56968 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-03-24 09:10:39] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-03-24 09:10:39] INFO:     127.0.0.1:56980 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-03-24 09:10:48] INFO:     127.0.0.1:60390 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-03-24 09:10:48] INFO:     127.0.0.1:60402 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-03-24 09:12:13] INFO:     127.0.0.1:46868 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:15 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 42.04
+[2026-03-24 09:12:16 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 24888.94
+[2026-03-24 09:12:16 TP0] Prefill batch, #new-seq: 1, #new-token: 3041, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 75198.08
+[2026-03-24 09:12:16 TP0] Decode batch, #running-req: 1, #token: 19456, token usage: 0.01, cuda graph: True, gen throughput (token/s): 0.41, #queue-req: 0
+[2026-03-24 09:12:17] INFO:     127.0.0.1:34740 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:18] INFO:     127.0.0.1:34742 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:21 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 19428, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 559.79
+[2026-03-24 09:12:22 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2.52
+[2026-03-24 09:12:22 TP0] Prefill batch, #new-seq: 1, #new-token: 5213, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 48078.73
+[2026-03-24 09:12:22 TP0] Decode batch, #running-req: 2, #token: 32904, token usage: 0.02, cuda graph: True, gen throughput (token/s): 12.18, #queue-req: 0
+[2026-03-24 09:12:22 TP0] Decode batch, #running-req: 2, #token: 32984, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.39, #queue-req: 0
+[2026-03-24 09:12:23 TP0] Decode batch, #running-req: 2, #token: 33064, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.57, #queue-req: 0
+[2026-03-24 09:12:23 TP0] Decode batch, #running-req: 1, #token: 13564, token usage: 0.01, cuda graph: True, gen throughput (token/s): 240.80, #queue-req: 0
+[2026-03-24 09:12:23] INFO:     127.0.0.1:34758 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:24] INFO:     127.0.0.1:34766 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:28 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 921.97
+[2026-03-24 09:12:28 TP0] Prefill batch, #new-seq: 1, #new-token: 3992, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 27284.62
+[2026-03-24 09:12:28 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 9769.18
+[2026-03-24 09:12:28 TP0] Prefill batch, #new-seq: 1, #new-token: 6861, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 35490.13
+[2026-03-24 09:12:29 TP0] Decode batch, #running-req: 2, #token: 27287, token usage: 0.02, cuda graph: True, gen throughput (token/s): 11.26, #queue-req: 0
+[2026-03-24 09:12:29 TP0] Decode batch, #running-req: 2, #token: 27367, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.61, #queue-req: 0
+[2026-03-24 09:12:29] INFO:     127.0.0.1:45892 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:29 TP0] Decode batch, #running-req: 1, #token: 12291, token usage: 0.01, cuda graph: True, gen throughput (token/s): 179.63, #queue-req: 0
+[2026-03-24 09:12:30 TP0] Decode batch, #running-req: 1, #token: 12331, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.26, #queue-req: 0
+[2026-03-24 09:12:32 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1979.05
+[2026-03-24 09:12:32 TP0] Prefill batch, #new-seq: 1, #new-token: 8126, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 29591.82
+[2026-03-24 09:12:32 TP0] Decode batch, #running-req: 2, #token: 28709, token usage: 0.02, cuda graph: True, gen throughput (token/s): 21.43, #queue-req: 0
+[2026-03-24 09:12:33 TP0] Decode batch, #running-req: 2, #token: 28789, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.87, #queue-req: 0
+[2026-03-24 09:12:33 TP0] Decode batch, #running-req: 2, #token: 28869, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.90, #queue-req: 0
+[2026-03-24 09:12:33] INFO:     127.0.0.1:45902 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:33 TP0] Decode batch, #running-req: 1, #token: 16462, token usage: 0.01, cuda graph: True, gen throughput (token/s): 159.58, #queue-req: 0
+[2026-03-24 09:12:34 TP0] Decode batch, #running-req: 1, #token: 16502, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.00, #queue-req: 0
+[2026-03-24 09:12:36 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2221.62
+[2026-03-24 09:12:36 TP0] Prefill batch, #new-seq: 1, #new-token: 2436, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 129306.77
+[2026-03-24 09:12:36 TP0] Decode batch, #running-req: 1, #token: 16542, token usage: 0.01, cuda graph: True, gen throughput (token/s): 27.38, #queue-req: 0
+[2026-03-24 09:12:36] INFO:     127.0.0.1:57802 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:37] INFO:     127.0.0.1:57810 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:40 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 554.68
+[2026-03-24 09:12:41 TP0] Prefill batch, #new-seq: 1, #new-token: 8109, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 18078.75
+[2026-03-24 09:12:41 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 19657.56
+[2026-03-24 09:12:42 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25167.59
+[2026-03-24 09:12:42 TP0] Prefill batch, #new-seq: 1, #new-token: 3290, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 64993.67
+[2026-03-24 09:12:42 TP0] Decode batch, #running-req: 2, #token: 35993, token usage: 0.02, cuda graph: True, gen throughput (token/s): 8.39, #queue-req: 0
+[2026-03-24 09:12:42 TP0] Decode batch, #running-req: 2, #token: 36073, token usage: 0.02, cuda graph: True, gen throughput (token/s): 240.99, #queue-req: 0
+[2026-03-24 09:12:42 TP0] Decode batch, #running-req: 2, #token: 36153, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.81, #queue-req: 0
+[2026-03-24 09:12:43] INFO:     127.0.0.1:57820 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:43 TP0] Decode batch, #running-req: 1, #token: 16432, token usage: 0.01, cuda graph: True, gen throughput (token/s): 206.45, #queue-req: 0
+[2026-03-24 09:12:43 TP0] Decode batch, #running-req: 1, #token: 16472, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.01, #queue-req: 0
+[2026-03-24 09:12:45 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 912.97
+[2026-03-24 09:12:45 TP0] Prefill batch, #new-seq: 1, #new-token: 2677, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 101269.25
+[2026-03-24 09:12:45 TP0] Decode batch, #running-req: 2, #token: 10892, token usage: 0.01, cuda graph: True, gen throughput (token/s): 23.37, #queue-req: 0
+[2026-03-24 09:12:46] INFO:     127.0.0.1:57824 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:46 TP0] Decode batch, #running-req: 1, #token: 10932, token usage: 0.01, cuda graph: True, gen throughput (token/s): 131.97, #queue-req: 0
+[2026-03-24 09:12:46 TP0] Decode batch, #running-req: 1, #token: 10972, token usage: 0.01, cuda graph: True, gen throughput (token/s): 130.23, #queue-req: 0
+[2026-03-24 09:12:48 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 886.45
+[2026-03-24 09:12:49 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24684.38
+[2026-03-24 09:12:49 TP0] Prefill batch, #new-seq: 1, #new-token: 915, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 513730.98
+[2026-03-24 09:12:49 TP0] Decode batch, #running-req: 2, #token: 28338, token usage: 0.02, cuda graph: True, gen throughput (token/s): 23.46, #queue-req: 0
+[2026-03-24 09:12:49 TP0] Decode batch, #running-req: 2, #token: 28418, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.51, #queue-req: 0
+[2026-03-24 09:12:50] INFO:     127.0.0.1:43356 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:50 TP0] Decode batch, #running-req: 1, #token: 11092, token usage: 0.01, cuda graph: True, gen throughput (token/s): 200.47, #queue-req: 0
+[2026-03-24 09:12:50 TP0] Decode batch, #running-req: 1, #token: 11132, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.79, #queue-req: 0
+[2026-03-24 09:12:50] INFO:     127.0.0.1:43360 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:53 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 192.39
+[2026-03-24 09:12:54 TP0] Prefill batch, #new-seq: 1, #new-token: 5412, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 23349.69
+[2026-03-24 09:12:54 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 13644.13
+[2026-03-24 09:12:54 TP0] Prefill batch, #new-seq: 1, #new-token: 2780, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 107823.98
+[2026-03-24 09:12:54] INFO:     127.0.0.1:43374 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:54 TP0] Decode batch, #running-req: 1, #token: 13629, token usage: 0.01, cuda graph: True, gen throughput (token/s): 9.85, #queue-req: 0
+[2026-03-24 09:12:55 TP0] Decode batch, #running-req: 1, #token: 13669, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.25, #queue-req: 0
+[2026-03-24 09:12:57 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 974.44
+[2026-03-24 09:12:57 TP0] Prefill batch, #new-seq: 1, #new-token: 5272, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 46162.33
+[2026-03-24 09:12:57 TP0] Decode batch, #running-req: 2, #token: 27187, token usage: 0.02, cuda graph: True, gen throughput (token/s): 19.89, #queue-req: 0
+[2026-03-24 09:12:58 TP0] Decode batch, #running-req: 2, #token: 27267, token usage: 0.02, cuda graph: True, gen throughput (token/s): 246.00, #queue-req: 0
+[2026-03-24 09:12:58] INFO:     127.0.0.1:53414 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:12:58 TP0] Decode batch, #running-req: 1, #token: 13562, token usage: 0.01, cuda graph: True, gen throughput (token/s): 197.68, #queue-req: 0
+[2026-03-24 09:12:58 TP0] Decode batch, #running-req: 1, #token: 13602, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.58, #queue-req: 0
+[2026-03-24 09:13:01 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1394.16
+[2026-03-24 09:13:01 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25220.73
+[2026-03-24 09:13:01 TP0] Prefill batch, #new-seq: 1, #new-token: 1533, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 175876.76
+[2026-03-24 09:13:01 TP0] Decode batch, #running-req: 2, #token: 31563, token usage: 0.02, cuda graph: True, gen throughput (token/s): 13.81, #queue-req: 0
+[2026-03-24 09:13:02 TP0] Decode batch, #running-req: 2, #token: 31643, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.09, #queue-req: 0
+[2026-03-24 09:13:02 TP0] Decode batch, #running-req: 2, #token: 18005, token usage: 0.01, cuda graph: True, gen throughput (token/s): 243.82, #queue-req: 0
+[2026-03-24 09:13:02] INFO:     127.0.0.1:53416 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:02 TP0] Decode batch, #running-req: 1, #token: 18045, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.91, #queue-req: 0
+[2026-03-24 09:13:03] INFO:     127.0.0.1:53428 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:07 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 284.34
+[2026-03-24 09:13:07 TP0] Prefill batch, #new-seq: 1, #new-token: 7850, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 18442.25
+[2026-03-24 09:13:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 19888.59
+[2026-03-24 09:13:08 TP0] Prefill batch, #new-seq: 1, #new-token: 5415, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 44554.86
+[2026-03-24 09:13:08] INFO:     127.0.0.1:36074 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:08 TP0] Decode batch, #running-req: 1, #token: 16076, token usage: 0.01, cuda graph: True, gen throughput (token/s): 7.61, #queue-req: 0
+[2026-03-24 09:13:08 TP0] Decode batch, #running-req: 1, #token: 16116, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.88, #queue-req: 0
+[2026-03-24 09:13:11 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1863.92
+[2026-03-24 09:13:11 TP0] Prefill batch, #new-seq: 1, #new-token: 7318, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 33383.34
+[2026-03-24 09:13:11 TP0] Decode batch, #running-req: 2, #token: 31690, token usage: 0.02, cuda graph: True, gen throughput (token/s): 22.52, #queue-req: 0
+[2026-03-24 09:13:12 TP0] Decode batch, #running-req: 2, #token: 31770, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.53, #queue-req: 0
+[2026-03-24 09:13:12 TP0] Decode batch, #running-req: 2, #token: 31850, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.86, #queue-req: 0
+[2026-03-24 09:13:12 TP0] Decode batch, #running-req: 2, #token: 31930, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.60, #queue-req: 0
+[2026-03-24 09:13:13 TP0] Decode batch, #running-req: 2, #token: 32010, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.61, #queue-req: 0
+[2026-03-24 09:13:13] INFO:     127.0.0.1:36084 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:13 TP0] Decode batch, #running-req: 1, #token: 15738, token usage: 0.01, cuda graph: True, gen throughput (token/s): 156.81, #queue-req: 0
+[2026-03-24 09:13:13] INFO:     127.0.0.1:36086 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:17 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1271.32
+[2026-03-24 09:13:17 TP0] Prefill batch, #new-seq: 1, #new-token: 4218, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 26876.82
+[2026-03-24 09:13:18 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 10117.47
+[2026-03-24 09:13:18 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25419.10
+[2026-03-24 09:13:18 TP0] Prefill batch, #new-seq: 1, #new-token: 3498, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 55276.90
+[2026-03-24 09:13:18 TP0] Decode batch, #running-req: 2, #token: 32352, token usage: 0.02, cuda graph: True, gen throughput (token/s): 12.53, #queue-req: 0
+[2026-03-24 09:13:19 TP0] Decode batch, #running-req: 2, #token: 32432, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.92, #queue-req: 0
+[2026-03-24 09:13:19 TP0] Decode batch, #running-req: 2, #token: 32512, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.37, #queue-req: 0
+[2026-03-24 09:13:19 TP0] Decode batch, #running-req: 1, #token: 12562, token usage: 0.01, cuda graph: True, gen throughput (token/s): 213.29, #queue-req: 0
+[2026-03-24 09:13:19] INFO:     127.0.0.1:56856 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:19 TP0] Decode batch, #running-req: 1, #token: 12602, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.28, #queue-req: 0
+[2026-03-24 09:13:22 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 882.50
+[2026-03-24 09:13:22 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25653.04
+[2026-03-24 09:13:22 TP0] Prefill batch, #new-seq: 1, #new-token: 2689, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 77507.57
+[2026-03-24 09:13:22 TP0] Decode batch, #running-req: 2, #token: 31718, token usage: 0.02, cuda graph: True, gen throughput (token/s): 14.54, #queue-req: 0
+[2026-03-24 09:13:23 TP0] Decode batch, #running-req: 2, #token: 31798, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.14, #queue-req: 0
+[2026-03-24 09:13:23 TP0] Decode batch, #running-req: 1, #token: 19160, token usage: 0.01, cuda graph: True, gen throughput (token/s): 220.65, #queue-req: 0
+[2026-03-24 09:13:23] INFO:     127.0.0.1:56864 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:23 TP0] Decode batch, #running-req: 1, #token: 19200, token usage: 0.01, cuda graph: True, gen throughput (token/s): 125.92, #queue-req: 0
+[2026-03-24 09:13:24] INFO:     127.0.0.1:56878 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:24] INFO:     127.0.0.1:56894 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:27 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 569.93
+[2026-03-24 09:13:27 TP0] Prefill batch, #new-seq: 1, #new-token: 6773, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 20316.50
+[2026-03-24 09:13:28 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 17018.48
+[2026-03-24 09:13:28 TP0] Prefill batch, #new-seq: 1, #new-token: 6114, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 39748.38
+[2026-03-24 09:13:28 TP0] Decode batch, #running-req: 2, #token: 29335, token usage: 0.02, cuda graph: True, gen throughput (token/s): 13.88, #queue-req: 0
+[2026-03-24 09:13:29 TP0] Decode batch, #running-req: 2, #token: 29415, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.03, #queue-req: 0
+[2026-03-24 09:13:29] INFO:     127.0.0.1:35654 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:29 TP0] Decode batch, #running-req: 1, #token: 15079, token usage: 0.01, cuda graph: True, gen throughput (token/s): 149.71, #queue-req: 0
+[2026-03-24 09:13:29 TP0] Decode batch, #running-req: 1, #token: 15119, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.30, #queue-req: 0
+[2026-03-24 09:13:32 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1760.41
+[2026-03-24 09:13:32 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25821.64
+[2026-03-24 09:13:32 TP0] Prefill batch, #new-seq: 1, #new-token: 3036, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 67228.55
+[2026-03-24 09:13:32] INFO:     127.0.0.1:35664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:32 TP0] Decode batch, #running-req: 1, #token: 15159, token usage: 0.01, cuda graph: True, gen throughput (token/s): 16.91, #queue-req: 0
+[2026-03-24 09:13:33] INFO:     127.0.0.1:35668 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:36 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 739.19
+[2026-03-24 09:13:36 TP0] Prefill batch, #new-seq: 1, #new-token: 6280, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 21170.02
+[2026-03-24 09:13:37 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 15746.25
+[2026-03-24 09:13:37 TP0] Prefill batch, #new-seq: 1, #new-token: 6100, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 39400.48
+[2026-03-24 09:13:37 TP0] Decode batch, #running-req: 2, #token: 28806, token usage: 0.02, cuda graph: True, gen throughput (token/s): 11.44, #queue-req: 0
+[2026-03-24 09:13:38 TP0] Decode batch, #running-req: 2, #token: 28886, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.25, #queue-req: 0
+[2026-03-24 09:13:38] INFO:     127.0.0.1:50998 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:38 TP0] Decode batch, #running-req: 1, #token: 14395, token usage: 0.01, cuda graph: True, gen throughput (token/s): 151.14, #queue-req: 0
+[2026-03-24 09:13:38 TP0] Decode batch, #running-req: 1, #token: 14435, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.34, #queue-req: 0
+[2026-03-24 09:13:40 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1858.37
+[2026-03-24 09:13:41 TP0] Prefill batch, #new-seq: 1, #new-token: 5060, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 47952.18
+[2026-03-24 09:13:41 TP0] Decode batch, #running-req: 2, #token: 27760, token usage: 0.02, cuda graph: True, gen throughput (token/s): 27.58, #queue-req: 0
+[2026-03-24 09:13:41 TP0] Decode batch, #running-req: 2, #token: 27840, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.94, #queue-req: 0
+[2026-03-24 09:13:41 TP0] Decode batch, #running-req: 1, #token: 13369, token usage: 0.01, cuda graph: True, gen throughput (token/s): 237.52, #queue-req: 0
+[2026-03-24 09:13:42] INFO:     127.0.0.1:51014 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:42 TP0] Decode batch, #running-req: 1, #token: 13409, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.64, #queue-req: 0
+[2026-03-24 09:13:44 TP0] Decode batch, #running-req: 1, #token: 21640, token usage: 0.01, cuda graph: True, gen throughput (token/s): 19.45, #queue-req: 0
+[2026-03-24 09:13:44 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1377.08
+[2026-03-24 09:13:44 TP0] Prefill batch, #new-seq: 1, #new-token: 3632, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 70788.68
+[2026-03-24 09:13:45 TP0] Decode batch, #running-req: 2, #token: 25354, token usage: 0.02, cuda graph: True, gen throughput (token/s): 95.74, #queue-req: 0
+[2026-03-24 09:13:45] INFO:     127.0.0.1:51028 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:45] INFO:     127.0.0.1:51042 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:49 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 781.12
+[2026-03-24 09:13:49 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19996.91
+[2026-03-24 09:13:50 TP0] Prefill batch, #new-seq: 1, #new-token: 6596, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 39755.54
+[2026-03-24 09:13:50 TP0] Decode batch, #running-req: 2, #token: 23024, token usage: 0.01, cuda graph: True, gen throughput (token/s): 15.11, #queue-req: 0
+[2026-03-24 09:13:50 TP0] Decode batch, #running-req: 2, #token: 23104, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.47, #queue-req: 0
+[2026-03-24 09:13:50 TP0] Decode batch, #running-req: 2, #token: 23184, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.86, #queue-req: 0
+[2026-03-24 09:13:51 TP0] Decode batch, #running-req: 2, #token: 23264, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.19, #queue-req: 0
+[2026-03-24 09:13:51 TP0] Decode batch, #running-req: 2, #token: 23344, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.07, #queue-req: 0
+[2026-03-24 09:13:51] INFO:     127.0.0.1:42688 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:51 TP0] Decode batch, #running-req: 1, #token: 11906, token usage: 0.01, cuda graph: True, gen throughput (token/s): 143.44, #queue-req: 0
+[2026-03-24 09:13:52] INFO:     127.0.0.1:42694 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:55 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1195.39
+[2026-03-24 09:13:55 TP0] Prefill batch, #new-seq: 1, #new-token: 4819, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 24528.05
+[2026-03-24 09:13:56 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 11707.18
+[2026-03-24 09:13:56 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24643.63
+[2026-03-24 09:13:56 TP0] Prefill batch, #new-seq: 1, #new-token: 2724, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 84150.08
+[2026-03-24 09:13:56 TP0] Decode batch, #running-req: 2, #token: 32139, token usage: 0.02, cuda graph: True, gen throughput (token/s): 9.41, #queue-req: 0
+[2026-03-24 09:13:57 TP0] Decode batch, #running-req: 2, #token: 32219, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.34, #queue-req: 0
+[2026-03-24 09:13:57] INFO:     127.0.0.1:34054 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:13:57] INFO:     127.0.0.1:34064 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:01 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 605.01
+[2026-03-24 09:14:01 TP0] Prefill batch, #new-seq: 1, #new-token: 4147, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 26910.84
+[2026-03-24 09:14:02 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 10046.01
+[2026-03-24 09:14:02 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24876.96
+[2026-03-24 09:14:02 TP0] Prefill batch, #new-seq: 1, #new-token: 1098, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 230339.15
+[2026-03-24 09:14:02 TP0] Decode batch, #running-req: 2, #token: 29831, token usage: 0.02, cuda graph: True, gen throughput (token/s): 10.17, #queue-req: 0
+[2026-03-24 09:14:02] INFO:     127.0.0.1:34078 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:02 TP0] Decode batch, #running-req: 1, #token: 17529, token usage: 0.01, cuda graph: True, gen throughput (token/s): 141.13, #queue-req: 0
+[2026-03-24 09:14:03 TP0] Decode batch, #running-req: 1, #token: 17569, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.76, #queue-req: 0
+[2026-03-24 09:14:05 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 380.34
+[2026-03-24 09:14:05 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24942.49
+[2026-03-24 09:14:05 TP0] Prefill batch, #new-seq: 1, #new-token: 526, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1551682.33
+[2026-03-24 09:14:05 TP0] Decode batch, #running-req: 2, #token: 34552, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.38, #queue-req: 0
+[2026-03-24 09:14:06] INFO:     127.0.0.1:34080 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:06 TP0] Decode batch, #running-req: 1, #token: 17649, token usage: 0.01, cuda graph: True, gen throughput (token/s): 209.27, #queue-req: 0
+[2026-03-24 09:14:06 TP0] Decode batch, #running-req: 1, #token: 17689, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.44, #queue-req: 0
+[2026-03-24 09:14:06] INFO:     127.0.0.1:42778 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:10 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 114.26
+[2026-03-24 09:14:10 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17479.72
+[2026-03-24 09:14:11 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19066.61
+[2026-03-24 09:14:11 TP0] Prefill batch, #new-seq: 1, #new-token: 7445, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 34717.16
+[2026-03-24 09:14:11 TP0] Decode batch, #running-req: 2, #token: 32041, token usage: 0.02, cuda graph: True, gen throughput (token/s): 9.61, #queue-req: 0
+[2026-03-24 09:14:11 TP0] Decode batch, #running-req: 2, #token: 32121, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.18, #queue-req: 0
+[2026-03-24 09:14:12 TP0] Decode batch, #running-req: 2, #token: 32201, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.61, #queue-req: 0
+[2026-03-24 09:14:12] INFO:     127.0.0.1:42790 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:12 TP0] Decode batch, #running-req: 1, #token: 12980, token usage: 0.01, cuda graph: True, gen throughput (token/s): 157.36, #queue-req: 0
+[2026-03-24 09:14:12] INFO:     127.0.0.1:42792 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:16 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1544.10
+[2026-03-24 09:14:16 TP0] Prefill batch, #new-seq: 1, #new-token: 2952, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 32287.38
+[2026-03-24 09:14:16 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 7161.64
+[2026-03-24 09:14:17 TP0] Prefill batch, #new-seq: 1, #new-token: 7731, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 30559.36
+[2026-03-24 09:14:17 TP0] Decode batch, #running-req: 2, #token: 27103, token usage: 0.02, cuda graph: True, gen throughput (token/s): 11.36, #queue-req: 0
+[2026-03-24 09:14:17] INFO:     127.0.0.1:34802 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:17 TP0] Decode batch, #running-req: 1, #token: 15983, token usage: 0.01, cuda graph: True, gen throughput (token/s): 141.85, #queue-req: 0
+[2026-03-24 09:14:17 TP0] Decode batch, #running-req: 1, #token: 16023, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.30, #queue-req: 0
+[2026-03-24 09:14:20 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2612.14
+[2026-03-24 09:14:20 TP0] Prefill batch, #new-seq: 1, #new-token: 7892, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 30063.77
+[2026-03-24 09:14:20 TP0] Decode batch, #running-req: 2, #token: 32179, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.96, #queue-req: 0
+[2026-03-24 09:14:20 TP0] Decode batch, #running-req: 1, #token: 16103, token usage: 0.01, cuda graph: True, gen throughput (token/s): 218.45, #queue-req: 0
+[2026-03-24 09:14:20] INFO:     127.0.0.1:34806 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:21] INFO:     127.0.0.1:34818 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:24 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1729.20
+[2026-03-24 09:14:25 TP0] Prefill batch, #new-seq: 1, #new-token: 4298, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 25537.57
+[2026-03-24 09:14:25 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 10716.50
+[2026-03-24 09:14:25 TP0] Prefill batch, #new-seq: 1, #new-token: 6215, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 39512.91
+[2026-03-24 09:14:26 TP0] Decode batch, #running-req: 2, #token: 26971, token usage: 0.02, cuda graph: True, gen throughput (token/s): 14.26, #queue-req: 0
+[2026-03-24 09:14:26] INFO:     127.0.0.1:37920 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:26 TP0] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 203.49, #queue-req: 0
+[2026-03-24 09:14:26] INFO:     127.0.0.1:37922 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:30 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1397.16
+[2026-03-24 09:14:30 TP0] Prefill batch, #new-seq: 1, #new-token: 3249, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 29748.97
+[2026-03-24 09:14:30 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 7878.75
+[2026-03-24 09:14:31 TP0] Prefill batch, #new-seq: 1, #new-token: 7029, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 34439.35
+[2026-03-24 09:14:31 TP0] Decode batch, #running-req: 2, #token: 26748, token usage: 0.02, cuda graph: True, gen throughput (token/s): 15.68, #queue-req: 0
+[2026-03-24 09:14:31 TP0] Decode batch, #running-req: 2, #token: 26828, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.63, #queue-req: 0
+[2026-03-24 09:14:32] INFO:     127.0.0.1:37932 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:32 TP0] Decode batch, #running-req: 1, #token: 15346, token usage: 0.01, cuda graph: True, gen throughput (token/s): 188.28, #queue-req: 0
+[2026-03-24 09:14:32 TP0] Decode batch, #running-req: 1, #token: 15386, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.24, #queue-req: 0
+[2026-03-24 09:14:34 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1858.94
+[2026-03-24 09:14:35 TP0] Prefill batch, #new-seq: 1, #new-token: 7126, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 33657.62
+[2026-03-24 09:14:35 TP0] Decode batch, #running-req: 2, #token: 30762, token usage: 0.02, cuda graph: True, gen throughput (token/s): 19.79, #queue-req: 0
+[2026-03-24 09:14:35 TP0] Decode batch, #running-req: 2, #token: 30842, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.74, #queue-req: 0
+[2026-03-24 09:14:35] INFO:     127.0.0.1:37936 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:36 TP0] Decode batch, #running-req: 1, #token: 15420, token usage: 0.01, cuda graph: True, gen throughput (token/s): 190.49, #queue-req: 0
+[2026-03-24 09:14:36] INFO:     127.0.0.1:37950 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:36 TP0] Decode batch, #running-req: 1, #token: 15460, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.05, #queue-req: 0
+[2026-03-24 09:14:36] INFO:     127.0.0.1:59458 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:40 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 1367.92
+[2026-03-24 09:14:40 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 20617.92
+[2026-03-24 09:14:40 TP0] Prefill batch, #new-seq: 1, #new-token: 5082, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 51943.14
+[2026-03-24 09:14:41 TP0] Decode batch, #running-req: 2, #token: 21528, token usage: 0.01, cuda graph: True, gen throughput (token/s): 13.92, #queue-req: 0
+[2026-03-24 09:14:41] INFO:     127.0.0.1:59464 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:41 TP0] Decode batch, #running-req: 1, #token: 10442, token usage: 0.01, cuda graph: True, gen throughput (token/s): 217.64, #queue-req: 0
+[2026-03-24 09:14:41 TP0] Decode batch, #running-req: 1, #token: 10482, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.10, #queue-req: 0
+[2026-03-24 09:14:44 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1543.03
+[2026-03-24 09:14:44 TP0] Prefill batch, #new-seq: 1, #new-token: 4009, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 61903.93
+[2026-03-24 09:14:44 TP0] Decode batch, #running-req: 2, #token: 22732, token usage: 0.01, cuda graph: True, gen throughput (token/s): 18.19, #queue-req: 0
+[2026-03-24 09:14:44 TP0] Decode batch, #running-req: 2, #token: 22812, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.38, #queue-req: 0
+[2026-03-24 09:14:45 TP0] Decode batch, #running-req: 1, #token: 10602, token usage: 0.01, cuda graph: True, gen throughput (token/s): 225.90, #queue-req: 0
+[2026-03-24 09:14:45] INFO:     127.0.0.1:59468 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:45] INFO:     127.0.0.1:59470 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:49 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 827.37
+[2026-03-24 09:14:49 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17424.46
+[2026-03-24 09:14:50 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19432.11
+[2026-03-24 09:14:50 TP0] Prefill batch, #new-seq: 1, #new-token: 5959, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 43021.68
+[2026-03-24 09:14:50 TP0] Decode batch, #running-req: 2, #token: 30617, token usage: 0.02, cuda graph: True, gen throughput (token/s): 14.09, #queue-req: 0
+[2026-03-24 09:14:50 TP0] Decode batch, #running-req: 1, #token: 11464, token usage: 0.01, cuda graph: True, gen throughput (token/s): 237.75, #queue-req: 0
+[2026-03-24 09:14:51] INFO:     127.0.0.1:36808 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:51 TP0] Decode batch, #running-req: 1, #token: 11504, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.38, #queue-req: 0
+[2026-03-24 09:14:51 TP0] Decode batch, #running-req: 1, #token: 11544, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.79, #queue-req: 0
+[2026-03-24 09:14:53 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1727.31
+[2026-03-24 09:14:54 TP0] Prefill batch, #new-seq: 1, #new-token: 6668, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 36022.36
+[2026-03-24 09:14:54 TP0] Decode batch, #running-req: 2, #token: 26481, token usage: 0.02, cuda graph: True, gen throughput (token/s): 28.05, #queue-req: 0
+[2026-03-24 09:14:54 TP0] Decode batch, #running-req: 2, #token: 26561, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.75, #queue-req: 0
+[2026-03-24 09:14:54 TP0] Decode batch, #running-req: 2, #token: 26641, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.71, #queue-req: 0
+[2026-03-24 09:14:55] INFO:     127.0.0.1:36814 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:55] INFO:     127.0.0.1:36830 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:14:59 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1304.30
+[2026-03-24 09:14:59 TP0] Prefill batch, #new-seq: 1, #new-token: 4922, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 24738.57
+[2026-03-24 09:14:59 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 12797.96
+[2026-03-24 09:14:59 TP0] Prefill batch, #new-seq: 1, #new-token: 4201, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 58360.74
+[2026-03-24 09:15:00 TP0] Decode batch, #running-req: 1, #token: 13140, token usage: 0.01, cuda graph: True, gen throughput (token/s): 11.94, #queue-req: 0
+[2026-03-24 09:15:00] INFO:     127.0.0.1:41620 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:00 TP0] Decode batch, #running-req: 1, #token: 13180, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.67, #queue-req: 0
+[2026-03-24 09:15:00] INFO:     127.0.0.1:41630 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:04 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1013.43
+[2026-03-24 09:15:04 TP0] Prefill batch, #new-seq: 1, #new-token: 5221, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 23357.00
+[2026-03-24 09:15:04 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 12638.80
+[2026-03-24 09:15:05 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25256.18
+[2026-03-24 09:15:05 TP0] Prefill batch, #new-seq: 1, #new-token: 1247, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 176704.79
+[2026-03-24 09:15:05 TP0] Decode batch, #running-req: 1, #token: 17649, token usage: 0.01, cuda graph: True, gen throughput (token/s): 10.00, #queue-req: 0
+[2026-03-24 09:15:05] INFO:     127.0.0.1:41636 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:05 TP0] Decode batch, #running-req: 1, #token: 17689, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.11, #queue-req: 0
+[2026-03-24 09:15:06 TP0] Decode batch, #running-req: 1, #token: 17729, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.66, #queue-req: 0
+[2026-03-24 09:15:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 419.94
+[2026-03-24 09:15:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25637.25
+[2026-03-24 09:15:08 TP0] Prefill batch, #new-seq: 1, #new-token: 3000, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 68984.58
+[2026-03-24 09:15:08 TP0] Decode batch, #running-req: 2, #token: 37189, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.31, #queue-req: 0
+[2026-03-24 09:15:09 TP0] Decode batch, #running-req: 2, #token: 37269, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.28, #queue-req: 0
+[2026-03-24 09:15:09 TP0] Decode batch, #running-req: 2, #token: 37349, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.43, #queue-req: 0
+[2026-03-24 09:15:09 TP0] Decode batch, #running-req: 1, #token: 19544, token usage: 0.01, cuda graph: True, gen throughput (token/s): 222.23, #queue-req: 0
+[2026-03-24 09:15:09] INFO:     127.0.0.1:46032 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:10 TP0] Decode batch, #running-req: 1, #token: 19584, token usage: 0.01, cuda graph: True, gen throughput (token/s): 125.85, #queue-req: 0
+[2026-03-24 09:15:10] INFO:     127.0.0.1:46042 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:14 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 538.48
+[2026-03-24 09:15:14 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 20421.42
+[2026-03-24 09:15:14 TP0] Prefill batch, #new-seq: 1, #new-token: 6136, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 42157.13
+[2026-03-24 09:15:14 TP0] Decode batch, #running-req: 2, #token: 22560, token usage: 0.01, cuda graph: True, gen throughput (token/s): 12.11, #queue-req: 0
+[2026-03-24 09:15:15 TP0] Decode batch, #running-req: 1, #token: 10479, token usage: 0.01, cuda graph: True, gen throughput (token/s): 222.65, #queue-req: 0
+[2026-03-24 09:15:15] INFO:     127.0.0.1:46054 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:15 TP0] Decode batch, #running-req: 1, #token: 10519, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.95, #queue-req: 0
+[2026-03-24 09:15:15] INFO:     127.0.0.1:46064 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:19 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1389.11
+[2026-03-24 09:15:19 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17515.50
+[2026-03-24 09:15:20 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19727.20
+[2026-03-24 09:15:20 TP0] Prefill batch, #new-seq: 1, #new-token: 7299, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 34069.80
+[2026-03-24 09:15:20 TP0] Decode batch, #running-req: 2, #token: 31893, token usage: 0.02, cuda graph: True, gen throughput (token/s): 9.54, #queue-req: 0
+[2026-03-24 09:15:20 TP0] Decode batch, #running-req: 1, #token: 17089, token usage: 0.01, cuda graph: True, gen throughput (token/s): 220.35, #queue-req: 0
+[2026-03-24 09:15:20] INFO:     127.0.0.1:46796 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:21 TP0] Decode batch, #running-req: 1, #token: 17129, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.39, #queue-req: 0
+[2026-03-24 09:15:23 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2330.32
+[2026-03-24 09:15:23 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25127.41
+[2026-03-24 09:15:23 TP0] Prefill batch, #new-seq: 1, #new-token: 373, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1846522.56
+[2026-03-24 09:15:23 TP0] Decode batch, #running-req: 2, #token: 33933, token usage: 0.02, cuda graph: True, gen throughput (token/s): 16.32, #queue-req: 0
+[2026-03-24 09:15:24] INFO:     127.0.0.1:46812 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:24] INFO:     127.0.0.1:46828 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:24 TP0] Decode batch, #running-req: 1, #token: 16808, token usage: 0.01, cuda graph: True, gen throughput (token/s): 151.57, #queue-req: 0
+[2026-03-24 09:15:24 TP0] Decode batch, #running-req: 1, #token: 16848, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.82, #queue-req: 0
+[2026-03-24 09:15:26 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 122.90
+[2026-03-24 09:15:27 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24994.19
+[2026-03-24 09:15:27 TP0] Prefill batch, #new-seq: 1, #new-token: 1005, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 412478.26
+[2026-03-24 09:15:27 TP0] Decode batch, #running-req: 2, #token: 34295, token usage: 0.02, cuda graph: True, gen throughput (token/s): 20.06, #queue-req: 0
+[2026-03-24 09:15:27] INFO:     127.0.0.1:57826 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:27 TP0] Decode batch, #running-req: 1, #token: 16928, token usage: 0.01, cuda graph: True, gen throughput (token/s): 197.77, #queue-req: 0
+[2026-03-24 09:15:28 TP0] Decode batch, #running-req: 1, #token: 16968, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.50, #queue-req: 0
+[2026-03-24 09:15:30 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 321.55
+[2026-03-24 09:15:30 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25590.99
+[2026-03-24 09:15:30 TP0] Prefill batch, #new-seq: 1, #new-token: 1442, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 154848.96
+[2026-03-24 09:15:30 TP0] Decode batch, #running-req: 2, #token: 34847, token usage: 0.02, cuda graph: True, gen throughput (token/s): 18.46, #queue-req: 0
+[2026-03-24 09:15:30] INFO:     127.0.0.1:57840 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:31 TP0] Decode batch, #running-req: 1, #token: 17883, token usage: 0.01, cuda graph: True, gen throughput (token/s): 143.92, #queue-req: 0
+[2026-03-24 09:15:31 TP0] Decode batch, #running-req: 1, #token: 17923, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.49, #queue-req: 0
+[2026-03-24 09:15:33 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 496.34
+[2026-03-24 09:15:33 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24731.02
+[2026-03-24 09:15:34 TP0] Prefill batch, #new-seq: 1, #new-token: 1264, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 207849.01
+[2026-03-24 09:15:34 TP0] Decode batch, #running-req: 2, #token: 35643, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.37, #queue-req: 0
+[2026-03-24 09:15:34] INFO:     127.0.0.1:57846 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:34 TP0] Decode batch, #running-req: 1, #token: 17724, token usage: 0.01, cuda graph: True, gen throughput (token/s): 180.42, #queue-req: 0
+[2026-03-24 09:15:34 TP0] Decode batch, #running-req: 1, #token: 17764, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.27, #queue-req: 0
+[2026-03-24 09:15:37 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 398.81
+[2026-03-24 09:15:37 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24833.89
+[2026-03-24 09:15:37 TP0] Prefill batch, #new-seq: 1, #new-token: 1355, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 195247.85
+[2026-03-24 09:15:37 TP0] Decode batch, #running-req: 2, #token: 35562, token usage: 0.02, cuda graph: True, gen throughput (token/s): 20.75, #queue-req: 0
+[2026-03-24 09:15:38 TP0] Decode batch, #running-req: 2, #token: 35642, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.49, #queue-req: 0
+[2026-03-24 09:15:38 TP0] Decode batch, #running-req: 2, #token: 35722, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.91, #queue-req: 0
+[2026-03-24 09:15:38 TP0] Decode batch, #running-req: 2, #token: 35802, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.72, #queue-req: 0
+[2026-03-24 09:15:38] INFO:     127.0.0.1:56184 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:39 TP0] Decode batch, #running-req: 1, #token: 17922, token usage: 0.01, cuda graph: True, gen throughput (token/s): 180.64, #queue-req: 0
+[2026-03-24 09:15:39 TP0] Decode batch, #running-req: 1, #token: 17962, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.38, #queue-req: 0
+[2026-03-24 09:15:41 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 330.70
+[2026-03-24 09:15:41 TP0] Prefill batch, #new-seq: 1, #new-token: 4131, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 61281.74
+[2026-03-24 09:15:41 TP0] Decode batch, #running-req: 2, #token: 30334, token usage: 0.02, cuda graph: True, gen throughput (token/s): 19.02, #queue-req: 0
+[2026-03-24 09:15:42] INFO:     127.0.0.1:56200 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:42] INFO:     127.0.0.1:56216 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:46 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 950.66
+[2026-03-24 09:15:46 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 25552.09
+[2026-03-24 09:15:46 TP0] Prefill batch, #new-seq: 1, #new-token: 3104, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 27789.57
+[2026-03-24 09:15:47 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 7354.73
+[2026-03-24 09:15:47 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25652.24
+[2026-03-24 09:15:47 TP0] Prefill batch, #new-seq: 1, #new-token: 1729, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 135157.41
+[2026-03-24 09:15:47 TP0] Decode batch, #running-req: 2, #token: 37671, token usage: 0.02, cuda graph: True, gen throughput (token/s): 12.91, #queue-req: 0
+[2026-03-24 09:15:48] INFO:     127.0.0.1:43502 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:48 TP0] Decode batch, #running-req: 1, #token: 18190, token usage: 0.01, cuda graph: True, gen throughput (token/s): 205.44, #queue-req: 0
+[2026-03-24 09:15:48 TP0] Decode batch, #running-req: 1, #token: 18230, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.33, #queue-req: 0
+[2026-03-24 09:15:50 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 518.13
+[2026-03-24 09:15:51 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25541.39
+[2026-03-24 09:15:51 TP0] Prefill batch, #new-seq: 1, #new-token: 2347, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 84260.31
+[2026-03-24 09:15:51 TP0] Decode batch, #running-req: 2, #token: 37008, token usage: 0.02, cuda graph: True, gen throughput (token/s): 15.89, #queue-req: 0
+[2026-03-24 09:15:51 TP0] Decode batch, #running-req: 2, #token: 37088, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.26, #queue-req: 0
+[2026-03-24 09:15:52 TP0] Decode batch, #running-req: 2, #token: 37168, token usage: 0.02, cuda graph: True, gen throughput (token/s): 239.50, #queue-req: 0
+[2026-03-24 09:15:52 TP0] Decode batch, #running-req: 2, #token: 18862, token usage: 0.01, cuda graph: True, gen throughput (token/s): 222.68, #queue-req: 0
+[2026-03-24 09:15:52] INFO:     127.0.0.1:43508 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:52 TP0] Decode batch, #running-req: 1, #token: 18902, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.03, #queue-req: 0
+[2026-03-24 09:15:53 TP0] Decode batch, #running-req: 1, #token: 18942, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.07, #queue-req: 0
+[2026-03-24 09:15:55 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 601.24
+[2026-03-24 09:15:55 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25161.97
+[2026-03-24 09:15:55 TP0] Prefill batch, #new-seq: 1, #new-token: 1016, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 349766.89
+[2026-03-24 09:15:55 TP0] Decode batch, #running-req: 2, #token: 36421, token usage: 0.02, cuda graph: True, gen throughput (token/s): 27.27, #queue-req: 0
+[2026-03-24 09:15:56] INFO:     127.0.0.1:43516 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:56 TP0] Decode batch, #running-req: 1, #token: 17483, token usage: 0.01, cuda graph: True, gen throughput (token/s): 169.25, #queue-req: 0
+[2026-03-24 09:15:56 TP0] Decode batch, #running-req: 1, #token: 17523, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.51, #queue-req: 0
+[2026-03-24 09:15:58 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 318.87
+[2026-03-24 09:15:59 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24000.29
+[2026-03-24 09:15:59 TP0] Prefill batch, #new-seq: 1, #new-token: 1242, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 169955.11
+[2026-03-24 09:15:59 TP0] Decode batch, #running-req: 2, #token: 35213, token usage: 0.02, cuda graph: True, gen throughput (token/s): 22.41, #queue-req: 0
+[2026-03-24 09:15:59 TP0] Decode batch, #running-req: 2, #token: 35293, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.00, #queue-req: 0
+[2026-03-24 09:15:59] INFO:     127.0.0.1:49972 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:15:59 TP0] Decode batch, #running-req: 1, #token: 17734, token usage: 0.01, cuda graph: True, gen throughput (token/s): 156.10, #queue-req: 0
+[2026-03-24 09:16:00 TP0] Decode batch, #running-req: 1, #token: 17774, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.77, #queue-req: 0
+[2026-03-24 09:16:02 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 376.23
+[2026-03-24 09:16:02 TP0] Prefill batch, #new-seq: 1, #new-token: 4548, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 53294.45
+[2026-03-24 09:16:02 TP0] Decode batch, #running-req: 1, #token: 12777, token usage: 0.01, cuda graph: True, gen throughput (token/s): 26.83, #queue-req: 0
+[2026-03-24 09:16:02] INFO:     127.0.0.1:49976 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:03] INFO:     127.0.0.1:49980 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:06 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1070.94
+[2026-03-24 09:16:07 TP0] Prefill batch, #new-seq: 1, #new-token: 3665, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 28472.04
+[2026-03-24 09:16:07 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 8845.55
+[2026-03-24 09:16:07 TP0] Prefill batch, #new-seq: 1, #new-token: 8167, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 29573.83
+[2026-03-24 09:16:07 TP0] Decode batch, #running-req: 2, #token: 28254, token usage: 0.02, cuda graph: True, gen throughput (token/s): 11.00, #queue-req: 0
+[2026-03-24 09:16:08 TP0] Decode batch, #running-req: 2, #token: 28334, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.94, #queue-req: 0
+[2026-03-24 09:16:08 TP0] Decode batch, #running-req: 2, #token: 28414, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.37, #queue-req: 0
+[2026-03-24 09:16:08 TP0] Decode batch, #running-req: 2, #token: 28494, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.30, #queue-req: 0
+[2026-03-24 09:16:09] INFO:     127.0.0.1:47452 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:09 TP0] Decode batch, #running-req: 1, #token: 12038, token usage: 0.01, cuda graph: True, gen throughput (token/s): 149.79, #queue-req: 0
+[2026-03-24 09:16:09] INFO:     127.0.0.1:47460 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:13 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 1525.04
+[2026-03-24 09:16:13 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19822.01
+[2026-03-24 09:16:13 TP0] Prefill batch, #new-seq: 1, #new-token: 7440, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 34817.28
+[2026-03-24 09:16:13 TP0] Decode batch, #running-req: 2, #token: 23864, token usage: 0.01, cuda graph: True, gen throughput (token/s): 12.08, #queue-req: 0
+[2026-03-24 09:16:14] INFO:     127.0.0.1:47476 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:14 TP0] Decode batch, #running-req: 1, #token: 11684, token usage: 0.01, cuda graph: True, gen throughput (token/s): 187.53, #queue-req: 0
+[2026-03-24 09:16:14 TP0] Decode batch, #running-req: 1, #token: 11724, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.81, #queue-req: 0
+[2026-03-24 09:16:16 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2485.32
+[2026-03-24 09:16:16 TP0] Prefill batch, #new-seq: 1, #new-token: 4014, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 61809.50
+[2026-03-24 09:16:17 TP0] Decode batch, #running-req: 2, #token: 23991, token usage: 0.01, cuda graph: True, gen throughput (token/s): 23.70, #queue-req: 0
+[2026-03-24 09:16:17 TP0] Decode batch, #running-req: 2, #token: 24071, token usage: 0.01, cuda graph: True, gen throughput (token/s): 247.88, #queue-req: 0
+[2026-03-24 09:16:17 TP0] Decode batch, #running-req: 2, #token: 24151, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.49, #queue-req: 0
+[2026-03-24 09:16:18 TP0] Decode batch, #running-req: 2, #token: 24231, token usage: 0.01, cuda graph: True, gen throughput (token/s): 248.25, #queue-req: 0
+[2026-03-24 09:16:18] INFO:     127.0.0.1:41756 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:18 TP0] Decode batch, #running-req: 1, #token: 12391, token usage: 0.01, cuda graph: True, gen throughput (token/s): 198.78, #queue-req: 0
+[2026-03-24 09:16:18 TP0] Decode batch, #running-req: 1, #token: 12431, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.50, #queue-req: 0
+[2026-03-24 09:16:21 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 981.11
+[2026-03-24 09:16:21 TP0] Prefill batch, #new-seq: 1, #new-token: 5769, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 42105.35
+[2026-03-24 09:16:21 TP0] Decode batch, #running-req: 2, #token: 26450, token usage: 0.02, cuda graph: True, gen throughput (token/s): 21.38, #queue-req: 0
+[2026-03-24 09:16:21] INFO:     127.0.0.1:41766 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:21 TP0] Decode batch, #running-req: 1, #token: 14023, token usage: 0.01, cuda graph: True, gen throughput (token/s): 167.62, #queue-req: 0
+[2026-03-24 09:16:21 TP0] Decode batch, #running-req: 1, #token: 14063, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.14, #queue-req: 0
+[2026-03-24 09:16:24 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1915.26
+[2026-03-24 09:16:24 TP0] Prefill batch, #new-seq: 1, #new-token: 5675, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 41350.52
+[2026-03-24 09:16:24 TP0] Decode batch, #running-req: 2, #token: 27999, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.30, #queue-req: 0
+[2026-03-24 09:16:25 TP0] Decode batch, #running-req: 2, #token: 28079, token usage: 0.02, cuda graph: True, gen throughput (token/s): 237.89, #queue-req: 0
+[2026-03-24 09:16:25 TP0] Decode batch, #running-req: 2, #token: 28159, token usage: 0.02, cuda graph: True, gen throughput (token/s): 247.37, #queue-req: 0
+[2026-03-24 09:16:25] INFO:     127.0.0.1:41774 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:25 TP0] Decode batch, #running-req: 1, #token: 14020, token usage: 0.01, cuda graph: True, gen throughput (token/s): 170.92, #queue-req: 0
+[2026-03-24 09:16:26] INFO:     127.0.0.1:41784 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:29 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1094.90
+[2026-03-24 09:16:30 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17525.34
+[2026-03-24 09:16:30 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 20375.14
+[2026-03-24 09:16:30 TP0] Prefill batch, #new-seq: 1, #new-token: 5109, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 50608.00
+[2026-03-24 09:16:30 TP0] Decode batch, #running-req: 2, #token: 29767, token usage: 0.02, cuda graph: True, gen throughput (token/s): 14.71, #queue-req: 0
+[2026-03-24 09:16:31] INFO:     127.0.0.1:36180 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:31 TP0] Decode batch, #running-req: 1, #token: 12116, token usage: 0.01, cuda graph: True, gen throughput (token/s): 149.06, #queue-req: 0
+[2026-03-24 09:16:31 TP0] Decode batch, #running-req: 1, #token: 12156, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.71, #queue-req: 0
+[2026-03-24 09:16:33 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1631.80
+[2026-03-24 09:16:34 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24796.06
+[2026-03-24 09:16:34 TP0] Prefill batch, #new-seq: 1, #new-token: 890, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 573397.53
+[2026-03-24 09:16:34 TP0] Decode batch, #running-req: 2, #token: 29501, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.14, #queue-req: 0
+[2026-03-24 09:16:34 TP0] Decode batch, #running-req: 2, #token: 29581, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.35, #queue-req: 0
+[2026-03-24 09:16:34] INFO:     127.0.0.1:36182 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:35 TP0] Decode batch, #running-req: 1, #token: 17389, token usage: 0.01, cuda graph: True, gen throughput (token/s): 216.18, #queue-req: 0
+[2026-03-24 09:16:35 TP0] Decode batch, #running-req: 1, #token: 17429, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.33, #queue-req: 0
+[2026-03-24 09:16:35] INFO:     127.0.0.1:36190 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:38 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 185.07
+[2026-03-24 09:16:39 TP0] Prefill batch, #new-seq: 1, #new-token: 5177, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 23799.21
+[2026-03-24 09:16:39 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 12878.66
+[2026-03-24 09:16:39 TP0] Prefill batch, #new-seq: 1, #new-token: 6230, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 39294.28
+[2026-03-24 09:16:40 TP0] Decode batch, #running-req: 2, #token: 27847, token usage: 0.02, cuda graph: True, gen throughput (token/s): 13.67, #queue-req: 0
+[2026-03-24 09:16:40 TP0] Decode batch, #running-req: 2, #token: 27927, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.63, #queue-req: 0
+[2026-03-24 09:16:40 TP0] Decode batch, #running-req: 2, #token: 28007, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.99, #queue-req: 0
+[2026-03-24 09:16:41 TP0] Decode batch, #running-req: 1, #token: 14572, token usage: 0.01, cuda graph: True, gen throughput (token/s): 214.96, #queue-req: 0
+[2026-03-24 09:16:41] INFO:     127.0.0.1:57850 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:41 TP0] Decode batch, #running-req: 1, #token: 14612, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.20, #queue-req: 0
+[2026-03-24 09:16:43 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1610.76
+[2026-03-24 09:16:44 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25038.65
+[2026-03-24 09:16:44 TP0] Prefill batch, #new-seq: 1, #new-token: 1588, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 164707.60
+[2026-03-24 09:16:44 TP0] Decode batch, #running-req: 2, #token: 32630, token usage: 0.02, cuda graph: True, gen throughput (token/s): 16.11, #queue-req: 0
+[2026-03-24 09:16:44 TP0] Decode batch, #running-req: 1, #token: 18022, token usage: 0.01, cuda graph: True, gen throughput (token/s): 217.29, #queue-req: 0
+[2026-03-24 09:16:44] INFO:     127.0.0.1:57854 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:44 TP0] Decode batch, #running-req: 1, #token: 18062, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.15, #queue-req: 0
+[2026-03-24 09:16:47 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 510.15
+[2026-03-24 09:16:47 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24841.54
+[2026-03-24 09:16:47 TP0] Prefill batch, #new-seq: 1, #new-token: 2230, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 100630.22
+[2026-03-24 09:16:47 TP0] Decode batch, #running-req: 2, #token: 36719, token usage: 0.02, cuda graph: True, gen throughput (token/s): 14.71, #queue-req: 0
+[2026-03-24 09:16:47] INFO:     127.0.0.1:50866 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:47 TP0] Decode batch, #running-req: 1, #token: 18661, token usage: 0.01, cuda graph: True, gen throughput (token/s): 190.93, #queue-req: 0
+[2026-03-24 09:16:48 TP0] Decode batch, #running-req: 1, #token: 18701, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.03, #queue-req: 0
+[2026-03-24 09:16:50 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 755.85
+[2026-03-24 09:16:50 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25233.66
+[2026-03-24 09:16:50 TP0] Prefill batch, #new-seq: 1, #new-token: 1445, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 164759.32
+[2026-03-24 09:16:51 TP0] Decode batch, #running-req: 2, #token: 36587, token usage: 0.02, cuda graph: True, gen throughput (token/s): 20.01, #queue-req: 0
+[2026-03-24 09:16:51 TP0] Decode batch, #running-req: 1, #token: 17890, token usage: 0.01, cuda graph: True, gen throughput (token/s): 233.46, #queue-req: 0
+[2026-03-24 09:16:51] INFO:     127.0.0.1:50870 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:52] INFO:     127.0.0.1:50878 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:55 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 312.93
+[2026-03-24 09:16:56 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19465.70
+[2026-03-24 09:16:56 TP0] Prefill batch, #new-seq: 1, #new-token: 7950, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 33526.04
+[2026-03-24 09:16:56 TP0] Decode batch, #running-req: 2, #token: 24358, token usage: 0.02, cuda graph: True, gen throughput (token/s): 10.01, #queue-req: 0
+[2026-03-24 09:16:56] INFO:     127.0.0.1:50650 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:16:56 TP0] Decode batch, #running-req: 1, #token: 12327, token usage: 0.01, cuda graph: True, gen throughput (token/s): 143.33, #queue-req: 0
+[2026-03-24 09:16:56 TP0] Decode batch, #running-req: 1, #token: 12367, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.29, #queue-req: 0
+[2026-03-24 09:16:59 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2731.07
+[2026-03-24 09:16:59 TP0] Prefill batch, #new-seq: 1, #new-token: 7617, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 30851.91
+[2026-03-24 09:16:59 TP0] Decode batch, #running-req: 2, #token: 28248, token usage: 0.02, cuda graph: True, gen throughput (token/s): 25.98, #queue-req: 0
+[2026-03-24 09:17:00 TP0] Decode batch, #running-req: 1, #token: 12447, token usage: 0.01, cuda graph: True, gen throughput (token/s): 228.57, #queue-req: 0
+[2026-03-24 09:17:00] INFO:     127.0.0.1:50660 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:00 TP0] Decode batch, #running-req: 1, #token: 12487, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.04, #queue-req: 0
+[2026-03-24 09:17:00] INFO:     127.0.0.1:50664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:04 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1663.22
+[2026-03-24 09:17:04 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17542.79
+[2026-03-24 09:17:04 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 20061.96
+[2026-03-24 09:17:05 TP0] Prefill batch, #new-seq: 1, #new-token: 6863, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 35576.62
+[2026-03-24 09:17:05 TP0] Decode batch, #running-req: 2, #token: 31461, token usage: 0.02, cuda graph: True, gen throughput (token/s): 9.87, #queue-req: 0
+[2026-03-24 09:17:05 TP0] Decode batch, #running-req: 2, #token: 31541, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.71, #queue-req: 0
+[2026-03-24 09:17:05 TP0] Decode batch, #running-req: 1, #token: 16872, token usage: 0.01, cuda graph: True, gen throughput (token/s): 212.80, #queue-req: 0
+[2026-03-24 09:17:05] INFO:     127.0.0.1:50680 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:06 TP0] Decode batch, #running-req: 1, #token: 16912, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.67, #queue-req: 0
+[2026-03-24 09:17:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2009.42
+[2026-03-24 09:17:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25764.75
+[2026-03-24 09:17:09 TP0] Prefill batch, #new-seq: 1, #new-token: 3635, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 52896.26
+[2026-03-24 09:17:09 TP0] Decode batch, #running-req: 2, #token: 36976, token usage: 0.02, cuda graph: True, gen throughput (token/s): 15.25, #queue-req: 0
+[2026-03-24 09:17:09 TP0] Decode batch, #running-req: 2, #token: 37056, token usage: 0.02, cuda graph: True, gen throughput (token/s): 229.70, #queue-req: 0
+[2026-03-24 09:17:09] INFO:     127.0.0.1:38892 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:10] INFO:     127.0.0.1:38908 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:13 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 780.18
+[2026-03-24 09:17:14 TP0] Prefill batch, #new-seq: 1, #new-token: 2903, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17260.97
+[2026-03-24 09:17:14 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 6924.74
+[2026-03-24 09:17:14 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25527.31
+[2026-03-24 09:17:15 TP0] Prefill batch, #new-seq: 1, #new-token: 3257, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 58322.96
+[2026-03-24 09:17:15 TP0] Decode batch, #running-req: 2, #token: 30748, token usage: 0.02, cuda graph: True, gen throughput (token/s): 10.61, #queue-req: 0
+[2026-03-24 09:17:15 TP0] Decode batch, #running-req: 2, #token: 30828, token usage: 0.02, cuda graph: True, gen throughput (token/s): 114.37, #queue-req: 0
+[2026-03-24 09:17:16 TP0] Decode batch, #running-req: 2, #token: 30908, token usage: 0.02, cuda graph: True, gen throughput (token/s): 235.41, #queue-req: 0
+[2026-03-24 09:17:16] INFO:     127.0.0.1:59360 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:16 TP0] Decode batch, #running-req: 1, #token: 19769, token usage: 0.01, cuda graph: True, gen throughput (token/s): 182.16, #queue-req: 0
+[2026-03-24 09:17:16 TP0] Decode batch, #running-req: 1, #token: 19809, token usage: 0.01, cuda graph: True, gen throughput (token/s): 117.77, #queue-req: 0
+[2026-03-24 09:17:19 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 780.11
+[2026-03-24 09:17:19 TP0] Prefill batch, #new-seq: 1, #new-token: 3537, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 63621.58
+[2026-03-24 09:17:19 TP0] Decode batch, #running-req: 2, #token: 31601, token usage: 0.02, cuda graph: True, gen throughput (token/s): 23.12, #queue-req: 0
+[2026-03-24 09:17:19] INFO:     127.0.0.1:59368 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:19 TP0] Decode batch, #running-req: 1, #token: 11796, token usage: 0.01, cuda graph: True, gen throughput (token/s): 149.04, #queue-req: 0
+[2026-03-24 09:17:20 TP0] Decode batch, #running-req: 1, #token: 11836, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.82, #queue-req: 0
+[2026-03-24 09:17:22 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1054.73
+[2026-03-24 09:17:22 TP0] Prefill batch, #new-seq: 1, #new-token: 5222, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 47171.97
+[2026-03-24 09:17:23] INFO:     127.0.0.1:59374 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:23 TP0] Decode batch, #running-req: 1, #token: 13453, token usage: 0.01, cuda graph: True, gen throughput (token/s): 20.37, #queue-req: 0
+[2026-03-24 09:17:23] INFO:     127.0.0.1:59380 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:27 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1234.79
+[2026-03-24 09:17:27 TP0] Prefill batch, #new-seq: 1, #new-token: 4131, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 22564.74
+[2026-03-24 09:17:27 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 10247.33
+[2026-03-24 09:17:28 TP0] Prefill batch, #new-seq: 1, #new-token: 5662, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 42268.39
+[2026-03-24 09:17:28 TP0] Decode batch, #running-req: 2, #token: 26257, token usage: 0.02, cuda graph: True, gen throughput (token/s): 14.75, #queue-req: 0
+[2026-03-24 09:17:28 TP0] Decode batch, #running-req: 2, #token: 26337, token usage: 0.02, cuda graph: True, gen throughput (token/s): 246.21, #queue-req: 0
+[2026-03-24 09:17:28] INFO:     127.0.0.1:34044 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:28 TP0] Decode batch, #running-req: 1, #token: 13976, token usage: 0.01, cuda graph: True, gen throughput (token/s): 161.84, #queue-req: 0
+[2026-03-24 09:17:29] INFO:     127.0.0.1:34048 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:33 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1042.12
+[2026-03-24 09:17:33 TP0] Prefill batch, #new-seq: 1, #new-token: 6873, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 20196.68
+[2026-03-24 09:17:34 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 17655.89
+[2026-03-24 09:17:34 TP0] Prefill batch, #new-seq: 1, #new-token: 2899, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 90995.96
+[2026-03-24 09:17:34 TP0] Decode batch, #running-req: 2, #token: 26226, token usage: 0.02, cuda graph: True, gen throughput (token/s): 12.78, #queue-req: 0
+[2026-03-24 09:17:34] INFO:     127.0.0.1:34050 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:35] INFO:     127.0.0.1:34056 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:39 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 611.79
+[2026-03-24 09:17:39 TP0] Prefill batch, #new-seq: 1, #new-token: 2056, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 36426.64
+[2026-03-24 09:17:39 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 5118.61
+[2026-03-24 09:17:39 TP0] Prefill batch, #new-seq: 1, #new-token: 6413, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 37079.61
+[2026-03-24 09:17:40 TP0] Decode batch, #running-req: 2, #token: 24887, token usage: 0.02, cuda graph: True, gen throughput (token/s): 10.66, #queue-req: 0
+[2026-03-24 09:17:40] INFO:     127.0.0.1:58620 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:40 TP0] Decode batch, #running-req: 1, #token: 14664, token usage: 0.01, cuda graph: True, gen throughput (token/s): 206.06, #queue-req: 0
+[2026-03-24 09:17:40 TP0] Decode batch, #running-req: 1, #token: 14704, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.36, #queue-req: 0
+[2026-03-24 09:17:43 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2003.74
+[2026-03-24 09:17:43 TP0] Prefill batch, #new-seq: 1, #new-token: 7299, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 33216.93
+[2026-03-24 09:17:43 TP0] Decode batch, #running-req: 2, #token: 30245, token usage: 0.02, cuda graph: True, gen throughput (token/s): 17.68, #queue-req: 0
+[2026-03-24 09:17:43 TP0] Decode batch, #running-req: 2, #token: 30325, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.96, #queue-req: 0
+[2026-03-24 09:17:43] INFO:     127.0.0.1:58634 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:44 TP0] Decode batch, #running-req: 1, #token: 15585, token usage: 0.01, cuda graph: True, gen throughput (token/s): 145.42, #queue-req: 0
+[2026-03-24 09:17:44 TP0] Decode batch, #running-req: 1, #token: 15625, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.45, #queue-req: 0
+[2026-03-24 09:17:46 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2245.17
+[2026-03-24 09:17:46 TP0] Prefill batch, #new-seq: 1, #new-token: 3339, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 83772.15
+[2026-03-24 09:17:47 TP0] Decode batch, #running-req: 2, #token: 11571, token usage: 0.01, cuda graph: True, gen throughput (token/s): 28.77, #queue-req: 0
+[2026-03-24 09:17:47] INFO:     127.0.0.1:57464 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:47 TP0] Decode batch, #running-req: 1, #token: 11611, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.39, #queue-req: 0
+[2026-03-24 09:17:47 TP0] Decode batch, #running-req: 1, #token: 11651, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.71, #queue-req: 0
+[2026-03-24 09:17:49 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1063.09
+[2026-03-24 09:17:50 TP0] Prefill batch, #new-seq: 1, #new-token: 7084, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 33893.35
+[2026-03-24 09:17:50 TP0] Decode batch, #running-req: 2, #token: 27003, token usage: 0.02, cuda graph: True, gen throughput (token/s): 27.15, #queue-req: 0
+[2026-03-24 09:17:50 TP0] Decode batch, #running-req: 2, #token: 27083, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.63, #queue-req: 0
+[2026-03-24 09:17:51] INFO:     127.0.0.1:57478 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:51 TP0] Decode batch, #running-req: 1, #token: 15396, token usage: 0.01, cuda graph: True, gen throughput (token/s): 197.34, #queue-req: 0
+[2026-03-24 09:17:51] INFO:     127.0.0.1:57488 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:55 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1398.76
+[2026-03-24 09:17:55 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 25548.19
+[2026-03-24 09:17:55 TP0] Prefill batch, #new-seq: 1, #new-token: 1979, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 29592.62
+[2026-03-24 09:17:56 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 4785.07
+[2026-03-24 09:17:56 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25511.88
+[2026-03-24 09:17:56 TP0] Prefill batch, #new-seq: 1, #new-token: 1436, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 158322.11
+[2026-03-24 09:17:56 TP0] Decode batch, #running-req: 2, #token: 36239, token usage: 0.02, cuda graph: True, gen throughput (token/s): 11.36, #queue-req: 0
+[2026-03-24 09:17:57 TP0] Decode batch, #running-req: 2, #token: 36319, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.63, #queue-req: 0
+[2026-03-24 09:17:57 TP0] Decode batch, #running-req: 2, #token: 36399, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.82, #queue-req: 0
+[2026-03-24 09:17:57 TP0] Decode batch, #running-req: 2, #token: 36479, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.81, #queue-req: 0
+[2026-03-24 09:17:58 TP0] Decode batch, #running-req: 2, #token: 36559, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.92, #queue-req: 0
+[2026-03-24 09:17:58 TP0] Decode batch, #running-req: 2, #token: 36639, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.97, #queue-req: 0
+[2026-03-24 09:17:58] INFO:     127.0.0.1:41812 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:17:58 TP0] Decode batch, #running-req: 1, #token: 18633, token usage: 0.01, cuda graph: True, gen throughput (token/s): 179.97, #queue-req: 0
+[2026-03-24 09:17:59] INFO:     127.0.0.1:41818 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:02 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 229.12
+[2026-03-24 09:18:03 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17535.01
+[2026-03-24 09:18:03 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19867.52
+[2026-03-24 09:18:03 TP0] Prefill batch, #new-seq: 1, #new-token: 6876, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 35978.09
+[2026-03-24 09:18:04 TP0] Decode batch, #running-req: 1, #token: 14230, token usage: 0.01, cuda graph: True, gen throughput (token/s): 12.98, #queue-req: 0
+[2026-03-24 09:18:04] INFO:     127.0.0.1:41820 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:04 TP0] Decode batch, #running-req: 1, #token: 14270, token usage: 0.01, cuda graph: True, gen throughput (token/s): 127.08, #queue-req: 0
+[2026-03-24 09:18:04] INFO:     127.0.0.1:41830 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1508.17
+[2026-03-24 09:18:08 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 17348.28
+[2026-03-24 09:18:09 TP0] Prefill batch, #new-seq: 2, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 19499.26
+[2026-03-24 09:18:09 TP0] Prefill batch, #new-seq: 1, #new-token: 5371, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 49220.45
+[2026-03-24 09:18:09 TP0] Decode batch, #running-req: 2, #token: 30013, token usage: 0.02, cuda graph: True, gen throughput (token/s): 13.28, #queue-req: 0
+[2026-03-24 09:18:10 TP0] Decode batch, #running-req: 2, #token: 30093, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.38, #queue-req: 0
+[2026-03-24 09:18:10] INFO:     127.0.0.1:33708 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:11] INFO:     127.0.0.1:33720 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:14 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1048.58
+[2026-03-24 09:18:15 TP0] Prefill batch, #new-seq: 1, #new-token: 4478, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 25379.49
+[2026-03-24 09:18:15 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 11050.81
+[2026-03-24 09:18:15 TP0] Prefill batch, #new-seq: 1, #new-token: 6423, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 37022.68
+[2026-03-24 09:18:15 TP0] Decode batch, #running-req: 2, #token: 27311, token usage: 0.02, cuda graph: True, gen throughput (token/s): 12.91, #queue-req: 0
+[2026-03-24 09:18:16 TP0] Decode batch, #running-req: 2, #token: 27391, token usage: 0.02, cuda graph: True, gen throughput (token/s): 245.79, #queue-req: 0
+[2026-03-24 09:18:16 TP0] Decode batch, #running-req: 1, #token: 12765, token usage: 0.01, cuda graph: True, gen throughput (token/s): 232.22, #queue-req: 0
+[2026-03-24 09:18:16] INFO:     127.0.0.1:34870 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:16 TP0] Decode batch, #running-req: 1, #token: 12805, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.11, #queue-req: 0
+[2026-03-24 09:18:16 TP0] Decode batch, #running-req: 1, #token: 12845, token usage: 0.01, cuda graph: True, gen throughput (token/s): 129.12, #queue-req: 0
+[2026-03-24 09:18:19 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1800.51
+[2026-03-24 09:18:19 TP0] Prefill batch, #new-seq: 1, #new-token: 7254, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 33382.16
+[2026-03-24 09:18:19 TP0] Decode batch, #running-req: 1, #token: 12885, token usage: 0.01, cuda graph: True, gen throughput (token/s): 24.64, #queue-req: 0
+[2026-03-24 09:18:19] INFO:     127.0.0.1:34882 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:20 TP0] Decode batch, #running-req: 1, #token: 12925, token usage: 0.01, cuda graph: True, gen throughput (token/s): 128.04, #queue-req: 0
+[2026-03-24 09:18:20] INFO:     127.0.0.1:34884 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:20] INFO:     127.0.0.1:34888 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:23 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 1657.94
+[2026-03-24 09:18:24 TP0] Prefill batch, #new-seq: 1, #new-token: 6266, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 21312.71
+[2026-03-24 09:18:24 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 15103.99
+[2026-03-24 09:18:24 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25013.48
+[2026-03-24 09:18:24 TP0] Prefill batch, #new-seq: 1, #new-token: 425, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1261324.60
+[2026-03-24 09:18:25 TP0] Decode batch, #running-req: 2, #token: 31295, token usage: 0.02, cuda graph: True, gen throughput (token/s): 10.23, #queue-req: 0
+[2026-03-24 09:18:25 TP0] Decode batch, #running-req: 2, #token: 31375, token usage: 0.02, cuda graph: True, gen throughput (token/s): 243.36, #queue-req: 0
+[2026-03-24 09:18:25 TP0] Decode batch, #running-req: 1, #token: 16905, token usage: 0.01, cuda graph: True, gen throughput (token/s): 238.08, #queue-req: 0
+[2026-03-24 09:18:25] INFO:     127.0.0.1:34896 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:26 TP0] Decode batch, #running-req: 1, #token: 16945, token usage: 0.01, cuda graph: True, gen throughput (token/s): 126.83, #queue-req: 0
+[2026-03-24 09:18:28 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 119.84
+[2026-03-24 09:18:28 TP0] Prefill batch, #new-seq: 1, #new-token: 3415, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 74122.87
+[2026-03-24 09:18:28 TP0] Decode batch, #running-req: 2, #token: 28594, token usage: 0.02, cuda graph: True, gen throughput (token/s): 15.75, #queue-req: 0
+[2026-03-24 09:18:28 TP0] Decode batch, #running-req: 2, #token: 28674, token usage: 0.02, cuda graph: True, gen throughput (token/s): 244.28, #queue-req: 0
+[2026-03-24 09:18:29] INFO:     127.0.0.1:46124 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:29] INFO:     127.0.0.1:46126 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:33 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 727.53
+[2026-03-24 09:18:33 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 25660.47
+[2026-03-24 09:18:33 TP0] Prefill batch, #new-seq: 1, #new-token: 1397, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 37167.81
+[2026-03-24 09:18:34 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 3338.38
+[2026-03-24 09:18:34 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24881.48
+[2026-03-24 09:18:34 TP0] Prefill batch, #new-seq: 1, #new-token: 947, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 452455.56
+[2026-03-24 09:18:34 TP0] Decode batch, #running-req: 2, #token: 35166, token usage: 0.02, cuda graph: True, gen throughput (token/s): 11.43, #queue-req: 0
+[2026-03-24 09:18:35 TP0] Decode batch, #running-req: 2, #token: 35246, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.23, #queue-req: 0
+[2026-03-24 09:18:35 TP0] Decode batch, #running-req: 2, #token: 35326, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.58, #queue-req: 0
+[2026-03-24 09:18:35 TP0] Decode batch, #running-req: 2, #token: 35406, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.62, #queue-req: 0
+[2026-03-24 09:18:36 TP0] Decode batch, #running-req: 2, #token: 35486, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.22, #queue-req: 0
+[2026-03-24 09:18:36 TP0] Decode batch, #running-req: 2, #token: 35566, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.32, #queue-req: 0
+[2026-03-24 09:18:36] INFO:     127.0.0.1:33688 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:36 TP0] Decode batch, #running-req: 1, #token: 17600, token usage: 0.01, cuda graph: True, gen throughput (token/s): 166.07, #queue-req: 0
+[2026-03-24 09:18:37] INFO:     127.0.0.1:33700 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:37] INFO:     127.0.0.1:33714 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:40 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 153.95
+[2026-03-24 09:18:41 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 26118.33
+[2026-03-24 09:18:41 TP0] Prefill batch, #new-seq: 1, #new-token: 634, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 33954.44
+[2026-03-24 09:18:41 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 1526.74
+[2026-03-24 09:18:42 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 25576.43
+[2026-03-24 09:18:42 TP0] Prefill batch, #new-seq: 1, #new-token: 888, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 396189.21
+[2026-03-24 09:18:42 TP0] Decode batch, #running-req: 2, #token: 34320, token usage: 0.02, cuda graph: True, gen throughput (token/s): 9.64, #queue-req: 0
+[2026-03-24 09:18:42 TP0] Decode batch, #running-req: 2, #token: 34400, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.21, #queue-req: 0
+[2026-03-24 09:18:42 TP0] Decode batch, #running-req: 2, #token: 34480, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.57, #queue-req: 0
+[2026-03-24 09:18:43 TP0] Decode batch, #running-req: 1, #token: 17155, token usage: 0.01, cuda graph: True, gen throughput (token/s): 228.89, #queue-req: 0
+[2026-03-24 09:18:43] INFO:     127.0.0.1:33724 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:43] INFO:     127.0.0.1:33730 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-24 09:18:47 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 159.20
+[2026-03-24 09:18:47 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 1, cuda graph: False, input throughput (token/s): 24873.87
+[2026-03-24 09:18:48 TP0] Prefill batch, #new-seq: 1, #new-token: 1177, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 31194.23
+[2026-03-24 09:18:48 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 2837.67
+[2026-03-24 09:18:48 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 24958.16
+[2026-03-24 09:18:49 TP0] Prefill batch, #new-seq: 1, #new-token: 2132, #cached-token: 0, token usage: 0.02, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 105904.78
+[2026-03-24 09:18:49 TP0] Decode batch, #running-req: 2, #token: 36105, token usage: 0.02, cuda graph: True, gen throughput (token/s): 8.51, #queue-req: 0
+[2026-03-24 09:18:49 TP0] Decode batch, #running-req: 2, #token: 36185, token usage: 0.02, cuda graph: True, gen throughput (token/s): 241.81, #queue-req: 0
+[2026-03-24 09:18:49 TP0] Decode batch, #running-req: 2, #token: 36265, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.08, #queue-req: 0
+[2026-03-24 09:18:50 TP0] Decode batch, #running-req: 2, #token: 36345, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.06, #queue-req: 0
+[2026-03-24 09:18:50 TP0] Decode batch, #running-req: 2, #token: 36425, token usage: 0.02, cuda graph: True, gen throughput (token/s): 242.34, #queue-req: 0
+[2026-03-24 09:18:50] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-03-24 09:18:50] INFO:     127.0.0.1:36388 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-03-24 09:18:50] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-03-24 09:18:50] INFO:     127.0.0.1:36392 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-03-24 09:18:52] SIGTERM received. signum=None frame=None. Draining requests and shutting down...
+[2026-03-24 09:18:56] Gracefully exiting... Remaining number of requests 5. Remaining requests remaining_rids=['f59b42bc25894d569ddc4ef8cc393863', '736700727eb64c01bad03a317d97fd9f', 'a66620cbc96848df8defdf0010ecb6bf', 'ca079a68c0cd49bfa6bb7daaf67708a0', '5dbcff105f12449183af2328146d02db'].
+[2026-03-24 09:19:01] Gracefully exiting... Remaining number of requests 5. Remaining requests remaining_rids=['f59b42bc25894d569ddc4ef8cc393863', '736700727eb64c01bad03a317d97fd9f', 'a66620cbc96848df8defdf0010ecb6bf', 'ca079a68c0cd49bfa6bb7daaf67708a0', '5dbcff105f12449183af2328146d02db'].
