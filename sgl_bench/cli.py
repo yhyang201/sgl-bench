@@ -109,76 +109,65 @@ def run(server_path: str, bench_path: str, description: str, gpus: str | None):
     print(f"Session: {session.session_dir}", flush=True)
 
     for si, s_path in enumerate(server_paths):
-        s_cfg = load_toml(s_path)
+        s_cfg_orig = load_toml(s_path)
         s_name = Path(s_path).stem
 
-        # Resolve GPUs using server config for tp-size
-        dummy_config = merge_configs(s_cfg, {})
-        gpu_ids, gpu_str = _resolve_gpus(gpus, dummy_config)
+        for bi, b_path in enumerate(bench_paths):
+            s_cfg = load_toml(s_path)  # reload fresh each time
+            b_cfg = load_toml(b_path)
+            b_name = Path(b_path).stem
 
-        # Find port and start server
-        desired_port = get_server_port(dummy_config)
-        port = find_available_port(desired_port)
-        if port != desired_port:
-            print(f"Port {desired_port} is in use, switching to {port}.", flush=True)
-            _override_port_in_cfg(s_cfg, port)
+            # Resolve GPUs
+            dummy_config = merge_configs(s_cfg, {})
+            gpu_ids, gpu_str = _resolve_gpus(gpus, dummy_config)
 
-        check_gpu_available(gpu_ids)
-        print(f"\n{'='*60}", flush=True)
-        print(f"[Server {si+1}/{len(server_paths)}] {s_name}", flush=True)
-        print(f"  GPUs: {gpu_str}", flush=True)
+            # Find port
+            desired_port = get_server_port(dummy_config)
+            port = find_available_port(desired_port)
+            if port != desired_port:
+                print(f"Port {desired_port} is in use, switching to {port}.", flush=True)
+                _override_port_in_cfg(s_cfg, port)
 
-        server_cmd = build_server_command(merge_configs(s_cfg, {}))
-        server_cmd_str = " ".join(server_cmd)
-        print(f"  Command: {server_cmd_str}", flush=True)
+            config = merge_configs(s_cfg, b_cfg)
+            if port != desired_port:
+                config = _override_port(config, port)
 
-        log_dir = tempfile.mkdtemp(prefix="sgl_bench_server_")
-        log_path = f"{log_dir}/server.log"
+            exp = session.create_experiment(config, gpu_str, s_name, b_name)
+            exp.create_directory()
+            exp.copy_configs(s_path, b_path)
 
-        server_process = launch_server(server_cmd, log_path, gpu_ids)
-        try:
-            timeout = s_cfg.get("server", {}).get("startup_timeout", 600)
-            wait_for_server(port, timeout, server_process, log_path)
+            exp.sglang_info = sglang_info
+            exp.gpu_info = gpu_info
 
-            for bi, b_path in enumerate(bench_paths):
-                b_cfg = load_toml(b_path)
-                b_name = Path(b_path).stem
-                config = merge_configs(s_cfg, b_cfg)
+            done = sum(1 for e in session.experiments if e.status != "running")
+            print(f"\n{'='*60}", flush=True)
+            print(f"[{done+1}/{total}] {s_name} x {b_name}", flush=True)
+            print(f"  GPUs: {gpu_str}", flush=True)
 
-                if port != desired_port:
-                    config = _override_port(config, port)
+            # Launch server per experiment, log directly into experiment dir
+            check_gpu_available(gpu_ids)
+            server_cmd = build_server_command(config)
+            server_cmd_str = " ".join(server_cmd)
+            exp.server_cmd = server_cmd_str
+            exp.save_partial()
+            print(f"  Command: {server_cmd_str}", flush=True)
 
-                exp = session.create_experiment(config, gpu_str, s_name, b_name)
-                exp.create_directory()
-                exp.copy_configs(s_path, b_path)
+            log_path = str(exp.output_dir / "server.log")
+            server_process = launch_server(server_cmd, log_path, gpu_ids)
+            try:
+                timeout = s_cfg.get("server", {}).get("startup_timeout", 600)
+                wait_for_server(port, timeout, server_process, log_path)
 
-                # Copy server log into experiment dir
-                shutil.copy2(log_path, str(exp.output_dir / "server.log"))
+                _run_experiment(config, exp, port)
+                exp.save()
+            except Exception as e:
+                exp.mark_failed(str(e))
+                print(f"  Error: {e}", file=sys.stderr, flush=True)
+                _print_server_log_tail(log_path)
+            finally:
+                shutdown_server(server_process)
 
-                exp.sglang_info = sglang_info
-                exp.gpu_info = gpu_info
-                exp.server_cmd = server_cmd_str
-                exp.save_partial()
-
-                done = sum(1 for e in session.experiments if e.status != "running")
-                print(f"\n  [{done+1}/{total}] {s_name} x {b_name}", flush=True)
-
-                try:
-                    _run_experiment(config, exp, port)
-                    exp.save()
-                except Exception as e:
-                    exp.mark_failed(str(e))
-                    print(f"  Error: {e}", file=sys.stderr, flush=True)
-
-                exp.print_summary()
-
-        except Exception as e:
-            print(f"\nServer startup failed: {e}", file=sys.stderr, flush=True)
-            _print_server_log_tail(log_path)
-
-        finally:
-            shutdown_server(server_process)
-            shutil.rmtree(log_dir, ignore_errors=True)
+            exp.print_summary()
 
     # Session-level wrap-up
     session.save_summary()
