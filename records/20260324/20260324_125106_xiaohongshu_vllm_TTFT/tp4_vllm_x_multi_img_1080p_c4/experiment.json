@@ -1,0 +1,92 @@
+{
+  "experiment_id": "20260324_131451",
+  "description": "xiaohongshu vllm TTFT",
+  "gpu_ids": "0,1,2,3",
+  "server_config": "tp4_vllm",
+  "bench_config": "multi_img_1080p_c4",
+  "started_at": "2026-03-24T13:14:51.219556",
+  "finished_at": "2026-03-24T13:21:44.772907",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-32B-Instruct",
+      "backend": "vllm",
+      "extra_args": "--port 30000 --tp-size 4 --enable-multimodal",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": "    --backend sglang-oai-chat\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 4\n    --random-input-len 9300\n    --random-output-len 300\n    --image-count 5\n    --image-resolution 1080p\n"
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": true
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "575.57.08"
+  },
+  "sglang_info": {
+    "install_type": "not_found"
+  },
+  "server": {
+    "command": "/root/.python/vllm/bin/python3 -m vllm.entrypoints.openai.api_server --model Qwen/Qwen3-VL-32B-Instruct --port 30000 --tensor-parallel-size 4"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [
+    {
+      "run_index": 0,
+      "seed": 952159,
+      "command": "(native runner: --backend sglang-oai-chat\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 4\n    --random-input-len 9300\n    --random-output-len 300\n    --image-count 5\n    --image-resolution 1080p)",
+      "results": {
+        "completed": 128,
+        "failed": 0,
+        "total_input": 2560987,
+        "total_input_text": 1254107,
+        "total_input_vision": 1306880,
+        "total_output": 38400,
+        "duration_s": 253.19870679173619,
+        "request_throughput": 0.5055318078906461,
+        "output_throughput": 151.6595423671938,
+        "mean_ttft_ms": 3997.1015410337714,
+        "median_ttft_ms": 4000.5290070548654,
+        "p99_ttft_ms": 5869.055923027918,
+        "mean_itl_ms": 15.811559053996383,
+        "median_itl_ms": 8.67800833657384,
+        "p99_itl_ms": 339.0555486362428,
+        "mean_e2e_latency_ms": 7903.1167143184575,
+        "median_e2e_latency_ms": 7911.435607820749,
+        "p99_e2e_latency_ms": 9287.024596938863
+      },
+      "error": null
+    }
+  ],
+  "accuracy_results": []
+}
