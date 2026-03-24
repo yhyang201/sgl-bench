@@ -1,0 +1,77 @@
+{
+  "experiment_id": "20260324_065445",
+  "description": "xiaohongshu TTFT test",
+  "gpu_ids": "0,1,2,3",
+  "server_config": "tp4",
+  "bench_config": "multi_img_2k_c32",
+  "started_at": "2026-03-24T06:54:45.234124",
+  "finished_at": "2026-03-24T06:55:55.291120",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-32B-Instruct",
+      "extra_args": "--port 30000 --tp-size 4 --enable-multimodal",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": "    --backend sglang\n    --dataset-name image\n    --num-prompts 128\n    --request-rate 1.0\n    --max-concurrency 32\n    --random-input-len 9300\n    --random-output-len 300\n    --image-count 3\n    --image-resolution 2k\n"
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": true
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "575.57.08"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.9",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "main",
+    "git_commit": "649172879778646a8574525448734b95a55b6739",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30000 --tp-size 4 --enable-multimodal"
+  },
+  "warmup": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.bench_serving --output-file records/20260324/20260324_062047_xiaohongshu_TTFT_test/tp4_x_multi_img_2k_c32/bench_warmup.jsonl --output-details --backend sglang --dataset-name image --num-prompts 3 --request-rate 1.0 --max-concurrency 32 --random-input-len 9300 --random-output-len 300 --image-count 3 --image-resolution 2k --port 30000 --seed 8413927",
+    "seed": 8413927
+  },
+  "benchmark_runs": [
+    {
+      "run_index": 0,
+      "seed": 334951,
+      "command": "/root/.python/sglang/bin/python3 -m sglang.bench_serving --output-file records/20260324/20260324_062047_xiaohongshu_TTFT_test/tp4_x_multi_img_2k_c32/bench_run_0.jsonl --output-details --backend sglang --dataset-name image --num-prompts 128 --request-rate 1.0 --max-concurrency 32 --random-input-len 9300 --random-output-len 300 --image-count 3 --image-resolution 2k --port 30000 --seed 334951",
+      "results": {},
+      "error": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/sgl-workspace/sglang/python/sglang/bench_serving.py\", line 2348, in <module>\n    run_benchmark(args)\n  File \"/sgl-workspace/sglang/python/sglang/bench_serving.py\", line 1845, in run_benchmark\n    input_requests = get_dataset(args, tokenizer, model_id)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/sgl-workspace/sglang/python/sglang/benchmark/datasets/__init__.py\", line 40, in get_dataset\n    return dataset.load(tokenizer=tokenizer, model_id=model_id)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/sgl-workspace/sglang/python/sglang/benchmark/datasets/image.py\", line 51, in load\n    return sample_image_requests(\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/sgl-workspace/sglang/python/sglang/benchmark/datasets/image.py\", line 194, in sample_image_requests\n    width, height = parse_image_resolution(image_resolution)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/sgl-workspace/sglang/python/sglang/benchmark/datasets/image.py\", line 90, in parse_image_resolution\n    raise ValueError(\nValueError: Unsupported image resolution: 2k. Choose from 4k, 1080p, 720p, 360p, or provide custom 'heightxwidth' (e.g., 1080x1920).\n"
+    }
+  ],
+  "accuracy_results": []
+}
