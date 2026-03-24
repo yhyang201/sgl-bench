@@ -21,14 +21,16 @@ DEFAULTS = {
         "extra_args": "",
     },
     "warmup": {
-        "enabled": True,
         "num_prompts": 3,
         "seed": 8413927,
+    },
+    "accuracy": {
+        "api_key": "empty",
     },
     "output": {
         "dir": "./records",
         "auto_commit": True,
-        "auto_push": False,
+        "auto_push": True,
     },
     "run": {
         "runs": 1,
@@ -43,6 +45,12 @@ def _apply_defaults(config: dict) -> dict:
             config[section] = {}
         for key, value in defaults.items():
             config[section].setdefault(key, value)
+
+    # warmup.enabled: auto-detect from whether benchmark has extra_args
+    if "enabled" not in config["warmup"]:
+        has_bench = bool(config.get("benchmark", {}).get("extra_args", "").strip())
+        config["warmup"]["enabled"] = has_bench
+
     return config
 
 
@@ -60,8 +68,56 @@ def extract_port(extra_args: str, default: int = 30000) -> int:
     return default
 
 
+def extract_tp_size(extra_args: str, default: int = 1) -> int:
+    """Extract --tp-size value from an extra_args string."""
+    match = re.search(r"--tp-size\s+(\d+)", extra_args)
+    if match:
+        return int(match.group(1))
+    return default
+
+
+def load_toml(path: str) -> dict:
+    """Load a raw TOML file without defaults or validation."""
+    with open(path, "rb") as f:
+        return tomllib.load(f)
+
+
+def merge_configs(server_cfg: dict, bench_cfg: dict) -> dict:
+    """Merge a server config and a bench/accuracy config into a full config.
+
+    server_cfg provides [server] (and optionally [warmup], [output], [run]).
+    bench_cfg provides [benchmark] or [accuracy] (and optionally [warmup], [output], [run]).
+    bench_cfg values take precedence for shared sections.
+    """
+    merged = {}
+
+    # Server section comes from server_cfg only
+    merged["server"] = dict(server_cfg.get("server", {}))
+
+    # Benchmark / accuracy come from bench_cfg only
+    if "benchmark" in bench_cfg:
+        merged["benchmark"] = dict(bench_cfg["benchmark"])
+    if "accuracy" in bench_cfg:
+        merged["accuracy"] = dict(bench_cfg["accuracy"])
+
+    # For warmup, output, run: bench_cfg overrides server_cfg
+    for section in ["warmup", "output", "run"]:
+        base = dict(server_cfg.get(section, {}))
+        override = bench_cfg.get(section, {})
+        base.update(override)
+        if base:
+            merged[section] = base
+
+    merged = _apply_defaults(merged)
+    _validate(merged)
+    return merged
+
+
 def load_config(path: str) -> dict:
-    """Load a TOML config file, apply defaults, and validate."""
+    """Load a TOML config file, apply defaults, and validate.
+
+    Each TOML file is fully self-contained — no inheritance.
+    """
     with open(path, "rb") as f:
         config = tomllib.load(f)
     config = _apply_defaults(config)

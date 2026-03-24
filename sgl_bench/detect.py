@@ -3,6 +3,7 @@
 import json
 import os
 import subprocess
+import sys
 
 
 def detect_sglang_install() -> dict:
@@ -17,7 +18,7 @@ def detect_sglang_install() -> dict:
     # Step 1: pip show sglang
     try:
         result = subprocess.run(
-            ["pip", "show", "sglang"],
+            [sys.executable, "-m", "pip", "show", "sglang"],
             capture_output=True, text=True, timeout=30,
         )
     except Exception:
@@ -33,23 +34,45 @@ def detect_sglang_install() -> dict:
             fields[key.strip().lower()] = value.strip()
 
     info["version"] = fields.get("version", "unknown")
-    location = fields.get("location", "")
+
+    # Step 2: Determine actual source location via sglang.__file__
+    # pip show location can report site-packages even for editable installs
+    try:
+        file_result = subprocess.run(
+            [sys.executable, "-c", "import sglang; print(sglang.__file__)"],
+            capture_output=True, text=True, timeout=10,
+        )
+        if file_result.returncode == 0:
+            source_file = file_result.stdout.strip()
+            location = os.path.dirname(os.path.dirname(source_file))  # up from sglang/__init__.py
+        else:
+            location = fields.get("location", "")
+    except Exception:
+        location = fields.get("location", "")
+
     info["location"] = location
 
-    # Step 2: Determine if editable install
-    # Editable installs have location pointing to the source tree, not site-packages
-    if "site-packages" in location:
+    # Step 3: Check if source is in a git repo (editable) or plain pip install
+    repo_root = _find_git_root(location)
+    if not repo_root:
         info["install_type"] = "pip"
         return info
 
     info["install_type"] = "editable"
-
-    # Step 3: Find the git repo root from the location
-    repo_root = _find_git_root(location)
     if not repo_root:
         return info
 
-    # Step 4: Get git commit hash
+    # Step 4: Get git branch and commit hash
+    try:
+        result = subprocess.run(
+            ["git", "-C", repo_root, "rev-parse", "--abbrev-ref", "HEAD"],
+            capture_output=True, text=True, timeout=10,
+        )
+        if result.returncode == 0:
+            info["git_branch"] = result.stdout.strip()
+    except Exception:
+        pass
+
     try:
         result = subprocess.run(
             ["git", "-C", repo_root, "rev-parse", "HEAD"],
@@ -125,7 +148,7 @@ print(json.dumps(info))
 
     try:
         result = subprocess.run(
-            ["python", "-c", script],
+            [sys.executable, "-c", script],
             capture_output=True, text=True, timeout=30,
         )
         if result.returncode == 0 and result.stdout.strip():

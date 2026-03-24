@@ -71,14 +71,29 @@ def check_gpu_available(gpu_ids: list[int]) -> None:
         )
 
 
+def find_available_port(start_port: int) -> int:
+    """Find an available port starting from start_port.
+
+    If start_port is free, return it. Otherwise try start_port+1, +2, ... up to +100.
+    """
+    import socket
+    for port in range(start_port, start_port + 100):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(1)
+            if s.connect_ex(("127.0.0.1", port)) != 0:
+                return port
+    raise RuntimeError(f"No available port found in range {start_port}-{start_port + 99}.")
+
+
 def build_server_command(config: dict) -> list[str]:
     """Build the full sglang launch_server command from config.
 
     Command: python -m sglang.launch_server --model-path {model_path} {extra_args}
     """
     server = config["server"]
+    import sys
     cmd = [
-        "python", "-m", "sglang.launch_server",
+        sys.executable, "-m", "sglang.launch_server",
         "--model-path", server["model_path"],
     ]
     extra = server.get("extra_args", "").strip()
@@ -109,18 +124,31 @@ def get_server_port(config: dict) -> int:
     return extract_port(config["server"].get("extra_args", ""))
 
 
-def wait_for_server(port: int, timeout: int, process: subprocess.Popen) -> None:
-    """Poll server health endpoint until ready or timeout."""
+def wait_for_server(port: int, timeout: int, process: subprocess.Popen, log_path: str) -> None:
+    """Poll server health endpoint until ready or timeout.
+
+    Also monitors server.log for ERROR lines to detect early failures
+    (e.g. port already in use) even before the process exits.
+    """
     url = f"http://127.0.0.1:{port}/health_generate"
     start = time.time()
     print(f"Waiting for server on port {port} (timeout={timeout}s)...", flush=True)
 
     while time.time() - start < timeout:
+        # Check if process died
         if process.poll() is not None:
+            error_msg = _extract_log_error(log_path)
             raise RuntimeError(
-                f"Server process exited with code {process.returncode} before becoming ready. "
-                f"Check server.log for details."
+                f"Server process exited with code {process.returncode}.\n"
+                f"{error_msg or 'Check server.log for details.'}"
             )
+
+        # Check server.log for ERROR lines (catches port-in-use etc.)
+        error_msg = _extract_log_error(log_path)
+        if error_msg:
+            raise RuntimeError(f"Server error detected in log:\n{error_msg}")
+
+        # Try health check
         try:
             req = urllib.request.Request(url, method="GET")
             with urllib.request.urlopen(req, timeout=5) as resp:
@@ -133,6 +161,18 @@ def wait_for_server(port: int, timeout: int, process: subprocess.Popen) -> None:
         time.sleep(5)
 
     raise RuntimeError(f"Server did not become ready within {timeout}s. Check server.log for details.")
+
+
+def _extract_log_error(log_path: str) -> str | None:
+    """Scan server.log for ERROR lines. Returns the error message or None."""
+    try:
+        with open(log_path, "r") as f:
+            for line in f:
+                if "ERROR:" in line:
+                    return line.strip()
+    except FileNotFoundError:
+        pass
+    return None
 
 
 def shutdown_server(process: subprocess.Popen) -> None:

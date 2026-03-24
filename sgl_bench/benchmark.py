@@ -42,13 +42,25 @@ def build_bench_command(
     args = re.sub(r"--output-file\s+\S+", "", args)
     args = re.sub(r"--output-details", "", args)
 
+    import sys
     cmd = [
-        "python", "-m", "sglang.bench_serving",
+        sys.executable, "-m", "sglang.bench_serving",
         "--output-file", output_file,
         "--output-details",
     ]
     cmd.extend(shlex.split(args))
     return cmd
+
+
+def _get_bench_args(config: dict) -> str:
+    """Get benchmark extra_args with --port auto-injected from server if missing."""
+    from .config import extract_port
+
+    extra_args = config["benchmark"].get("extra_args", "")
+    if "--port" not in extra_args:
+        port = extract_port(config["server"].get("extra_args", ""))
+        extra_args = _override_args(extra_args, {"--port": str(port)})
+    return extra_args
 
 
 def run_warmup(config: dict, experiment_dir: str) -> str | None:
@@ -65,8 +77,7 @@ def run_warmup(config: dict, experiment_dir: str) -> str | None:
     num_prompts = warmup_cfg.get("num_prompts", 3)
     output_file = f"{experiment_dir}/bench_warmup.jsonl"
 
-    # Start from benchmark extra_args, override seed and num-prompts
-    extra_args = config["benchmark"].get("extra_args", "")
+    extra_args = _get_bench_args(config)
     extra_args = _override_args(extra_args, {"--num-prompts": str(num_prompts)})
 
     cmd = build_bench_command(extra_args, seed, output_file)
@@ -99,7 +110,7 @@ def run_benchmark(config: dict, run_index: int, experiment_dir: str) -> dict:
     seed = random.randint(1, 999999)
     output_file = f"{experiment_dir}/bench_run_{run_index}.jsonl"
 
-    extra_args = config["benchmark"].get("extra_args", "")
+    extra_args = _get_bench_args(config)
     cmd = build_bench_command(extra_args, seed, output_file)
     cmd_str = " ".join(cmd)
 
