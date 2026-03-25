@@ -1,0 +1,46 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/1] Resolution: 720p (fresh server)
+############################################################
+Port 30000 is in use, switching to 30001.
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30001 --tp-size 4 --enable-multimodal --disable-cuda-graph
+Waiting for sglang server on port 30001 (timeout=600s)...
+
+Error: Server process exited with code 1.
+Check server.log for details.
+
+--- Last 20 lines of server.log ---
+importlib.metadata.PackageNotFoundError: No package metadata was found for sglang-kernel
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/sgl-workspace/sglang/python/sglang/launch_server.py", line 62, in <module>
+    run_server(server_args)
+  File "/sgl-workspace/sglang/python/sglang/launch_server.py", line 47, in run_server
+    launch_server(server_args)
+  File "/sgl-workspace/sglang/python/sglang/srt/entrypoints/http_server.py", line 2169, in launch_server
+    Engine._launch_subprocesses(
+  File "/sgl-workspace/sglang/python/sglang/srt/entrypoints/engine.py", line 617, in _launch_subprocesses
+    _set_envs_and_config(server_args)
+  File "/sgl-workspace/sglang/python/sglang/srt/entrypoints/engine.py", line 1144, in _set_envs_and_config
+    assert_pkg_version(
+  File "/sgl-workspace/sglang/python/sglang/srt/utils/common.py", line 967, in assert_pkg_version
+    raise Exception(
+Exception: sglang-kernel with minimum required version 0.4.0 is not installed. Please reinstall the latest version with `pip install sglang-kernel --force-reinstall`
+--- End of server.log ---
+Shutting down server...
+Server stopped (cleaned up orphan children).
+
+Combined report: records/20260325/20260325_114207_max_image_count_probe_-_gpu-memory-stabi/probe_report.json
+
+============================================================
+Image Limit Probe Summary
+============================================================
+Resolution        Max Images    Failed At
+--------------- ------------ ------------
+720p                       0          N/A
+============================================================
