@@ -1,0 +1,73 @@
+{
+  "experiment_id": "20260325_152113",
+  "description": "max image count probe sglang",
+  "gpu_ids": "1,2,3,4",
+  "server_config": "tp4wocg",
+  "bench_config": "probe_720p",
+  "started_at": "2026-03-25T15:21:13.635837",
+  "finished_at": "2026-03-25T15:21:59.203640",
+  "status": "failed",
+  "error": "Server process exited with code -9.\nCheck server.log for details.",
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-32B-Instruct",
+      "extra_args": "--port 30002 --tp-size 4 --enable-multimodal --disable-cuda-graph",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.9",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "gpu-memory-stability",
+    "git_commit": "30103e49526684d8ae8c9e3bf3e38273af53b143",
+    "git_dirty": true,
+    "git_diff_summary": "7 files changed, 247 insertions(+), 156 deletions(-)",
+    "git_dirty_warning": "Working tree has uncommitted changes, not exactly this commit"
+  },
+  "server": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30002 --tp-size 4 --enable-multimodal --disable-cuda-graph"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null
+}

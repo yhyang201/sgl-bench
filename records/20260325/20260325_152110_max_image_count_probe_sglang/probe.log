@@ -1,0 +1,47 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/1] Resolution: 720p (fresh server)
+############################################################
+Port 30000 is in use, switching to 30002.
+Launching server: /root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30002 --tp-size 4 --enable-multimodal --disable-cuda-graph
+Waiting for sglang server on port 30002 (timeout=600s)...
+
+Error: Server process exited with code -9.
+Check server.log for details.
+
+--- Last 20 lines of server.log ---
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/entrypoints/openai/serving_chat.py", line 895, in _handle_non_streaming_request
+    ret = await self.tokenizer_manager.generate_request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/tokenizer_manager.py", line 525, in generate_request
+    tokenized_obj = await self._tokenize_one_request(obj)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/tokenizer_manager.py", line 723, in _tokenize_one_request
+    _mm_t0 = time.time()
+             ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+/sgl-workspace/sglang/python/sglang/srt/entrypoints/openai/serving_base.py:129: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  return self.create_error_response(
+[2026-03-25 15:21:58] INFO:     127.0.0.1:50998 - "POST /v1/chat/completions HTTP/1.1" 500 Internal Server Error
+[2026-03-25 15:21:58] Initialization failed. warmup error: Traceback (most recent call last):
+  File "/sgl-workspace/sglang/python/sglang/srt/entrypoints/http_server.py", line 1868, in _execute_server_warmup
+    assert res.status_code == 200, f"{res.text}"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {"object":"error","message":"Internal server error: name 'time' is not defined","type":"InternalServerError","param":null,"code":500}
+
+--- End of server.log ---
+Shutting down server...
+Warning: GPU processes still active after 30s wait.
+Server stopped (cleaned up orphan children).
+
+Combined report: records/20260325/20260325_152110_max_image_count_probe_sglang/probe_report.json
+
+============================================================
+Image Limit Probe Summary
+============================================================
+Resolution        Max Images    Failed At
+--------------- ------------ ------------
+720p                       0          N/A
+============================================================
