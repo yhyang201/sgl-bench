@@ -70,6 +70,7 @@ def run_probe_single(
     server_process=None,
     server_backend: str = "sglang",
     port: int = 30000,
+    min_images: int = 1,
     max_images: int = 500,
     input_len: int = 256,
     output_len: int = 32,
@@ -99,7 +100,10 @@ def run_probe_single(
     max_ok = 0
     steps = []
 
-    for n in range(1, max_images + 1):
+    if min_images > 1:
+        print(f"  Skipping 1..{min_images-1}, starting from {min_images} images", flush=True)
+
+    for n in range(min_images, max_images + 1):
         # Check server is alive before sending
         if server_process and server_process.poll() is not None:
             print(f"  [{n} images] SERVER CRASHED (exit code {server_process.returncode})", flush=True)

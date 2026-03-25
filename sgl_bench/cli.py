@@ -1,9 +1,29 @@
 """Click CLI entry point for sgl-bench."""
 
+import io
 import shutil
 import sys
 import tempfile
 from pathlib import Path
+
+
+class _TeeStream:
+    """Write to both the original stream and a log file."""
+
+    def __init__(self, original: io.TextIOBase, log_file: io.TextIOBase):
+        self._original = original
+        self._log_file = log_file
+
+    def write(self, data):
+        self._original.write(data)
+        self._log_file.write(data)
+
+    def flush(self):
+        self._original.flush()
+        self._log_file.flush()
+
+    def __getattr__(self, name):
+        return getattr(self._original, name)
 
 import click
 
@@ -453,12 +473,13 @@ def stress(server_path: str, bench_path: str, description: str, gpus: str | None
 @click.option("-g", "--gpus", default=None, help="GPU IDs to use. Default: auto.")
 @click.option("--resolutions", default="720p,1080p,1440x2560",
               help="Comma-separated resolutions to test. Default: 720p,1080p,1440x2560")
+@click.option("--min-images", default=1, type=int, help="Start probing from this image count. Default: 1.")
 @click.option("--max-images", default=500, type=int, help="Max images to try per resolution.")
 @click.option("--input-len", default=256, type=int, help="Text input token length.")
 @click.option("--output-len", default=32, type=int, help="Output token length.")
 @click.option("--timeout", default=300, type=int, help="Per-request timeout in seconds.")
 def probe(server_path: str, description: str, gpus: str | None,
-          resolutions: str, max_images: int, input_len: int, output_len: int, timeout: int):
+          resolutions: str, min_images: int, max_images: int, input_len: int, output_len: int, timeout: int):
     """Probe max image count per request until server fails.
 
     Server is restarted between resolutions so a crash on one doesn't block the next.
@@ -483,6 +504,12 @@ def probe(server_path: str, description: str, gpus: str | None,
     # Create session
     base_dir = config.get("output", {}).get("dir", "./records")
     session = Session.create(description, base_dir)
+
+    # Tee stdout/stderr to probe.log in session dir
+    _probe_log_file = open(session.session_dir / "probe.log", "w")
+    _orig_stdout, _orig_stderr = sys.stdout, sys.stderr
+    sys.stdout = _TeeStream(_orig_stdout, _probe_log_file)
+    sys.stderr = _TeeStream(_orig_stderr, _probe_log_file)
 
     # Pre-generate text prompt once (shared across resolutions)
     model_id = config["server"]["model_path"]
@@ -544,6 +571,7 @@ def probe(server_path: str, description: str, gpus: str | None,
                 server_process=server_process,
                 server_backend=backend,
                 port=port,
+                min_images=min_images,
                 max_images=max_images,
                 input_len=input_len,
                 output_len=output_len,
@@ -580,6 +608,11 @@ def probe(server_path: str, description: str, gpus: str | None,
     print(f"\nCombined report: {report_path}", flush=True)
 
     print_probe_summary(all_results)
+
+    # Restore stdout/stderr and close log file
+    sys.stdout, sys.stderr = _orig_stdout, _orig_stderr
+    _probe_log_file.close()
+    print(f"CLI log saved to: {session.session_dir / 'probe.log'}", flush=True)
 
     output_cfg = config.get("output", {})
     if output_cfg.get("auto_commit", True):
