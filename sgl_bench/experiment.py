@@ -211,6 +211,7 @@ class Experiment:
     warmup_cmd: str | None = None
     benchmark_runs: list = field(default_factory=list)
     accuracy_results: list = field(default_factory=list)
+    stress_report: dict | None = None
     started_at: str = ""
     finished_at: str = ""
     status: str = "running"
@@ -311,6 +312,7 @@ class Experiment:
                 }
                 for r in self.accuracy_results
             ],
+            "stress_report": self.stress_report,
         }
         path = self.output_dir / "experiment.json"
         with open(path, "w", encoding="utf-8") as f:

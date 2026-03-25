@@ -1,0 +1,98 @@
+{
+  "experiment_id": "20260324_144748",
+  "description": "soak test w/ cuda_ipc",
+  "gpu_ids": "1,2,3,4",
+  "server_config": "tp4_cuda_ipc",
+  "bench_config": "soak_1h",
+  "started_at": "2026-03-24T14:47:48.596623",
+  "finished_at": "",
+  "status": "running",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-32B-Instruct",
+      "extra_args": "--port 30000 --tp-size 4 --enable-multimodal",
+      "env": {
+        "SGLANG_USE_CUDA_IPC_TRANSPORT": "1"
+      },
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "stress": {
+      "duration_minutes": 60,
+      "max_concurrency": 32,
+      "request_rate": "inf",
+      "pool_size": 10,
+      "image_count_range": [
+        1,
+        5
+      ],
+      "image_resolutions": [
+        "720p",
+        "1080p"
+      ],
+      "input_len_range": [
+        256,
+        4096
+      ],
+      "output_len_range": [
+        64,
+        300
+      ],
+      "health_check_interval_s": 30,
+      "window_minutes": 5
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "575.57.08"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.9",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "fix-benchserving-vlm",
+    "git_commit": "671085c3a11c2579e3b6ce5a2f3abe8f3375f736",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30001 --tp-size 4 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null
+}

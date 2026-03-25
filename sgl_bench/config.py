@@ -14,6 +14,7 @@ else:
 
 DEFAULTS = {
     "server": {
+        "backend": "sglang",
         "extra_args": "",
         "startup_timeout": 600,
     },
@@ -94,11 +95,10 @@ def merge_configs(server_cfg: dict, bench_cfg: dict) -> dict:
     # Server section comes from server_cfg only
     merged["server"] = dict(server_cfg.get("server", {}))
 
-    # Benchmark / accuracy come from bench_cfg only
-    if "benchmark" in bench_cfg:
-        merged["benchmark"] = dict(bench_cfg["benchmark"])
-    if "accuracy" in bench_cfg:
-        merged["accuracy"] = dict(bench_cfg["accuracy"])
+    # Benchmark / accuracy / stress come from bench_cfg only
+    for section in ["benchmark", "accuracy", "stress"]:
+        if section in bench_cfg:
+            merged[section] = dict(bench_cfg[section])
 
     # For warmup, output, run: bench_cfg overrides server_cfg
     for section in ["warmup", "output", "run"]:

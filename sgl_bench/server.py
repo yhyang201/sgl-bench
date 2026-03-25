@@ -1,14 +1,21 @@
 """Server lifecycle: GPU check, launch, health check, shutdown."""
 
 import os
+import re
 import signal
 import shlex
 import subprocess
+import sys
 import time
 import urllib.request
 import urllib.error
 
 from .config import extract_port
+
+
+def get_server_backend(config: dict) -> str:
+    """Get server backend from config. Default: sglang."""
+    return config.get("server", {}).get("backend", "sglang")
 
 
 def check_gpu_available(gpu_ids: list[int]) -> None:
@@ -72,10 +79,7 @@ def check_gpu_available(gpu_ids: list[int]) -> None:
 
 
 def find_available_port(start_port: int) -> int:
-    """Find an available port starting from start_port.
-
-    If start_port is free, return it. Otherwise try start_port+1, +2, ... up to +100.
-    """
+    """Find an available port starting from start_port."""
     import socket
     for port in range(start_port, start_port + 100):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -86,26 +90,43 @@ def find_available_port(start_port: int) -> int:
 
 
 def build_server_command(config: dict) -> list[str]:
-    """Build the full sglang launch_server command from config.
+    """Build the server launch command based on backend.
 
-    Command: python -m sglang.launch_server --model-path {model_path} {extra_args}
+    sglang: python -m sglang.launch_server --model-path {model} {extra_args}
+    vllm:   python -m vllm.entrypoints.openai.api_server --model {model} {extra_args}
     """
     server = config["server"]
-    import sys
-    cmd = [
-        sys.executable, "-m", "sglang.launch_server",
-        "--model-path", server["model_path"],
-    ]
+    backend = get_server_backend(config)
+    model = server["model_path"]
     extra = server.get("extra_args", "").strip()
+
+    if backend == "vllm":
+        # vLLM uses --tensor-parallel-size instead of --tp-size
+        extra = re.sub(r"--tp-size\s+(\d+)", r"--tensor-parallel-size \1", extra)
+        # vLLM auto-detects multimodal, remove sglang-specific flag
+        extra = re.sub(r"--enable-multimodal\s*", "", extra)
+        cmd = [
+            sys.executable, "-m", "vllm.entrypoints.openai.api_server",
+            "--model", model,
+        ]
+    else:
+        cmd = [
+            sys.executable, "-m", "sglang.launch_server",
+            "--model-path", model,
+        ]
+
     if extra:
         cmd.extend(shlex.split(extra))
     return cmd
 
 
-def launch_server(cmd: list[str], log_path: str, gpu_ids: list[int]) -> subprocess.Popen:
-    """Launch the sglang server as a subprocess."""
+def launch_server(cmd: list[str], log_path: str, gpu_ids: list[int],
+                   extra_env: dict[str, str] | None = None) -> subprocess.Popen:
+    """Launch the server as a subprocess."""
     env = os.environ.copy()
     env["CUDA_VISIBLE_DEVICES"] = ",".join(str(g) for g in gpu_ids)
+    if extra_env:
+        env.update(extra_env)
 
     log_file = open(log_path, "w")
     process = subprocess.Popen(
@@ -124,15 +145,19 @@ def get_server_port(config: dict) -> int:
     return extract_port(config["server"].get("extra_args", ""))
 
 
-def wait_for_server(port: int, timeout: int, process: subprocess.Popen, log_path: str) -> None:
-    """Poll server health endpoint until ready or timeout.
+def get_health_url(port: int, backend: str) -> str:
+    """Get the health check URL for the given backend."""
+    if backend == "vllm":
+        return f"http://127.0.0.1:{port}/health"
+    return f"http://127.0.0.1:{port}/health_generate"
 
-    Also monitors server.log for ERROR lines to detect early failures
-    (e.g. port already in use) even before the process exits.
-    """
-    url = f"http://127.0.0.1:{port}/health_generate"
+
+def wait_for_server(port: int, timeout: int, process: subprocess.Popen, log_path: str,
+                    backend: str = "sglang") -> None:
+    """Poll server health endpoint until ready or timeout."""
+    url = get_health_url(port, backend)
     start = time.time()
-    print(f"Waiting for server on port {port} (timeout={timeout}s)...", flush=True)
+    print(f"Waiting for {backend} server on port {port} (timeout={timeout}s)...", flush=True)
 
     while time.time() - start < timeout:
         # Check if process died
@@ -143,7 +168,7 @@ def wait_for_server(port: int, timeout: int, process: subprocess.Popen, log_path
                 f"{error_msg or 'Check server.log for details.'}"
             )
 
-        # Check server.log for ERROR lines (catches port-in-use etc.)
+        # Check server.log for ERROR lines
         error_msg = _extract_log_error(log_path)
         if error_msg:
             raise RuntimeError(f"Server error detected in log:\n{error_msg}")
@@ -177,12 +202,29 @@ def _extract_log_error(log_path: str) -> str | None:
 
 def shutdown_server(process: subprocess.Popen) -> None:
     """Gracefully shutdown the server process group."""
+    print("Shutting down server...", flush=True)
+
+    try:
+        pgid = os.getpgid(process.pid)
+    except ProcessLookupError:
+        pgid = None
+
     if process.poll() is not None:
+        # Main process already dead but children may linger — kill the group
+        if pgid is not None:
+            try:
+                os.killpg(pgid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
         _close_log(process)
+        _wait_gpu_release()
+        print("Server stopped (cleaned up orphan children).", flush=True)
         return
 
-    pgid = os.getpgid(process.pid)
-    print("Shutting down server...", flush=True)
+    if pgid is None:
+        _close_log(process)
+        print("Server stopped.", flush=True)
+        return
 
     try:
         os.killpg(pgid, signal.SIGTERM)
@@ -196,7 +238,25 @@ def shutdown_server(process: subprocess.Popen) -> None:
         pass
 
     _close_log(process)
+    _wait_gpu_release()
     print("Server stopped.", flush=True)
+
+
+def _wait_gpu_release(timeout: int = 30) -> None:
+    """Wait for GPU memory to be released after server shutdown."""
+    import time
+    for i in range(timeout):
+        time.sleep(1)
+        try:
+            result = subprocess.run(
+                ["nvidia-smi", "--query-compute-apps=pid", "--format=csv,noheader"],
+                capture_output=True, text=True, timeout=5,
+            )
+            if not result.stdout.strip():
+                return
+        except Exception:
+            return
+    print(f"Warning: GPU processes still active after {timeout}s wait.", flush=True)
 
 
 def _close_log(process: subprocess.Popen) -> None:

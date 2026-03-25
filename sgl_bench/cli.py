@@ -17,6 +17,7 @@ from .server import (
     build_server_command,
     check_gpu_available,
     find_available_port,
+    get_server_backend,
     get_server_port,
     launch_server,
     shutdown_server,
@@ -153,10 +154,14 @@ def run(server_path: str, bench_path: str, description: str, gpus: str | None):
             print(f"  Command: {server_cmd_str}", flush=True)
 
             log_path = str(exp.output_dir / "server.log")
-            server_process = launch_server(server_cmd, log_path, gpu_ids)
+            extra_env = config.get("server", {}).get("env")
+            if extra_env:
+                print(f"  Env: {extra_env}", flush=True)
+            server_process = launch_server(server_cmd, log_path, gpu_ids, extra_env=extra_env)
             try:
                 timeout = s_cfg.get("server", {}).get("startup_timeout", 600)
-                wait_for_server(port, timeout, server_process, log_path)
+                backend = get_server_backend(config)
+                wait_for_server(port, timeout, server_process, log_path, backend=backend)
 
                 _run_experiment(config, exp, port)
                 exp.save()
@@ -181,16 +186,13 @@ def run(server_path: str, bench_path: str, description: str, gpus: str | None):
 
 def _run_experiment(config: dict, exp: Experiment, port: int) -> None:
     """Run benchmark and/or accuracy tests for a single experiment."""
-    if config.get("benchmark", {}).get("extra_args", "").strip():
-        warmup_cmd = run_warmup(config, str(exp.output_dir))
-        exp.warmup_cmd = warmup_cmd
-        exp.save_partial()
-
-        num_runs = config.get("run", {}).get("runs", 1)
-        for i in range(num_runs):
-            run_data = run_benchmark(config, i, str(exp.output_dir))
-            exp.benchmark_runs.append(run_data)
-            exp.save_partial()
+    bench_args = config.get("benchmark", {}).get("extra_args", "").strip()
+    if bench_args:
+        backend = get_server_backend(config)
+        if backend == "vllm":
+            _run_experiment_native(config, exp, port, bench_args)
+        else:
+            _run_experiment_subprocess(config, exp)
 
     if config.get("accuracy", {}).get("tasks"):
         validate_accuracy_config(config)
@@ -198,6 +200,96 @@ def _run_experiment(config: dict, exp: Experiment, port: int) -> None:
         acc_results = run_accuracy_tests(config, base_url, str(exp.output_dir))
         exp.accuracy_results = acc_results
         exp.save_partial()
+
+
+def _run_experiment_subprocess(config: dict, exp: Experiment) -> None:
+    """Run benchmark via sglang bench_serving subprocess (default for sglang)."""
+    warmup_cmd = run_warmup(config, str(exp.output_dir))
+    exp.warmup_cmd = warmup_cmd
+    exp.save_partial()
+
+    num_runs = config.get("run", {}).get("runs", 1)
+    for i in range(num_runs):
+        run_data = run_benchmark(config, i, str(exp.output_dir))
+        exp.benchmark_runs.append(run_data)
+        exp.save_partial()
+
+
+def _run_experiment_native(config: dict, exp: Experiment, port: int, bench_args: str) -> None:
+    """Run benchmark via built-in runner (used for vllm and optionally sglang)."""
+    import random as _random
+    import shlex
+    from .runner import run_image_benchmark
+
+    # Parse bench extra_args into a dict
+    args = _parse_bench_args(bench_args)
+    model_id = config["server"]["model_path"]
+    base_url = f"http://127.0.0.1:{port}"
+
+    num_runs = config.get("run", {}).get("runs", 1)
+    for i in range(num_runs):
+        seed = _random.randint(1, 999999)
+        _random.seed(seed)
+
+        output_file = str(exp.output_dir / f"bench_run_{i}.json")
+        print(f"Running benchmark run {i} (seed={seed}, native runner)...", flush=True)
+
+        try:
+            result = run_image_benchmark(
+                base_url=base_url,
+                model_id=model_id,
+                num_prompts=args.get("num_prompts", 32),
+                image_count=args.get("image_count", 1),
+                input_len=args.get("random_input_len", 512),
+                output_len=args.get("random_output_len", 256),
+                image_resolution=args.get("image_resolution", "1080p"),
+                request_rate=args.get("request_rate", float("inf")),
+                max_concurrency=args.get("max_concurrency"),
+                output_file=output_file,
+            )
+
+            run_data = {
+                "run_index": i,
+                "seed": seed,
+                "command": f"(native runner: {bench_args.strip()})",
+                "results": result.to_dict(),
+            }
+        except Exception as e:
+            run_data = {
+                "run_index": i,
+                "seed": seed,
+                "command": f"(native runner: {bench_args.strip()})",
+                "results": {},
+                "error": str(e),
+            }
+            print(f"Warning: benchmark run {i} failed: {e}", flush=True)
+
+        exp.benchmark_runs.append(run_data)
+        exp.save_partial()
+
+
+def _parse_bench_args(extra_args: str) -> dict:
+    """Parse benchmark extra_args string into a dict of typed values."""
+    import shlex
+    tokens = shlex.split(extra_args)
+    result = {}
+    i = 0
+    while i < len(tokens):
+        token = tokens[i]
+        if token.startswith("--") and i + 1 < len(tokens) and not tokens[i + 1].startswith("--"):
+            key = token[2:].replace("-", "_")
+            val = tokens[i + 1]
+            # Type conversion
+            if val == "inf":
+                result[key] = float("inf")
+            elif val.replace(".", "", 1).isdigit():
+                result[key] = float(val) if "." in val else int(val)
+            else:
+                result[key] = val
+            i += 2
+        else:
+            i += 1
+    return result
 
 
 @cli.command()
@@ -259,6 +351,239 @@ def bench(server_path: str | None, bench_path: str, description: str, gpus: str 
 
     if len(bench_paths) > 1:
         session.print_final_summary()
+
+
+@cli.command()
+@click.option("-s", "--server", "server_path", required=True,
+              help="Server config: file, directory, or preset name.")
+@click.option("-b", "--bench", "bench_path", required=True,
+              help="Stress config: file or preset name in presets/stress/.")
+@click.option("-d", "--description", required=True, help="Experiment description/purpose.")
+@click.option("-g", "--gpus", default=None, help="GPU IDs to use. Default: auto.")
+def stress(server_path: str, bench_path: str, description: str, gpus: str | None):
+    """Stress/soak test: continuously send randomized image requests to detect OOM or hangs."""
+    from .stress import run_stress_test
+
+    server_paths = _resolve_paths(server_path, ["server"])
+    bench_paths = _resolve_paths(bench_path, ["stress"])
+
+    if len(server_paths) != 1 or len(bench_paths) != 1:
+        raise click.UsageError("Stress test requires exactly one server and one stress config.")
+
+    s_path = server_paths[0]
+    b_path = bench_paths[0]
+    s_cfg = load_toml(s_path)
+    b_cfg = load_toml(b_path)
+    s_name = Path(s_path).stem
+    b_name = Path(b_path).stem
+
+    config = merge_configs(s_cfg, b_cfg)
+
+    print("Detecting environment...", flush=True)
+    sglang_info = detect_sglang_install()
+    gpu_info = detect_gpu_info()
+
+    gpu_ids, gpu_str = _resolve_gpus(gpus, config)
+
+    # Create session and experiment
+    base_dir = config.get("output", {}).get("dir", "./records")
+    session = Session.create(description, base_dir)
+    exp = session.create_experiment(config, gpu_str, s_name, b_name)
+    exp.create_directory()
+    exp.copy_configs(s_path, b_path)
+    exp.sglang_info = sglang_info
+    exp.gpu_info = gpu_info
+
+    # Find port and launch server
+    desired_port = get_server_port(config)
+    port = find_available_port(desired_port)
+    if port != desired_port:
+        print(f"Port {desired_port} is in use, switching to {port}.", flush=True)
+        _override_port_in_cfg(s_cfg, port)
+        config = merge_configs(s_cfg, b_cfg)
+
+    check_gpu_available(gpu_ids)
+    server_cmd = build_server_command(config)
+    exp.server_cmd = " ".join(server_cmd)
+    exp.save_partial()
+
+    print(f"Launching server: {exp.server_cmd}", flush=True)
+    log_path = str(exp.output_dir / "server.log")
+    extra_env = config.get("server", {}).get("env")
+    server_process = launch_server(server_cmd, log_path, gpu_ids, extra_env=extra_env)
+
+    try:
+        backend = get_server_backend(config)
+        timeout = s_cfg.get("server", {}).get("startup_timeout", 600)
+        wait_for_server(port, timeout, server_process, log_path, backend=backend)
+
+        stress_cfg = config.get("stress", {})
+        model_id = config["server"]["model_path"]
+        base_url = f"http://127.0.0.1:{port}"
+
+        report = run_stress_test(
+            base_url=base_url,
+            model_id=model_id,
+            stress_cfg=stress_cfg,
+            server_process=server_process,
+            server_backend=backend,
+            output_file=str(exp.output_dir / "stress_report.json"),
+        )
+
+        exp.stress_report = report.to_dict()
+        exp.save()
+
+    except Exception as e:
+        exp.mark_failed(str(e))
+        print(f"\nError: {e}", file=sys.stderr, flush=True)
+        _print_server_log_tail(log_path)
+
+    finally:
+        shutdown_server(server_process)
+
+    output_cfg = config.get("output", {})
+    if output_cfg.get("auto_commit", True):
+        session.git_commit(auto_push=output_cfg.get("auto_push", False))
+
+
+@cli.command()
+@click.option("-s", "--server", "server_path", required=True,
+              help="Server config: file or preset name.")
+@click.option("-d", "--description", default="image limit probe", help="Experiment description.")
+@click.option("-g", "--gpus", default=None, help="GPU IDs to use. Default: auto.")
+@click.option("--resolutions", default="720p,1080p,1440x2560",
+              help="Comma-separated resolutions to test. Default: 720p,1080p,1440x2560")
+@click.option("--max-images", default=500, type=int, help="Max images to try per resolution.")
+@click.option("--input-len", default=256, type=int, help="Text input token length.")
+@click.option("--output-len", default=32, type=int, help="Output token length.")
+@click.option("--timeout", default=300, type=int, help="Per-request timeout in seconds.")
+def probe(server_path: str, description: str, gpus: str | None,
+          resolutions: str, max_images: int, input_len: int, output_len: int, timeout: int):
+    """Probe max image count per request until server fails.
+
+    Server is restarted between resolutions so a crash on one doesn't block the next.
+    """
+    from .probe import run_probe_single, print_probe_summary
+
+    server_paths = _resolve_paths(server_path, ["server"])
+    if len(server_paths) != 1:
+        raise click.UsageError("Probe requires exactly one server config.")
+
+    s_path = server_paths[0]
+    s_name = Path(s_path).stem
+
+    print("Detecting environment...", flush=True)
+    sglang_info = detect_sglang_install()
+    gpu_info = detect_gpu_info()
+
+    s_cfg = load_toml(s_path)
+    config = merge_configs(s_cfg, {})
+    gpu_ids, gpu_str = _resolve_gpus(gpus, config)
+
+    # Create session
+    base_dir = config.get("output", {}).get("dir", "./records")
+    session = Session.create(description, base_dir)
+
+    # Pre-generate text prompt once (shared across resolutions)
+    model_id = config["server"]["model_path"]
+    from transformers import AutoProcessor
+    print("Loading processor for prompt generation...", flush=True)
+    processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
+    image_pad_id = getattr(processor, "image_token_id", None)
+    from .runner import _gen_random_text
+    prompt = _gen_random_text(processor.tokenizer, input_len, image_pad_id)
+
+    resolution_list = [r.strip() for r in resolutions.split(",")]
+    all_results = []
+
+    for ri, res_str in enumerate(resolution_list):
+        print(f"\n{'#'*60}", flush=True)
+        print(f"[{ri+1}/{len(resolution_list)}] Resolution: {res_str} (fresh server)", flush=True)
+        print(f"{'#'*60}", flush=True)
+
+        # Reload config fresh each time
+        s_cfg = load_toml(s_path)
+        config = merge_configs(s_cfg, {})
+
+        # Find port
+        desired_port = get_server_port(config)
+        port = find_available_port(desired_port)
+        if port != desired_port:
+            print(f"Port {desired_port} is in use, switching to {port}.", flush=True)
+            _override_port_in_cfg(s_cfg, port)
+            config = merge_configs(s_cfg, {})
+
+        # Create experiment per resolution
+        exp = session.create_experiment(config, gpu_str, s_name, f"probe_{res_str}")
+        exp.create_directory()
+        exp.copy_config(s_path)
+        exp.sglang_info = sglang_info
+        exp.gpu_info = gpu_info
+
+        check_gpu_available(gpu_ids)
+        server_cmd = build_server_command(config)
+        exp.server_cmd = " ".join(server_cmd)
+        exp.save_partial()
+
+        log_path = str(exp.output_dir / "server.log")
+        extra_env = config.get("server", {}).get("env")
+        print(f"Launching server: {exp.server_cmd}", flush=True)
+        server_process = launch_server(server_cmd, log_path, gpu_ids, extra_env=extra_env)
+
+        try:
+            backend = get_server_backend(config)
+            wait_timeout = s_cfg.get("server", {}).get("startup_timeout", 600)
+            wait_for_server(port, wait_timeout, server_process, log_path, backend=backend)
+
+            base_url = f"http://127.0.0.1:{port}"
+
+            result = run_probe_single(
+                base_url=base_url,
+                model_id=model_id,
+                resolution=res_str,
+                server_process=server_process,
+                server_backend=backend,
+                port=port,
+                max_images=max_images,
+                input_len=input_len,
+                output_len=output_len,
+                timeout_s=timeout,
+                prompt=prompt,
+            )
+            all_results.append(result)
+            exp.save()
+
+        except Exception as e:
+            exp.mark_failed(str(e))
+            print(f"\nError: {e}", file=sys.stderr, flush=True)
+            _print_server_log_tail(log_path)
+            all_results.append({
+                "resolution": res_str, "max_images_ok": 0,
+                "failed_at": None, "error": str(e),
+            })
+
+        finally:
+            shutdown_server(server_process)
+
+    # Save combined report
+    import json
+    report = {
+        "model": model_id,
+        "input_len": input_len,
+        "output_len": output_len,
+        "timeout_s": timeout,
+        "results": all_results,
+    }
+    report_path = session.session_dir / "probe_report.json"
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=2)
+    print(f"\nCombined report: {report_path}", flush=True)
+
+    print_probe_summary(all_results)
+
+    output_cfg = config.get("output", {})
+    if output_cfg.get("auto_commit", True):
+        session.git_commit(auto_push=output_cfg.get("auto_push", False))
 
 
 @cli.command("compare")
