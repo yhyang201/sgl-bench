@@ -1,0 +1,30 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/1] Resolution: 720p (fresh server)
+############################################################
+Launching server: /root/.python/vllm/bin/python3 -m vllm.entrypoints.openai.api_server --model Qwen/Qwen3-VL-32B-Instruct --port 30000 --tensor-parallel-size 4 --enforce-eager
+Waiting for vllm server on port 30000 (timeout=600s)...
+Server ready! (took 70s)
+
+============================================================
+Probing: 720p (1280x720)
+============================================================
+  Skipping 1..29, starting from 30 images
+  [30 images] Generating 30x 720p... (0.5s) Sending... OK (TTFT=6415ms, e2e=7.8s)
+  [31 images] Generating 31x 720p... (0.5s) Sending... OK (TTFT=5253ms, e2e=6.3s)
+  [32 images] Generating 32x 720p... (0.6s) Sending... OK (TTFT=5261ms, e2e=6.3s)
+
+  Result: 720p max = 32 images
+Shutting down server...
+Server stopped.
+
+Combined report: records/20260326/20260326_035951_max_image_count_probe_vllm/probe_report.json
+
+============================================================
+Image Limit Probe Summary
+============================================================
+Resolution        Max Images    Failed At
+--------------- ------------ ------------
+720p                      32          N/A
+============================================================
