@@ -1,0 +1,442 @@
+/sgl-workspace/sglang/python/sglang/launch_server.py:51: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+[2026-03-26 06:32:32] INFO server_args.py:2246: Attention backend not specified. Use fa3 backend by default.
+/sgl-workspace/sglang/python/sglang/srt/entrypoints/http_server.py:175: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  from sglang.srt.utils.json_response import (
+[2026-03-26 06:32:33] server_args=ServerArgs(model_path='Qwen/Qwen3-VL-32B-Instruct', tokenizer_path='Qwen/Qwen3-VL-32B-Instruct', tokenizer_mode='auto', tokenizer_worker_num=1, skip_tokenizer_init=False, load_format='auto', model_loader_extra_config='{}', trust_remote_code=False, context_length=None, is_embedding=False, enable_multimodal=True, revision=None, model_impl='auto', host='127.0.0.1', port=30000, fastapi_root_path='', grpc_mode=False, skip_server_warmup=False, warmups=None, nccl_port=None, checkpoint_engine_wait_weights_before_ready=False, ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_keyfile_password=None, enable_ssl_refresh=False, dtype='auto', quantization=None, quantization_param_path=None, kv_cache_dtype='auto', enable_fp32_lm_head=False, modelopt_quant=None, modelopt_checkpoint_restore_path=None, modelopt_checkpoint_save_path=None, modelopt_export_path=None, quantize_and_serve=False, rl_quant_profile=None, mem_fraction_static=0.8322890624999999, max_running_requests=None, max_queued_requests=None, max_total_tokens=None, chunked_prefill_size=8192, enable_dynamic_chunking=False, max_prefill_tokens=16384, prefill_max_requests=None, schedule_policy='fcfs', enable_priority_scheduling=False, disable_priority_preemption=False, default_priority_value=None, abort_on_priority_when_disabled=False, schedule_low_priority_values_first=False, priority_scheduling_preemption_threshold=10, schedule_conservativeness=1.0, page_size=1, swa_full_tokens_ratio=0.8, disable_hybrid_swa_memory=False, radix_eviction_policy='lru', enable_prefill_delayer=False, prefill_delayer_max_delay_passes=30, prefill_delayer_token_usage_low_watermark=None, prefill_delayer_forward_passes_buckets=None, prefill_delayer_wait_seconds_buckets=None, device='cuda', tp_size=4, pp_size=1, pp_max_micro_batch_size=None, pp_async_batch_depth=0, stream_interval=1, incremental_streaming_output=False, enable_streaming_session=False, random_seed=246989588, constrained_json_whitespace_pattern=None, constrained_json_disable_any_whitespace=False, watchdog_timeout=300, soft_watchdog_timeout=None, dist_timeout=None, download_dir=None, model_checksum=None, base_gpu_id=0, gpu_id_step=1, sleep_on_idle=False, use_ray=False, custom_sigquit_handler=None, log_level='info', log_level_http=None, log_requests=False, log_requests_level=2, log_requests_format='text', log_requests_target=None, uvicorn_access_log_exclude_prefixes=[], crash_dump_folder=None, show_time_cost=False, enable_metrics=False, enable_metrics_for_all_schedulers=False, tokenizer_metrics_custom_labels_header='x-custom-labels', tokenizer_metrics_allowed_custom_labels=None, extra_metric_labels=None, bucket_time_to_first_token=None, bucket_inter_token_latency=None, bucket_e2e_request_latency=None, collect_tokens_histogram=False, prompt_tokens_buckets=None, generation_tokens_buckets=None, gc_warning_threshold_secs=0.0, decode_log_interval=40, enable_request_time_stats_logging=False, kv_events_config=None, enable_trace=False, otlp_traces_endpoint='localhost:4317', export_metrics_to_file=False, export_metrics_to_file_dir=None, api_key=None, admin_api_key=None, served_model_name='Qwen/Qwen3-VL-32B-Instruct', weight_version='default', chat_template=None, hf_chat_template_name=None, completion_template=None, file_storage_path='sglang_storage', enable_cache_report=False, reasoning_parser=None, tool_call_parser=None, tool_server=None, sampling_defaults='model', dp_size=1, load_balance_method='round_robin', attn_cp_size=1, moe_dp_size=1, dist_init_addr=None, nnodes=1, node_rank=0, json_model_override_args='{}', preferred_sampling_params=None, enable_lora=None, enable_lora_overlap_loading=None, max_lora_rank=None, lora_target_modules=None, lora_paths=None, max_loaded_loras=None, max_loras_per_batch=8, lora_eviction_policy='lru', lora_backend='csgmv', max_lora_chunk_size=16, attention_backend='fa3', decode_attention_backend=None, prefill_attention_backend=None, sampling_backend='flashinfer', grammar_backend='xgrammar', mm_attention_backend=None, fp8_gemm_runner_backend='auto', fp4_gemm_runner_backend='auto', nsa_prefill_backend=None, nsa_decode_backend=None, disable_flashinfer_autotune=False, mamba_backend='triton', speculative_algorithm=None, speculative_draft_model_path=None, speculative_draft_model_revision=None, speculative_draft_load_format=None, speculative_num_steps=None, speculative_eagle_topk=None, speculative_num_draft_tokens=None, speculative_accept_threshold_single=1.0, speculative_accept_threshold_acc=1.0, speculative_token_map=None, speculative_attention_mode='prefill', speculative_draft_attention_backend=None, speculative_moe_runner_backend='auto', speculative_moe_a2a_backend=None, speculative_draft_model_quantization=None, speculative_ngram_min_match_window_size=1, speculative_ngram_max_match_window_size=12, speculative_ngram_min_bfs_breadth=1, speculative_ngram_max_bfs_breadth=10, speculative_ngram_match_type='BFS', speculative_ngram_max_trie_depth=18, speculative_ngram_capacity=10000000, enable_multi_layer_eagle=False, ep_size=1, moe_a2a_backend='none', moe_runner_backend='auto', flashinfer_mxfp4_moe_precision='default', enable_flashinfer_allreduce_fusion=False, enable_aiter_allreduce_fusion=False, deepep_mode='auto', ep_num_redundant_experts=0, ep_dispatch_algorithm=None, init_expert_location='trivial', enable_eplb=False, eplb_algorithm='auto', eplb_rebalance_num_iterations=1000, eplb_rebalance_layers_per_chunk=None, eplb_min_rebalancing_utilization_threshold=1.0, expert_distribution_recorder_mode=None, expert_distribution_recorder_buffer_size=1000, enable_expert_distribution_metrics=False, deepep_config=None, moe_dense_tp_size=None, elastic_ep_backend=None, enable_elastic_expert_backup=False, mooncake_ib_device=None, max_mamba_cache_size=None, mamba_ssm_dtype=None, mamba_full_memory_ratio=0.9, mamba_scheduler_strategy='no_buffer', mamba_track_interval=256, linear_attn_backend='triton', linear_attn_decode_backend=None, linear_attn_prefill_backend=None, enable_hierarchical_cache=False, hicache_ratio=2.0, hicache_size=0, hicache_write_policy='write_through', hicache_io_backend='kernel', hicache_mem_layout='layer_first', disable_hicache_numa_detect=False, hicache_storage_backend=None, hicache_storage_prefetch_policy='best_effort', hicache_storage_backend_extra_config=None, enable_hisparse=False, hisparse_config=None, enable_lmcache=False, kt_weight_path=None, kt_method='AMXINT4', kt_cpuinfer=None, kt_threadpool_count=2, kt_num_gpu_experts=None, kt_max_deferred_experts_per_token=None, dllm_algorithm=None, dllm_algorithm_config=None, enable_double_sparsity=False, ds_channel_config_path=None, ds_heavy_channel_num=32, ds_heavy_token_num=256, ds_heavy_channel_type='qk', ds_sparse_decode_threshold=4096, cpu_offload_gb=0, offload_group_size=-1, offload_num_in_group=1, offload_prefetch_step=1, offload_mode='cpu', multi_item_scoring_delimiter=None, disable_radix_cache=False, cuda_graph_max_bs=512, cuda_graph_bs=[1, 2, 4, 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], disable_cuda_graph=True, disable_cuda_graph_padding=False, enable_profile_cuda_graph=False, enable_cudagraph_gc=False, enable_layerwise_nvtx_marker=False, enable_nccl_nvls=False, enable_symm_mem=False, disable_flashinfer_cutlass_moe_fp4_allgather=False, enable_tokenizer_batch_encode=False, disable_tokenizer_batch_decode=False, disable_outlines_disk_cache=False, disable_custom_all_reduce=False, enable_mscclpp=False, enable_torch_symm_mem=False, pre_warm_nccl=False, disable_overlap_schedule=False, enable_mixed_chunk=False, enable_dp_attention=False, enable_dp_lm_head=False, enable_two_batch_overlap=False, enable_single_batch_overlap=False, tbo_token_distribution_threshold=0.48, enable_torch_compile=False, disable_piecewise_cuda_graph=True, enforce_piecewise_cuda_graph=False, enable_torch_compile_debug_mode=False, torch_compile_max_bs=32, piecewise_cuda_graph_max_tokens=8192, piecewise_cuda_graph_tokens=[4, 8, 12, 16, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 832, 896, 960, 1024, 1280, 1536, 1792, 2048, 2304, 2560, 2816, 3072, 3328, 3584, 3840, 4096, 4608, 5120, 5632, 6144, 6656, 7168, 7680, 8192], piecewise_cuda_graph_compiler='eager', torchao_config='', enable_nan_detection=False, enable_p2p_check=False, triton_attention_reduce_in_fp32=False, triton_attention_num_kv_splits=8, triton_attention_split_tile_size=None, num_continuous_decode_steps=1, delete_ckpt_after_loading=False, enable_memory_saver=False, enable_weights_cpu_backup=False, enable_draft_weights_cpu_backup=False, allow_auto_truncate=False, enable_custom_logit_processor=False, flashinfer_mla_disable_ragged=False, disable_shared_experts_fusion=False, disable_chunked_prefix_cache=False, disable_fast_image_processor=False, keep_mm_feature_on_device=False, enable_return_hidden_states=False, enable_return_routed_experts=False, scheduler_recv_interval=1, numa_node=None, enable_deterministic_inference=False, rl_on_policy_target=None, enable_attn_tp_input_scattered=False, enable_nsa_prefill_context_parallel=False, nsa_prefill_cp_mode='round-robin-split', enable_fused_qk_norm_rope=False, enable_precise_embedding_interpolation=False, enable_fused_moe_sum_all_reduce=False, enable_prefill_context_parallel=False, prefill_cp_mode='in-seq-split', enable_dynamic_batch_tokenizer=False, dynamic_batch_tokenizer_batch_size=32, dynamic_batch_tokenizer_batch_timeout=0.002, debug_tensor_dump_output_folder=None, debug_tensor_dump_layers=None, debug_tensor_dump_input_file=None, debug_tensor_dump_inject=False, disaggregation_mode='null', disaggregation_transfer_backend='mooncake', disaggregation_bootstrap_port=8998, disaggregation_ib_device=None, disaggregation_decode_enable_offload_kvcache=False, num_reserved_decode_tokens=512, disaggregation_decode_polling_interval=1, encoder_only=False, language_only=False, encoder_transfer_backend='zmq_to_scheduler', encoder_urls=[], enable_adaptive_dispatch_to_encoder=False, custom_weight_loader=[], weight_loader_disable_mmap=False, remote_instance_weight_loader_seed_instance_ip=None, remote_instance_weight_loader_seed_instance_service_port=None, remote_instance_weight_loader_send_weights_group_ports=None, remote_instance_weight_loader_backend='nccl', remote_instance_weight_loader_start_seed_via_transfer_engine=False, modelexpress_config=None, enable_pdmux=False, pdmux_config_path=None, sm_group_num=8, mm_max_concurrent_calls=32, mm_per_request_timeout=10.0, enable_broadcast_mm_inputs_process=False, enable_prefix_mm_cache=False, mm_enable_dp_encoder=False, mm_process_config={}, limit_mm_data_per_request=None, enable_mm_global_cache=False, decrypted_config_file=None, decrypted_draft_config_file=None, forward_hooks=None)
+2026-03-26 06:32:33.413 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:33] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:33.413 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:33] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:33.413 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:33] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:33.413 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:33] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:33.413 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:33] Persistent cache disabled, using in-memory JIT cache
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:34] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:36] Using default HuggingFace chat template with detected content format: openai
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:41 TP0] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:41 TP1] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:41 TP3] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:41 TP2] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-26 06:32:44 TP0] Init torch distributed begin.
+[2026-03-26 06:32:44 TP3] Init torch distributed begin.
+[2026-03-26 06:32:44 TP1] Init torch distributed begin.
+[2026-03-26 06:32:44 TP2] Init torch distributed begin.
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[2026-03-26 06:32:44 TP0] sglang is using nccl==2.27.5
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[2026-03-26 06:32:46 TP0] Init torch distributed ends. elapsed=1.94 s, mem usage=1.24 GB
+[2026-03-26 06:32:46 TP3] Init torch distributed ends. elapsed=1.76 s, mem usage=1.06 GB
+[2026-03-26 06:32:46 TP1] Init torch distributed ends. elapsed=1.73 s, mem usage=1.29 GB
+[2026-03-26 06:32:46 TP2] Init torch distributed ends. elapsed=1.62 s, mem usage=1.29 GB
+2026-03-26 06:32:46.190 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP0] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.190 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP0] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.190 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP0] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.190 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP0] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.190 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP0] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.190 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP3] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP3] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP3] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP3] Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP1] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP1] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP1] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP1] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP3] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.191 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP1] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.199 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP2] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.199 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP2] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.199 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP2] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.199 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP2] Persistent cache disabled, using in-memory JIT cache
+2026-03-26 06:32:46.199 DEBUG Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP2] Persistent cache disabled, using in-memory JIT cache
+[2026-03-26 06:32:46 TP1] Load weight begin. avail mem=137.99 GB
+[2026-03-26 06:32:46 TP0] Load weight begin. avail mem=138.04 GB
+[2026-03-26 06:32:46 TP3] Load weight begin. avail mem=138.23 GB
+[2026-03-26 06:32:46 TP2] Load weight begin. avail mem=137.99 GB
+[2026-03-26 06:32:46 TP1] Multimodal attention backend not set. Use fa3.
+[2026-03-26 06:32:46 TP1] Using fa3 as multimodal attention backend.
+[2026-03-26 06:32:46 TP0] Multimodal attention backend not set. Use fa3.
+[2026-03-26 06:32:46 TP0] Using fa3 as multimodal attention backend.
+[2026-03-26 06:32:46 TP3] Multimodal attention backend not set. Use fa3.
+[2026-03-26 06:32:46 TP3] Using fa3 as multimodal attention backend.
+[2026-03-26 06:32:46 TP2] Multimodal attention backend not set. Use fa3.
+[2026-03-26 06:32:46 TP2] Using fa3 as multimodal attention backend.
+[2026-03-26 06:32:47 TP0] Found local HF snapshot for Qwen/Qwen3-VL-32B-Instruct at /root/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Instruct/snapshots/0cfaf48183f594c314753d30a4c4974bc75f3ccb; skipping download.
+Loading safetensors checkpoint shards:   0% Completed | 0/14 [00:00<?, ?it/s]Loading safetensors checkpoint shards:   7% Completed | 1/14 [00:00<00:06,  2.12it/s]Loading safetensors checkpoint shards:  14% Completed | 2/14 [00:01<00:06,  1.77it/s]Loading safetensors checkpoint shards:  21% Completed | 3/14 [00:01<00:06,  1.68it/s]Loading safetensors checkpoint shards:  29% Completed | 4/14 [00:02<00:05,  1.76it/s]Loading safetensors checkpoint shards:  36% Completed | 5/14 [00:02<00:05,  1.73it/s]Loading safetensors checkpoint shards:  43% Completed | 6/14 [00:03<00:04,  1.66it/s]Loading safetensors checkpoint shards:  50% Completed | 7/14 [00:04<00:04,  1.63it/s]Loading safetensors checkpoint shards:  57% Completed | 8/14 [00:04<00:03,  1.84it/s]Loading safetensors checkpoint shards:  64% Completed | 9/14 [00:05<00:02,  1.82it/s]Loading safetensors checkpoint shards:  71% Completed | 10/14 [00:05<00:02,  1.74it/s]Loading safetensors checkpoint shards:  79% Completed | 11/14 [00:06<00:01,  1.69it/s]Loading safetensors checkpoint shards:  86% Completed | 12/14 [00:06<00:01,  1.67it/s][2026-03-26 06:32:54 TP1] Load weight end. elapsed=8.11 s, type=Qwen3VLForConditionalGeneration, avail mem=122.09 GB, mem usage=15.91 GB.
+Loading safetensors checkpoint shards:  93% Completed | 13/14 [00:07<00:00,  1.65it/s][2026-03-26 06:32:55 TP2] Load weight end. elapsed=8.24 s, type=Qwen3VLForConditionalGeneration, avail mem=122.09 GB, mem usage=15.91 GB.
+[2026-03-26 06:32:55 TP3] Load weight end. elapsed=8.67 s, type=Qwen3VLForConditionalGeneration, avail mem=122.32 GB, mem usage=15.91 GB.
+Loading safetensors checkpoint shards: 100% Completed | 14/14 [00:08<00:00,  1.65it/s]Loading safetensors checkpoint shards: 100% Completed | 14/14 [00:08<00:00,  1.71it/s]
+[2026-03-26 06:32:55 TP0] Load weight end. elapsed=8.98 s, type=Qwen3VLForConditionalGeneration, avail mem=122.13 GB, mem usage=15.91 GB.
+[2026-03-26 06:32:55 TP0] Using KV cache dtype: torch.bfloat16
+[2026-03-26 06:32:55 TP0] KV Cache is allocated. #tokens: 1620447, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-26 06:32:55 TP0] Memory pool end. avail mem=20.00 GB
+[2026-03-26 06:32:55 TP2] KV Cache is allocated. #tokens: 1620447, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-26 06:32:55 TP2] Memory pool end. avail mem=19.96 GB
+[2026-03-26 06:32:55 TP3] KV Cache is allocated. #tokens: 1620447, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-26 06:32:55 TP3] Memory pool end. avail mem=20.19 GB
+[2026-03-26 06:32:55 TP1] KV Cache is allocated. #tokens: 1620447, K size: 49.45 GB, V size: 49.45 GB
+[2026-03-26 06:32:55 TP1] Memory pool end. avail mem=19.96 GB
+[2026-03-26 06:32:56 TP0] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-26 06:32:56 TP2] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-26 06:32:56 TP3] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-26 06:32:56 TP1] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-03-26 06:32:58 TP0] max_total_num_tokens=1620447, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=3164, context_len=262144, available_gpu_mem=19.91 GB
+[2026-03-26 06:32:59] INFO:     Started server process [1558278]
+[2026-03-26 06:32:59] INFO:     Waiting for application startup.
+[2026-03-26 06:32:59] Using default chat sampling params from model generation config: {'repetition_penalty': 1.0, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}
+[2026-03-26 06:32:59] INFO:     Application startup complete.
+[2026-03-26 06:32:59] INFO:     Uvicorn running on http://127.0.0.1:30000 (Press CTRL+C to quit)
+[2026-03-26 06:33:00] INFO:     127.0.0.1:47216 - "GET /model_info HTTP/1.1" 200 OK
+[VLM_STAGE_TIMER] req_info | req=b52b9183f2084dcf8f21af9a10973fc7 | num_images=1
+[VLM_STAGE_TIMER] stage1_processor | req=b52b9183f2084dcf8f21af9a10973fc7 | wall=236.003 ms
+[VLM_STAGE_TIMER] stage2a_send_start | req=b52b9183f2084dcf8f21af9a10973fc7 | timestamp=599885.292714
+[VLM_STAGE_TIMER] stage2a_send_end | req=b52b9183f2084dcf8f21af9a10973fc7 | timestamp=599885.312084
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=b52b9183f2084dcf8f21af9a10973fc7 | timestamp=599885.319600
+[TP0] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=0 | wall=1.959 ms
+[TP2] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=2 | wall=7.765 ms
+[TP1] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=1 | wall=8.229 ms
+[TP3] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=3 | wall=9.181 ms
+[2026-03-26 06:33:01] INFO:     127.0.0.1:57602 - "GET /health_generate HTTP/1.1" 503 Service Unavailable
+[TP0] [VLM_VIT_SUBSTAGE] imgs=1 tokens=64 | patch_embed=35.30ms | pos_embed=649.36ms | rot_pos=0.42ms | cu_seqlens=0.12ms | blocks=373.58ms | merger=0.21ms | total=1059.01ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=1 tokens=64 | patch_embed=32.53ms | pos_embed=631.89ms | rot_pos=0.48ms | cu_seqlens=0.13ms | blocks=373.44ms | merger=0.21ms | total=1038.70ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=1 tokens=64 | patch_embed=42.03ms | pos_embed=535.97ms | rot_pos=0.44ms | cu_seqlens=0.15ms | blocks=373.73ms | merger=0.19ms | total=952.54ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=1 tokens=64 | patch_embed=35.91ms | pos_embed=534.86ms | rot_pos=0.41ms | cu_seqlens=0.12ms | blocks=363.07ms | merger=0.18ms | total=934.58ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=1060.428 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=1039.456 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=953.340 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=935.420 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.550 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=3.329 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=3.344 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=3.353 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=229.532 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=232.358 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=229.507 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=229.502 ms
+[2026-03-26 06:33:02 TP0] Prefill batch, #new-seq: 1, #new-token: 78, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.00
+[2026-03-26 06:33:02] INFO:     127.0.0.1:47228 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-26 06:33:03] The server is fired up and ready to roll!
+[VLM_STAGE_TIMER] stage2a_send_start | req=HEALTH_CHECK_1774506786.1636026 | timestamp=599891.101520
+[VLM_STAGE_TIMER] stage2a_send_end | req=HEALTH_CHECK_1774506786.1636026 | timestamp=599891.101687
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=HEALTH_CHECK_1774506786.1636026 | timestamp=599891.102090
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.898 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.899 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.897 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.951 ms
+[2026-03-26 06:33:06 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 22.73
+[2026-03-26 06:33:07] INFO:     127.0.0.1:57616 - "GET /health_generate HTTP/1.1" 200 OK
+[VLM_STAGE_TIMER] stage2a_send_start | req=HEALTH_CHECK_1774506787.1667397 | timestamp=599892.104594
+[VLM_STAGE_TIMER] stage2a_send_end | req=HEALTH_CHECK_1774506787.1667397 | timestamp=599892.104723
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=HEALTH_CHECK_1774506787.1667397 | timestamp=599892.104977
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.689 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.689 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.690 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=29.740 ms
+[2026-03-26 06:33:07 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 1.00
+[2026-03-26 06:33:08] INFO:     127.0.0.1:57628 - "GET /health_generate HTTP/1.1" 200 OK
+[2026-03-26 06:33:08] INFO:     127.0.0.1:57636 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[VLM_STAGE_TIMER] req_info | req=6e4b61ae84194316860bfd68d33fdb72 | num_images=30
+[VLM_STAGE_TIMER] stage1_processor | req=6e4b61ae84194316860bfd68d33fdb72 | wall=724.445 ms
+[VLM_STAGE_TIMER] stage2a_send_start | req=6e4b61ae84194316860bfd68d33fdb72 | timestamp=599894.537710
+[VLM_STAGE_TIMER] stage2a_send_end | req=6e4b61ae84194316860bfd68d33fdb72 | timestamp=599894.778275
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=6e4b61ae84194316860bfd68d33fdb72 | timestamp=599894.781423
+[TP0] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=0 | wall=1.752 ms
+[TP1] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=1 | wall=7.541 ms
+[TP3] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=3 | wall=7.739 ms
+[TP2] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=2 | wall=8.771 ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=2.55ms | pos_embed=383.73ms | rot_pos=0.78ms | cu_seqlens=0.10ms | blocks=85.17ms | merger=1.42ms | total=473.80ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=2.51ms | pos_embed=382.67ms | rot_pos=0.70ms | cu_seqlens=0.11ms | blocks=85.21ms | merger=1.44ms | total=472.70ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=2.54ms | pos_embed=385.76ms | rot_pos=0.79ms | cu_seqlens=0.11ms | blocks=85.12ms | merger=1.47ms | total=475.85ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=2.83ms | pos_embed=174.85ms | rot_pos=0.64ms | cu_seqlens=0.13ms | blocks=84.94ms | merger=1.48ms | total=264.90ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=475.489 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=474.515 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=477.599 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=266.792 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.953 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.948 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.935 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=1.083 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=281.182 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=280.322 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=278.454 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=277.250 ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=2.80ms | pos_embed=10.82ms | rot_pos=0.18ms | cu_seqlens=0.11ms | blocks=74.30ms | merger=1.43ms | total=89.67ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=2.69ms | pos_embed=9.37ms | rot_pos=0.16ms | cu_seqlens=0.11ms | blocks=74.34ms | merger=1.44ms | total=88.13ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=2.77ms | pos_embed=5.09ms | rot_pos=0.14ms | cu_seqlens=0.11ms | blocks=74.36ms | merger=1.44ms | total=83.92ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=2.72ms | pos_embed=8.23ms | rot_pos=0.18ms | cu_seqlens=0.19ms | blocks=74.77ms | merger=0.92ms | total=87.03ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=90.071 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=84.318 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=88.525 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=87.459 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.859 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.863 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.867 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.897 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=335.107 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=333.831 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=343.184 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=334.105 ms
+[2026-03-26 06:33:13 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.17
+[TP2] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.32ms | pos_embed=9.62ms | rot_pos=0.42ms | cu_seqlens=0.11ms | blocks=70.95ms | merger=0.76ms | total=82.20ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.31ms | pos_embed=6.87ms | rot_pos=0.42ms | cu_seqlens=0.11ms | blocks=70.98ms | merger=0.76ms | total=79.46ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=5.55ms | rot_pos=0.43ms | cu_seqlens=0.18ms | blocks=70.88ms | merger=0.76ms | total=78.15ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.32ms | pos_embed=5.93ms | rot_pos=0.39ms | cu_seqlens=0.13ms | blocks=70.99ms | merger=0.76ms | total=78.55ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=82.584 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=79.852 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=78.554 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=78.970 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.853 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.862 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.875 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.864 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=393.492 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=392.443 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=392.279 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=401.672 ms
+[2026-03-26 06:33:13 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 15867.72
+[TP1] [VLM_VIT_SUBSTAGE] imgs=2 tokens=1760 | patch_embed=0.61ms | pos_embed=4.21ms | rot_pos=0.12ms | cu_seqlens=0.12ms | blocks=30.60ms | merger=0.28ms | total=35.96ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=2 tokens=1760 | patch_embed=0.61ms | pos_embed=3.47ms | rot_pos=0.12ms | cu_seqlens=0.11ms | blocks=30.61ms | merger=0.28ms | total=35.23ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=2 tokens=1760 | patch_embed=0.62ms | pos_embed=6.83ms | rot_pos=0.14ms | cu_seqlens=0.13ms | blocks=30.57ms | merger=0.28ms | total=38.59ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=2 tokens=1760 | patch_embed=0.66ms | pos_embed=1.96ms | rot_pos=0.15ms | cu_seqlens=0.13ms | blocks=30.56ms | merger=0.28ms | total=33.76ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=36.160 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=35.451 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=38.851 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=34.088 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.292 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.292 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.302 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.315 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=134.004 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=135.190 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=133.783 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=143.183 ms
+[2026-03-26 06:33:13 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 38442.44
+[2026-03-26 06:33:14 TP0] Prefill batch, #new-seq: 1, #new-token: 2156, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 213659.67
+[2026-03-26 06:33:14 TP0] Decode batch, #running-req: 1, #token: 26767, token usage: 0.02, cuda graph: False, gen throughput (token/s): 1.19, #queue-req: 0
+[VLM_STAGE_TIMER] stage2a_send_start | req=HEALTH_CHECK_1774506794.943794 | timestamp=599899.881667
+[VLM_STAGE_TIMER] stage2a_send_end | req=HEALTH_CHECK_1774506794.943794 | timestamp=599899.881809
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=HEALTH_CHECK_1774506794.943794 | timestamp=599899.882351
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=27.762 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=27.762 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=27.734 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=27.819 ms
+[2026-03-26 06:33:15 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 2202.25
+[2026-03-26 06:33:15] INFO:     127.0.0.1:46008 - "GET /health_generate HTTP/1.1" 200 OK
+[2026-03-26 06:33:16] INFO:     127.0.0.1:46020 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[VLM_STAGE_TIMER] req_info | req=b75d5197f13f490dbadf395af76abfad | num_images=31
+[VLM_STAGE_TIMER] stage1_processor | req=b75d5197f13f490dbadf395af76abfad | wall=698.022 ms
+[VLM_STAGE_TIMER] stage2a_send_start | req=b75d5197f13f490dbadf395af76abfad | timestamp=599902.255965
+[VLM_STAGE_TIMER] stage2a_send_end | req=b75d5197f13f490dbadf395af76abfad | timestamp=599902.531739
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=b75d5197f13f490dbadf395af76abfad | timestamp=599902.535369
+[TP0] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=0 | wall=2.139 ms
+[TP1] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=1 | wall=7.489 ms
+[TP2] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=2 | wall=8.244 ms
+[TP3] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=3 | wall=9.214 ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.38ms | pos_embed=5.83ms | rot_pos=0.18ms | cu_seqlens=0.11ms | blocks=76.31ms | merger=0.85ms | total=83.67ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.39ms | pos_embed=251.00ms | rot_pos=0.43ms | cu_seqlens=0.17ms | blocks=75.96ms | merger=0.85ms | total=328.86ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.54ms | pos_embed=180.76ms | rot_pos=0.77ms | cu_seqlens=0.22ms | blocks=75.49ms | merger=0.85ms | total=258.72ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.55ms | pos_embed=245.49ms | rot_pos=0.73ms | cu_seqlens=0.22ms | blocks=75.59ms | merger=0.85ms | total=323.50ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=84.114 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=259.164 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=329.292 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=323.961 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.852 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.866 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.923 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.908 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=276.729 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=284.956 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=275.177 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=275.470 ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=7.57ms | rot_pos=0.17ms | cu_seqlens=0.11ms | blocks=70.34ms | merger=0.74ms | total=79.28ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.34ms | pos_embed=5.52ms | rot_pos=0.18ms | cu_seqlens=0.16ms | blocks=70.28ms | merger=0.76ms | total=77.25ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.35ms | pos_embed=6.22ms | rot_pos=0.16ms | cu_seqlens=0.13ms | blocks=70.33ms | merger=0.76ms | total=77.97ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.34ms | pos_embed=10.18ms | rot_pos=0.18ms | cu_seqlens=0.11ms | blocks=70.33ms | merger=0.76ms | total=81.92ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=79.674 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.639 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=78.380 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=82.346 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.862 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.866 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.859 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.893 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=335.704 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=334.587 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=344.160 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=334.429 ms
+[2026-03-26 06:33:20 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.19
+[TP1] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.31ms | pos_embed=6.37ms | rot_pos=0.16ms | cu_seqlens=0.11ms | blocks=70.70ms | merger=0.75ms | total=78.43ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=9.18ms | rot_pos=0.20ms | cu_seqlens=0.11ms | blocks=70.66ms | merger=0.76ms | total=81.25ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.34ms | pos_embed=5.25ms | rot_pos=0.16ms | cu_seqlens=0.13ms | blocks=70.69ms | merger=0.75ms | total=77.34ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.34ms | pos_embed=5.30ms | rot_pos=0.16ms | cu_seqlens=0.11ms | blocks=70.71ms | merger=0.76ms | total=77.40ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=81.640 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=78.815 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.730 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.822 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.860 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.856 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.873 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.894 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=395.002 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=403.242 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=393.798 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=393.553 ms
+[2026-03-26 06:33:20 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 15828.09
+[TP0] [VLM_VIT_SUBSTAGE] imgs=3 tokens=2640 | patch_embed=3.02ms | pos_embed=2.37ms | rot_pos=0.19ms | cu_seqlens=0.12ms | blocks=35.92ms | merger=0.33ms | total=41.97ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=3 tokens=2640 | patch_embed=2.54ms | pos_embed=4.47ms | rot_pos=0.13ms | cu_seqlens=0.11ms | blocks=35.99ms | merger=0.33ms | total=43.59ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=3 tokens=2640 | patch_embed=2.74ms | pos_embed=3.33ms | rot_pos=0.12ms | cu_seqlens=0.11ms | blocks=35.99ms | merger=0.33ms | total=42.65ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=3 tokens=2640 | patch_embed=2.56ms | pos_embed=7.12ms | rot_pos=0.14ms | cu_seqlens=0.11ms | blocks=35.99ms | merger=0.33ms | total=46.26ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=42.204 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=43.834 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=42.934 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=46.577 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.376 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.388 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.384 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.392 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=167.661 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=166.339 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=166.484 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=176.003 ms
+[2026-03-26 06:33:21 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 32260.91
+[2026-03-26 06:33:21 TP0] Prefill batch, #new-seq: 1, #new-token: 3038, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 246875.16
+[VLM_STAGE_TIMER] stage2a_send_start | req=HEALTH_CHECK_1774506802.021575 | timestamp=599906.959430
+[VLM_STAGE_TIMER] stage2a_send_end | req=HEALTH_CHECK_1774506802.021575 | timestamp=599906.959537
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=HEALTH_CHECK_1774506802.021575 | timestamp=599906.960041
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=28.148 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=28.147 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=28.111 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=28.209 ms
+[2026-03-26 06:33:22 TP0] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 3078.72
+[2026-03-26 06:33:23] INFO:     127.0.0.1:37422 - "GET /health_generate HTTP/1.1" 200 OK
+[2026-03-26 06:33:23] INFO:     127.0.0.1:37430 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[VLM_STAGE_TIMER] req_info | req=90426733607a40629b71c1f1e7644470 | num_images=32
+[VLM_STAGE_TIMER] stage1_processor | req=90426733607a40629b71c1f1e7644470 | wall=715.375 ms
+[VLM_STAGE_TIMER] stage2a_send_start | req=90426733607a40629b71c1f1e7644470 | timestamp=599909.398433
+[VLM_STAGE_TIMER] stage2a_send_end | req=90426733607a40629b71c1f1e7644470 | timestamp=599909.671766
+[TP0] [VLM_STAGE_TIMER] stage2a_recv | req=90426733607a40629b71c1f1e7644470 | timestamp=599909.675583
+[TP0] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=0 | wall=2.048 ms
+[TP1] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=1 | wall=7.932 ms
+[TP2] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=2 | wall=8.012 ms
+[TP3] [VLM_STAGE_TIMER] stage2b_broadcast_reqs | req=tp_rank=3 | wall=8.986 ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.39ms | pos_embed=5.91ms | rot_pos=0.19ms | cu_seqlens=0.40ms | blocks=75.65ms | merger=0.85ms | total=83.40ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.39ms | pos_embed=149.95ms | rot_pos=0.44ms | cu_seqlens=0.15ms | blocks=75.63ms | merger=0.85ms | total=227.45ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.56ms | pos_embed=138.30ms | rot_pos=0.60ms | cu_seqlens=0.20ms | blocks=75.39ms | merger=0.85ms | total=215.96ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=10 tokens=8800 | patch_embed=0.55ms | pos_embed=187.50ms | rot_pos=0.66ms | cu_seqlens=0.22ms | blocks=75.35ms | merger=0.85ms | total=265.17ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=83.832 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=227.882 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=216.406 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=265.634 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.855 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.857 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.902 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.910 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=275.893 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=274.258 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=274.570 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=284.515 ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.34ms | pos_embed=5.23ms | rot_pos=0.17ms | cu_seqlens=0.13ms | blocks=70.27ms | merger=0.75ms | total=76.91ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=9.13ms | rot_pos=0.19ms | cu_seqlens=0.11ms | blocks=70.25ms | merger=0.76ms | total=80.79ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=6.60ms | rot_pos=0.18ms | cu_seqlens=0.13ms | blocks=70.27ms | merger=0.75ms | total=78.28ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=5.77ms | rot_pos=0.17ms | cu_seqlens=0.12ms | blocks=70.29ms | merger=0.76ms | total=77.46ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=81.186 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.308 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=78.669 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.858 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.859 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.863 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.861 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.896 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=334.620 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=335.847 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=344.367 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=334.514 ms
+[2026-03-26 06:33:27 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 4, token usage: 0.01, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.19
+[TP0] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=4.98ms | rot_pos=0.19ms | cu_seqlens=0.12ms | blocks=70.99ms | merger=0.76ms | total=77.39ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=5.92ms | rot_pos=0.17ms | cu_seqlens=0.11ms | blocks=71.04ms | merger=0.75ms | total=78.34ms
+[TP3] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.31ms | pos_embed=5.00ms | rot_pos=0.15ms | cu_seqlens=0.12ms | blocks=71.06ms | merger=0.75ms | total=77.41ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=9 tokens=7920 | patch_embed=0.33ms | pos_embed=8.88ms | rot_pos=0.18ms | cu_seqlens=0.10ms | blocks=71.05ms | merger=0.75ms | total=81.32ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.779 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=78.721 ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=77.800 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=81.716 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.866 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.867 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.860 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.866 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=397.309 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=396.050 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=395.782 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=405.868 ms
+[2026-03-26 06:33:27 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 15726.04
+[TP3] [VLM_VIT_SUBSTAGE] imgs=4 tokens=3520 | patch_embed=0.69ms | pos_embed=2.85ms | rot_pos=0.12ms | cu_seqlens=0.12ms | blocks=40.15ms | merger=0.39ms | total=44.33ms
+[TP2] [VLM_VIT_SUBSTAGE] imgs=4 tokens=3520 | patch_embed=0.68ms | pos_embed=6.95ms | rot_pos=0.16ms | cu_seqlens=0.10ms | blocks=40.12ms | merger=0.39ms | total=48.42ms
+[TP1] [VLM_VIT_SUBSTAGE] imgs=4 tokens=3520 | patch_embed=0.68ms | pos_embed=3.97ms | rot_pos=0.12ms | cu_seqlens=0.11ms | blocks=40.15ms | merger=0.39ms | total=45.44ms
+[TP0] [VLM_VIT_SUBSTAGE] imgs=4 tokens=3520 | patch_embed=0.69ms | pos_embed=2.85ms | rot_pos=0.12ms | cu_seqlens=0.13ms | blocks=40.13ms | merger=0.40ms | total=44.33ms
+[TP3] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=44.563 ms
+[TP2] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=48.669 ms
+[TP1] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=45.696 ms
+[TP0] [VLM_STAGE_TIMER] stage3_vit_encoding | req= | wall=44.632 ms
+[TP2] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.452 ms
+[TP3] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.458 ms
+[TP1] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.462 ms
+[TP0] [VLM_STAGE_TIMER] stage4_embedding_merge | req= | wall=0.487 ms
+[TP1] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=215.861 ms
+[TP0] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=214.486 ms
+[TP3] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=214.819 ms
+[TP2] [VLM_STAGE_TIMER] stage5_llm_prefill | req= | wall=224.794 ms
+[2026-03-26 06:33:28 TP0] Prefill batch, #new-seq: 1, #new-token: 8192, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 26783.83
+[2026-03-26 06:33:28 TP0] Prefill batch, #new-seq: 1, #new-token: 3920, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 217300.33
+[2026-03-26 06:33:28 TP0] Decode batch, #running-req: 1, #token: 28505, token usage: 0.02, cuda graph: False, gen throughput (token/s): 2.95, #queue-req: 0
+[2026-03-26 06:33:29] SIGTERM received. signum=None frame=None. Draining requests and shutting down...
+[2026-03-26 06:33:30] Gracefully exiting... Remaining number of requests 0. Remaining requests remaining_rids=[].
