@@ -1,0 +1,45 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/1] Resolution: 720p (fresh server)
+############################################################
+Launching server: /root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30000 --tp-size 4 --enable-multimodal --disable-cuda-graph
+Waiting for sglang server on port 30000 (timeout=600s)...
+
+Error: Server process exited with code -9.
+Check server.log for details.
+
+--- Last 20 lines of server.log ---
+    self.model.forward(
+  File "/root/.python/sglang/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/models/qwen3_vl.py", line 1355, in forward
+    hidden_states = general_mm_embed_routine(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/mm_utils.py", line 1227, in general_mm_embed_routine
+    input_embeds, other_info = embed_mm_inputs(
+                               ^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/mm_utils.py", line 997, in embed_mm_inputs
+    embedding, mask, input_ids = get_embedding_and_mask(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/mm_utils.py", line 919, in get_embedding_and_mask
+    embedding = _adjust_embedding_length(embedding, special_multimodal_mask, logger)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/mm_utils.py", line 863, in _adjust_embedding_length
+    raise RuntimeError(
+RuntimeError: Insufficient multimodal embedding length: num_mm_tokens_in_input_ids=64 vs num_mm_tokens_in_embedding=63. This is an internal error
+
+--- End of server.log ---
+Shutting down server...
+Server stopped (cleaned up orphan children).
+
+Combined report: records/20260326/20260326_043918_max_image_count_probe_sglang/probe_report.json
+
+============================================================
+Image Limit Probe Summary
+============================================================
+Resolution        Max Images    Failed At
+--------------- ------------ ------------
+720p                       0          N/A
+============================================================
