@@ -1,0 +1,71 @@
+{
+  "experiment_id": "20260326_074021",
+  "description": "shm broadcast optimization",
+  "gpu_ids": "0,1,2,3",
+  "server_config": "tp4",
+  "bench_config": "probe_720p",
+  "started_at": "2026-03-26T07:40:21.076754",
+  "finished_at": "2026-03-26T07:43:14.227315",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-32B-Instruct",
+      "extra_args": "--port 30000 --tp-size 4 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.9",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "optimize-vlm",
+    "git_commit": "cfe835e4389167f67105727beb81eedd06c40848",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-32B-Instruct --port 30000 --tp-size 4 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null
+}
