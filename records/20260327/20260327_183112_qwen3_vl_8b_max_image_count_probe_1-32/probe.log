@@ -1,0 +1,51 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/1] Resolution: 1440x2560 (fresh server)
+############################################################
+Port 7893 is in use, switching to 7894.
+Launching server: /root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7894 --tp-size 1 --enable-multimodal
+Waiting for sglang server on port 7894 (timeout=600s)...
+Server ready! (took 36s)
+
+============================================================
+Probing: 1440x2560 (2560x1440)
+============================================================
+  Warmup: sending 3 requests (1~3 images)...
+    warmup [1 images] ok
+    warmup [2 images] ok
+    warmup [3 images] ok
+  Warmup done.
+
+  [1 images] Generating 1x 1440x2560... (0.1s) Sending... OK (TTFT=496ms, e2e=0.7s)
+  [2 images] Generating 2x 1440x2560... (0.2s) Sending... OK (TTFT=982ms, e2e=1.2s)
+  [3 images] Generating 3x 1440x2560... (0.2s) Sending... OK (TTFT=1784ms, e2e=2.0s)
+  [4 images] Generating 4x 1440x2560... (0.3s) Sending... OK (TTFT=2659ms, e2e=2.9s)
+  [5 images] Generating 5x 1440x2560... (0.4s) Sending... OK (TTFT=3504ms, e2e=3.7s)
+  [6 images] Generating 6x 1440x2560... (0.5s) Sending... OK (TTFT=4218ms, e2e=4.5s)
+  [7 images] Generating 7x 1440x2560... (0.6s) Sending... OK (TTFT=6167ms, e2e=6.4s)
+  [8 images] Generating 8x 1440x2560... (0.7s) Sending... OK (TTFT=6464ms, e2e=6.7s)
+  [9 images] Generating 9x 1440x2560... (0.7s) Sending... OK (TTFT=7314ms, e2e=7.6s)
+  [10 images] Generating 10x 1440x2560... (0.8s) Sending... OK (TTFT=9256ms, e2e=9.5s)
+  [11 images] Generating 11x 1440x2560... (0.9s) Sending... OK (TTFT=10237ms, e2e=10.5s)
+  [12 images] Generating 12x 1440x2560... (1.0s) Sending... OK (TTFT=12300ms, e2e=12.6s)
+  [13 images] Generating 13x 1440x2560... (1.1s) Sending... OK (TTFT=14548ms, e2e=14.9s)
+  [14 images] Generating 14x 1440x2560... (1.2s) Sending... OK (TTFT=15709ms, e2e=16.0s)
+  [15 images] Generating 15x 1440x2560... (1.2s) Sending... FAILED: Traceback (most recent call last):
+  File "/root/.python/sglang/lib/python3.12/site-packages/aiohttp/client_proto.py", l
+
+  Result: 1440x2560 max = 14 images
+Shutting down server...
+Server did not stop gracefully, sending SIGKILL...
+Warning: GPU processes still active after 30s wait.
+Server stopped.
+
+Combined report: records/20260327/20260327_183112_qwen3_vl_8b_max_image_count_probe_1-32/probe_report.json
+
+============================================================
+Image Limit Probe Summary
+============================================================
+Resolution        Max Images    Failed At
+--------------- ------------ ------------
+1440x2560                 14           15
+============================================================
