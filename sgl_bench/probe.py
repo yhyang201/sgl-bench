@@ -100,6 +100,16 @@ def run_probe_single(
     max_ok = 0
     steps = []
 
+    # Warmup: send 3 requests with 1~3 images at this resolution
+    warmup_count = 3
+    print(f"  Warmup: sending {warmup_count} requests (1~{warmup_count} images)...", flush=True)
+    for nw in range(1, warmup_count + 1):
+        row = _build_row(nw, w, h, prompt, input_len, output_len)
+        output = asyncio.run(_send_one(api_url, model_id, row, timeout_s))
+        status = "ok" if output.success else "FAILED"
+        print(f"    warmup [{nw} images] {status}", flush=True)
+    print(f"  Warmup done.\n", flush=True)
+
     if min_images > 1:
         print(f"  Skipping 1..{min_images-1}, starting from {min_images} images", flush=True)
 
