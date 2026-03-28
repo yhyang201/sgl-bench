@@ -1,0 +1,81 @@
+{
+  "experiment_id": "20260328_092141",
+  "description": "qwen3vl-8b MMMU accuracy on optimize-shm branch",
+  "gpu_ids": "0",
+  "server_config": "tp1",
+  "bench_config": "mmmu",
+  "started_at": "2026-03-28T09:21:41.986975",
+  "finished_at": "2026-03-28T10:00:37.769881",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "mmmu"
+      ],
+      "extra_args": "--max-tokens 16384 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "optimize-shm",
+    "git_commit": "f78ae2dbef15d9cc4d8af10241dc2757b3d18d41",
+    "git_dirty": false
+  },
+  "server": {
+    "command": "/root/.python/sglang/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [
+    {
+      "task": "mmmu",
+      "command": "uv run python eval.py mmmu --model kimi/Qwen/Qwen3-VL-8B-Instruct --max-tokens 16384 --stream",
+      "returncode": 0
+    }
+  ],
+  "stress_report": null
+}
