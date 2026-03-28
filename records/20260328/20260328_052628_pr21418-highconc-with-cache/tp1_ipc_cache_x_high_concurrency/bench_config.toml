@@ -1,0 +1,18 @@
+# PR #21418 benchmark: high concurrency multimodal workload
+# Matches PR parameters: 3000 prompts, concurrency 50, 1 image 360p
+
+[benchmark]
+extra_args = """
+    --backend sglang-oai-chat
+    --dataset-name image
+    --num-prompts 3000
+    --max-concurrency 50
+    --random-input-len 128
+    --random-output-len 32
+    --image-count 1
+    --image-resolution 360p
+    --seed 2710
+"""
+
+[run]
+runs = 1
