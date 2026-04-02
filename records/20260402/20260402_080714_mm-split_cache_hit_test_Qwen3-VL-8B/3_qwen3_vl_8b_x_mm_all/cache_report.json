@@ -1,0 +1,169 @@
+{
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "image_resolution": "720p",
+  "scenarios": [
+    {
+      "scenario_name": "same_image_reuse",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "cold",
+          "request_count": 8,
+          "total_prompt_tokens": 21544,
+          "total_cached_tokens": 18844,
+          "cache_hit_rate": 0.8746750835499443,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 305.80256157554686,
+          "p99_ttft_ms": 1004.1020207107065
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "warm (image prefix cached)",
+          "request_count": 8,
+          "total_prompt_tokens": 21544,
+          "total_cached_tokens": 21495,
+          "cache_hit_rate": 0.99772558484961,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 191.48744994890876,
+          "p99_ttft_ms": 202.68836670788005
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "warm (image prefix cached)",
+          "request_count": 8,
+          "total_prompt_tokens": 21544,
+          "total_cached_tokens": 21495,
+          "cache_hit_rate": 0.99772558484961,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 196.07189547969028,
+          "p99_ttft_ms": 205.60003992402926
+        }
+      ],
+      "overall_cache_hit_rate": 0.9567087510830549,
+      "total_prompt_tokens": 64632,
+      "total_cached_tokens": 61834,
+      "page_size": 1,
+      "duration_s": 9.5
+    },
+    {
+      "scenario_name": "partial_prefix_sharing",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "cold",
+          "request_count": 8,
+          "total_prompt_tokens": 28848,
+          "total_cached_tokens": 25235,
+          "cache_hit_rate": 0.874757348863006,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 274.92482945672236,
+          "p99_ttft_ms": 399.2670412943698
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "warm (shared prefix)",
+          "request_count": 8,
+          "total_prompt_tokens": 28848,
+          "total_cached_tokens": 27003,
+          "cache_hit_rate": 0.9360440931780366,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 272.74059114279225,
+          "p99_ttft_ms": 330.70890915580094
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "warm (shared prefix)",
+          "request_count": 8,
+          "total_prompt_tokens": 28848,
+          "total_cached_tokens": 27003,
+          "cache_hit_rate": 0.9360440931780366,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 268.651185760973,
+          "p99_ttft_ms": 335.3405669424683
+        }
+      ],
+      "overall_cache_hit_rate": 0.9156151784063598,
+      "total_prompt_tokens": 86544,
+      "total_cached_tokens": 79241,
+      "page_size": 1,
+      "duration_s": 10.7
+    },
+    {
+      "scenario_name": "multiturn_image",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "cold",
+          "request_count": 8,
+          "total_prompt_tokens": 8200,
+          "total_cached_tokens": 7168,
+          "cache_hit_rate": 0.8741463414634146,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 73.60902483924292,
+          "p99_ttft_ms": 112.80958144459872
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "round 1 (+img)",
+          "request_count": 8,
+          "total_prompt_tokens": 16168,
+          "total_cached_tokens": 14234,
+          "cache_hit_rate": 0.8803809995051954,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 137.67795264720917,
+          "p99_ttft_ms": 179.11994724068788
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "round 2 (+img)",
+          "request_count": 8,
+          "total_prompt_tokens": 24136,
+          "total_cached_tokens": 22202,
+          "cache_hit_rate": 0.9198707325157441,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 209.89822337287478,
+          "p99_ttft_ms": 243.6988969380036
+        },
+        {
+          "phase_index": 3,
+          "phase_label": "round 3 (+img)",
+          "request_count": 8,
+          "total_prompt_tokens": 32104,
+          "total_cached_tokens": 30170,
+          "cache_hit_rate": 0.9397582855718913,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 279.0269596443977,
+          "p99_ttft_ms": 327.31459197821096
+        },
+        {
+          "phase_index": 4,
+          "phase_label": "round 4 (+img)",
+          "request_count": 8,
+          "total_prompt_tokens": 40072,
+          "total_cached_tokens": 38138,
+          "cache_hit_rate": 0.9517368736274705,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 348.49849675083533,
+          "p99_ttft_ms": 430.3053962555714
+        },
+        {
+          "phase_index": 5,
+          "phase_label": "round 5 (+img)",
+          "request_count": 8,
+          "total_prompt_tokens": 48040,
+          "total_cached_tokens": 46106,
+          "cache_hit_rate": 0.9597418817651957,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 415.08043339126743,
+          "p99_ttft_ms": 489.0551798394881
+        }
+      ],
+      "overall_cache_hit_rate": 0.9365694642010431,
+      "total_prompt_tokens": 168720,
+      "total_cached_tokens": 158018,
+      "page_size": 1,
+      "duration_s": 19.7
+    }
+  ],
+  "duration_s": 43.2
+}

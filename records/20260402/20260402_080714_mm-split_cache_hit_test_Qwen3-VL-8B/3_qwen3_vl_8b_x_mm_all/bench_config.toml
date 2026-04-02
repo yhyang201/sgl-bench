@@ -1,0 +1,28 @@
+# Cache: Run all three cache hit rate scenarios
+# A) same_image_reuse — same image, different text across phases
+# B) partial_prefix_sharing — shared + divergent images (mm_split key test)
+# C) multiturn_image — multi-turn conversation with growing prefix
+
+[cache]
+scenarios = ["same_image_reuse", "partial_prefix_sharing", "multiturn_image"]
+num_clients = 8
+output_len = 32
+image_resolution = "720p"
+text_input_len = 256
+max_concurrency = 8
+seed = 42
+
+[cache.same_image_reuse]
+num_images = 3
+num_phases = 3
+requests_per_phase = 8
+
+[cache.partial_prefix_sharing]
+shared_images = 2
+divergent_images = 2
+num_phases = 3
+requests_per_phase = 8
+
+[cache.multiturn_image]
+num_rounds = 6
+sub_question_len = 128
