@@ -1,0 +1,71 @@
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report
+Waiting for sglang server on port 30000 (timeout=600s)...
+Server ready! (took 36s)
+
+============================================================
+Cache Hit Rate Benchmark
+Model: Qwen/Qwen3-VL-8B-Instruct
+Page Size: 1
+Image Resolution: 720p (1280x720)
+Scenarios: identical_requests, same_image_reuse, partial_prefix_sharing, multiturn_image
+============================================================
+
+--- Scenario: identical_requests ---
+  Sending 8 identical requests sequentially...
+    req 0: prompt=931 cached=0 (0.0%) ttft=832ms
+    req 1: prompt=931 cached=930 (99.9%) ttft=91ms
+    req 2: prompt=931 cached=930 (99.9%) ttft=77ms
+    req 3: prompt=931 cached=930 (99.9%) ttft=69ms
+    req 4: prompt=931 cached=930 (99.9%) ttft=69ms
+    req 5: prompt=931 cached=930 (99.9%) ttft=70ms
+    req 6: prompt=931 cached=930 (99.9%) ttft=67ms
+    req 7: prompt=931 cached=930 (99.9%) ttft=66ms
+  Phase 0 (1st request):      0/931 cached (  0.0%)  TTFT: 832ms
+  Phase 1 (req 2-8, identical):   6510/6517 cached ( 99.9%)  TTFT: 73ms
+  Overall: 6510/7448 (87.4%)  Duration: 2.6s
+
+--- Scenario: same_image_reuse ---
+  Phase 0: sending 8 requests...
+  Phase 1: sending 8 requests...
+  Phase 2: sending 8 requests...
+  Phase 0 (same imgs, text variant 0):  18844/21544 cached ( 87.5%)  TTFT: 228ms
+  Phase 1 (same imgs, text variant 1):  21495/21544 cached ( 99.8%)  TTFT: 209ms
+  Phase 2 (same imgs, text variant 2):  21495/21544 cached ( 99.8%)  TTFT: 212ms
+  Overall: 61834/64632 (95.7%)  Duration: 9.2s
+
+--- Scenario: partial_prefix_sharing ---
+  Phase 0: 2 shared + 2 divergent images, 8 requests...
+  Phase 1: 2 shared + 2 divergent images, 8 requests...
+  Phase 2: 2 shared + 2 divergent images, 8 requests...
+  Phase 0 (shared 2 + new 2 imgs, text variant 0):  25235/28848 cached ( 87.5%)  TTFT: 284ms
+  Phase 1 (shared 2 + new 2 imgs, text variant 1):  27003/28848 cached ( 93.6%)  TTFT: 249ms
+  Phase 2 (shared 2 + new 2 imgs, text variant 2):  27003/28848 cached ( 93.6%)  TTFT: 281ms
+  Overall: 79241/86544 (91.6%)  Duration: 10.7s
+
+--- Scenario: multiturn_image ---
+  Round 0: 8 clients, 1 image(s) in conversation...
+  Round 1: 8 clients, 2 image(s) in conversation...
+  Round 2: 8 clients, 3 image(s) in conversation...
+  Round 3: 8 clients, 4 image(s) in conversation...
+  Round 4: 8 clients, 5 image(s) in conversation...
+  Round 5: 8 clients, 6 image(s) in conversation...
+  Phase 0 (round 0, 1 img(s) total):   7168/8200 cached ( 87.4%)  TTFT: 74ms
+  Phase 1 (round 1, 2 img(s) total):  14234/16168 cached ( 88.0%)  TTFT: 157ms
+  Phase 2 (round 2, 3 img(s) total):  22202/24136 cached ( 92.0%)  TTFT: 221ms
+  Phase 3 (round 3, 4 img(s) total):  30170/32104 cached ( 94.0%)  TTFT: 291ms
+  Phase 4 (round 4, 5 img(s) total):  38138/40072 cached ( 95.2%)  TTFT: 359ms
+  Phase 5 (round 5, 6 img(s) total):  46106/48040 cached ( 96.0%)  TTFT: 420ms
+  Overall: 158018/168720 (93.7%)  Duration: 20.2s
+
+============================================================
+Summary
+============================================================
+  identical_requests             cache_hit= 87.4%  6510/7448 tokens  2.6s
+  same_image_reuse               cache_hit= 95.7%  61834/64632 tokens  9.2s
+  partial_prefix_sharing         cache_hit= 91.6%  79241/86544 tokens  10.7s
+  multiturn_image                cache_hit= 93.7%  158018/168720 tokens  20.2s
+Total duration: 47.0s
+============================================================
+Report saved to: records/20260402/20260402_081729_mm-split_cache_hit_test_Qwen3-VL-8B/3_qwen3_vl_8b_x_mm_all/cache_report.json
+Shutting down server...
+Server stopped.
