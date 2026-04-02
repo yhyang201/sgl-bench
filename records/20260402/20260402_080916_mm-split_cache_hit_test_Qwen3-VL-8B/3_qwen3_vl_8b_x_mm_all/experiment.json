@@ -1,0 +1,307 @@
+{
+  "experiment_id": "20260402_080916",
+  "description": "mm-split cache hit test Qwen3-VL-8B",
+  "gpu_ids": "0",
+  "server_config": "3_qwen3_vl_8b",
+  "bench_config": "mm_all",
+  "started_at": "2026-04-02T08:09:16.555457",
+  "finished_at": "2026-04-02T08:10:40.490531",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "cache": {
+      "scenarios": [
+        "identical_requests",
+        "same_image_reuse",
+        "partial_prefix_sharing",
+        "multiturn_image"
+      ],
+      "num_clients": 8,
+      "output_len": 32,
+      "image_resolution": "720p",
+      "text_input_len": 256,
+      "max_concurrency": 8,
+      "seed": 42,
+      "identical_requests": {
+        "num_images": 1,
+        "num_requests": 8
+      },
+      "same_image_reuse": {
+        "num_images": 3,
+        "num_phases": 3,
+        "requests_per_phase": 8
+      },
+      "partial_prefix_sharing": {
+        "shared_images": 2,
+        "divergent_images": 2,
+        "num_phases": 3,
+        "requests_per_phase": 8
+      },
+      "multiturn_image": {
+        "num_rounds": 6,
+        "sub_question_len": 128
+      }
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "mm-split",
+    "git_commit": "278405808d698f2d5d9aeafff8b3f97b75bca2c3",
+    "git_dirty": true,
+    "git_diff_summary": "2 files changed, 2 insertions(+), 2 deletions(-)",
+    "git_dirty_warning": "Working tree has uncommitted changes, not exactly this commit"
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": {
+    "model": "Qwen/Qwen3-VL-8B-Instruct",
+    "image_resolution": "720p",
+    "scenarios": [
+      {
+        "scenario_name": "identical_requests",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "cold (1st request)",
+            "request_count": 1,
+            "total_prompt_tokens": 931,
+            "total_cached_tokens": 0,
+            "cache_hit_rate": 0.0,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 840.8100889064372,
+            "p99_ttft_ms": 840.8100889064372
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "warm (req 2-8)",
+            "request_count": 7,
+            "total_prompt_tokens": 6517,
+            "total_cached_tokens": 6510,
+            "cache_hit_rate": 0.9989258861439313,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 72.45647824103278,
+            "p99_ttft_ms": 91.5842267218977
+          }
+        ],
+        "overall_cache_hit_rate": 0.8740601503759399,
+        "total_prompt_tokens": 7448,
+        "total_cached_tokens": 6510,
+        "page_size": 1,
+        "duration_s": 2.7
+      },
+      {
+        "scenario_name": "same_image_reuse",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "cold",
+            "request_count": 8,
+            "total_prompt_tokens": 21544,
+            "total_cached_tokens": 18844,
+            "cache_hit_rate": 0.8746750835499443,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 228.78481828956865,
+            "p99_ttft_ms": 329.9637073441408
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "warm (image prefix cached)",
+            "request_count": 8,
+            "total_prompt_tokens": 21544,
+            "total_cached_tokens": 21495,
+            "cache_hit_rate": 0.99772558484961,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 216.01014712359756,
+            "p99_ttft_ms": 222.00721820816398
+          },
+          {
+            "phase_index": 2,
+            "phase_label": "warm (image prefix cached)",
+            "request_count": 8,
+            "total_prompt_tokens": 21544,
+            "total_cached_tokens": 21495,
+            "cache_hit_rate": 0.99772558484961,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 212.01647073030472,
+            "p99_ttft_ms": 222.0286635030061
+          }
+        ],
+        "overall_cache_hit_rate": 0.9567087510830549,
+        "total_prompt_tokens": 64632,
+        "total_cached_tokens": 61834,
+        "page_size": 1,
+        "duration_s": 9.2
+      },
+      {
+        "scenario_name": "partial_prefix_sharing",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "cold",
+            "request_count": 8,
+            "total_prompt_tokens": 28848,
+            "total_cached_tokens": 25235,
+            "cache_hit_rate": 0.874757348863006,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 289.89475543494336,
+            "p99_ttft_ms": 422.9402972175739
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "warm (shared prefix)",
+            "request_count": 8,
+            "total_prompt_tokens": 28848,
+            "total_cached_tokens": 27003,
+            "cache_hit_rate": 0.9360440931780366,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 287.2084194677882,
+            "p99_ttft_ms": 346.19881622260436
+          },
+          {
+            "phase_index": 2,
+            "phase_label": "warm (shared prefix)",
+            "request_count": 8,
+            "total_prompt_tokens": 28848,
+            "total_cached_tokens": 27003,
+            "cache_hit_rate": 0.9360440931780366,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 282.5592353765387,
+            "p99_ttft_ms": 344.25906294025475
+          }
+        ],
+        "overall_cache_hit_rate": 0.9156151784063598,
+        "total_prompt_tokens": 86544,
+        "total_cached_tokens": 79241,
+        "page_size": 1,
+        "duration_s": 11.0
+      },
+      {
+        "scenario_name": "multiturn_image",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "cold",
+            "request_count": 8,
+            "total_prompt_tokens": 8200,
+            "total_cached_tokens": 7168,
+            "cache_hit_rate": 0.8741463414634146,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 74.47605323977768,
+            "p99_ttft_ms": 122.55251742200925
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "round 1 (+img)",
+            "request_count": 8,
+            "total_prompt_tokens": 16168,
+            "total_cached_tokens": 14234,
+            "cache_hit_rate": 0.8803809995051954,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 159.40023059374653,
+            "p99_ttft_ms": 190.4683531215414
+          },
+          {
+            "phase_index": 2,
+            "phase_label": "round 2 (+img)",
+            "request_count": 8,
+            "total_prompt_tokens": 24136,
+            "total_cached_tokens": 22202,
+            "cache_hit_rate": 0.9198707325157441,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 222.00634761247784,
+            "p99_ttft_ms": 260.5652272095904
+          },
+          {
+            "phase_index": 3,
+            "phase_label": "round 3 (+img)",
+            "request_count": 8,
+            "total_prompt_tokens": 32104,
+            "total_cached_tokens": 30170,
+            "cache_hit_rate": 0.9397582855718913,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 290.5031821865123,
+            "p99_ttft_ms": 335.2566063613631
+          },
+          {
+            "phase_index": 4,
+            "phase_label": "round 4 (+img)",
+            "request_count": 8,
+            "total_prompt_tokens": 40072,
+            "total_cached_tokens": 38138,
+            "cache_hit_rate": 0.9517368736274705,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 358.6685808550101,
+            "p99_ttft_ms": 437.8185417596251
+          },
+          {
+            "phase_index": 5,
+            "phase_label": "round 5 (+img)",
+            "request_count": 8,
+            "total_prompt_tokens": 48040,
+            "total_cached_tokens": 46106,
+            "cache_hit_rate": 0.9597418817651957,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 421.8125760089606,
+            "p99_ttft_ms": 500.0129916425794
+          }
+        ],
+        "overall_cache_hit_rate": 0.9365694642010431,
+        "total_prompt_tokens": 168720,
+        "total_cached_tokens": 158018,
+        "page_size": 1,
+        "duration_s": 20.2
+      }
+    ],
+    "duration_s": 47.4
+  }
+}
