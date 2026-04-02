@@ -1,0 +1,77 @@
+{
+  "experiment_id": "20260402_022759",
+  "description": "mm-split: minicpm-v-2.6 OCRBench",
+  "gpu_ids": "1",
+  "server_config": "minicpm_v_2_6",
+  "bench_config": "ocr",
+  "started_at": "2026-04-02T02:27:59.844957",
+  "finished_at": "2026-04-02T02:28:10.868109",
+  "status": "failed",
+  "error": "Server process exited with code 1.\nCheck server.log for details.",
+  "config": {
+    "server": {
+      "model_path": "openbmb/MiniCPM-V-2_6",
+      "extra_args": "--port 30000 --tp-size 4 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "ocrbench"
+      ],
+      "extra_args": "--max-tokens 8192 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "mm-split",
+    "git_commit": "67a296e5cd0d261e7c738168f3a2468056816fee",
+    "git_dirty": true,
+    "git_diff_summary": "5 files changed, 18 insertions(+), 27 deletions(-)",
+    "git_dirty_warning": "Working tree has uncommitted changes, not exactly this commit"
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path openbmb/MiniCPM-V-2_6 --port 30000 --tp-size 4 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null
+}
