@@ -1,0 +1,56 @@
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report
+Waiting for sglang server on port 30000 (timeout=600s)...
+Server ready! (took 36s)
+
+============================================================
+Cache Hit Rate Benchmark
+Model: Qwen/Qwen3-VL-8B-Instruct
+Page Size: 1
+Image Resolution: 720p (1280x720)
+Scenarios: partial_prefix_sharing, multiturn_image
+============================================================
+
+--- Scenario: partial_prefix_sharing ---
+  Phase 0: 8 shared + 1 divergent images, 1 requests...
+  Phase 1: 8 shared + 1 divergent images, 1 requests...
+  Phase 2: 8 shared + 1 divergent images, 1 requests...
+  Phase 3: 8 shared + 1 divergent images, 1 requests...
+  Phase 4: 8 shared + 1 divergent images, 1 requests...
+  Phase 5: 8 shared + 1 divergent images, 1 requests...
+  Phase 0 (shared 8 + new 1 imgs, text variant 0):      0/7968 cached (  0.0%)  TTFT: 1722ms
+  Phase 1 (shared 8 + new 1 imgs, text variant 1):      4/7968 cached (  0.1%)  TTFT: 850ms
+  Phase 2 (shared 8 + new 1 imgs, text variant 2):      4/7968 cached (  0.1%)  TTFT: 854ms
+  Phase 3 (shared 8 + new 1 imgs, text variant 3):      4/7968 cached (  0.1%)  TTFT: 858ms
+  Phase 4 (shared 8 + new 1 imgs, text variant 4):      4/7968 cached (  0.1%)  TTFT: 843ms
+  Phase 5 (shared 8 + new 1 imgs, text variant 5):      4/7968 cached (  0.1%)  TTFT: 849ms
+  Overall: 20/47808 (0.0%)  Duration: 6.6s
+
+--- Scenario: multiturn_image ---
+  Round 0: 1 clients, 1 image(s) in conversation...
+  Round 1: 1 clients, 2 image(s) in conversation...
+  Round 2: 1 clients, 3 image(s) in conversation...
+  Round 3: 1 clients, 4 image(s) in conversation...
+  Round 4: 1 clients, 5 image(s) in conversation...
+  Round 5: 1 clients, 6 image(s) in conversation...
+  Round 6: 1 clients, 7 image(s) in conversation...
+  Round 7: 1 clients, 8 image(s) in conversation...
+  Phase 0 (round 0, 1 img(s) total):      0/929 cached (  0.0%)  TTFT: 139ms
+  Phase 1 (round 1, 2 img(s) total):      4/1861 cached (  0.2%)  TTFT: 249ms
+  Phase 2 (round 2, 3 img(s) total):      4/2793 cached (  0.1%)  TTFT: 300ms
+  Phase 3 (round 3, 4 img(s) total):      4/3725 cached (  0.1%)  TTFT: 467ms
+  Phase 4 (round 4, 5 img(s) total):      4/4657 cached (  0.1%)  TTFT: 487ms
+  Phase 5 (round 5, 6 img(s) total):      4/5589 cached (  0.1%)  TTFT: 581ms
+  Phase 6 (round 6, 7 img(s) total):      4/6521 cached (  0.1%)  TTFT: 674ms
+  Phase 7 (round 7, 8 img(s) total):      4/7453 cached (  0.1%)  TTFT: 759ms
+  Overall: 28/33528 (0.1%)  Duration: 4.3s
+
+============================================================
+Summary
+============================================================
+  partial_prefix_sharing         cache_hit=  0.0%  20/47808 tokens  6.6s
+  multiturn_image                cache_hit=  0.1%  28/33528 tokens  4.3s
+Total duration: 13.3s
+============================================================
+Report saved to: records/20260402/20260402_083221_mm-split_gap_test/3_qwen3_vl_8b_x_mm_split_gap/cache_report.json
+Shutting down server...
+Server stopped.

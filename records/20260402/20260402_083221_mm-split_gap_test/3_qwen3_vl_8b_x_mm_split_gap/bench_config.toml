@@ -1,0 +1,36 @@
+# Cache: Maximize the gap between mm-split and main branch
+#
+# Key design: requests_per_phase=1 and num_clients=1 eliminate within-phase
+# self-caching (the 7/8=87.5% noise), so the ONLY cache hits come from
+# cross-phase/cross-round reuse — exactly where mm-split shines.
+#
+# Expected results:
+#   partial_prefix_sharing — main: ~0% every phase, mm-split: ~70-80% on phase 1+
+#   multiturn_image        — main: decreasing, mm-split: increasing
+
+[cache]
+scenarios = ["partial_prefix_sharing", "multiturn_image"]
+output_len = 16
+image_resolution = "720p"
+text_input_len = 64          # short text so image tokens dominate the ratio
+max_concurrency = 1
+seed = 42
+
+# --- Scenario B: many shared images, 1 divergent ---
+# 8 shared images stay the same across phases, only 1 image changes per phase.
+# mm-split: 8/9 of image tokens cached cross-phase → ~80%+
+# main: bundle hash changes → 0% cross-phase cache
+[cache.partial_prefix_sharing]
+shared_images = 8
+divergent_images = 1
+num_phases = 6
+requests_per_phase = 1       # NO within-phase reuse — pure cross-phase signal
+
+# --- Scenario C: multi-turn, 1 client, many rounds ---
+# Each round adds 1 new image. With 1 client, no within-round reuse.
+# mm-split: cached_prefix grows each round → hit rate increases toward ~95%
+# main: image bundle invalidation → hit rate stays near 0 or decreases
+[cache.multiturn_image]
+num_clients = 1              # single conversation — no within-round reuse
+num_rounds = 8
+sub_question_len = 32
