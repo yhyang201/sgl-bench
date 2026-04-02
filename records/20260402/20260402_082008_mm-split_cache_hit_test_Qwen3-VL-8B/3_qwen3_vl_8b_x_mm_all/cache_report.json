@@ -1,0 +1,201 @@
+{
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "image_resolution": "720p",
+  "scenarios": [
+    {
+      "scenario_name": "identical_requests",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "1st request",
+          "request_count": 1,
+          "total_prompt_tokens": 931,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 838.063329923898,
+          "p99_ttft_ms": 838.063329923898
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "req 2-8, identical",
+          "request_count": 7,
+          "total_prompt_tokens": 6517,
+          "total_cached_tokens": 6510,
+          "cache_hit_rate": 0.9989258861439313,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 72.39379334662642,
+          "p99_ttft_ms": 86.18975056335329
+        }
+      ],
+      "overall_cache_hit_rate": 0.8740601503759399,
+      "total_prompt_tokens": 7448,
+      "total_cached_tokens": 6510,
+      "page_size": 1,
+      "duration_s": 2.7
+    },
+    {
+      "scenario_name": "same_image_reuse",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "same imgs, text variant 0",
+          "request_count": 8,
+          "total_prompt_tokens": 21544,
+          "total_cached_tokens": 18844,
+          "cache_hit_rate": 0.8746750835499443,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 226.89673746936023,
+          "p99_ttft_ms": 334.37954755965615
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "same imgs, text variant 1",
+          "request_count": 8,
+          "total_prompt_tokens": 21544,
+          "total_cached_tokens": 21495,
+          "cache_hit_rate": 0.99772558484961,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 209.0023128548637,
+          "p99_ttft_ms": 212.67165132099763
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "same imgs, text variant 2",
+          "request_count": 8,
+          "total_prompt_tokens": 21544,
+          "total_cached_tokens": 21495,
+          "cache_hit_rate": 0.99772558484961,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 209.12893328932114,
+          "p99_ttft_ms": 211.68722211848944
+        }
+      ],
+      "overall_cache_hit_rate": 0.9567087510830549,
+      "total_prompt_tokens": 64632,
+      "total_cached_tokens": 61834,
+      "page_size": 1,
+      "duration_s": 9.1
+    },
+    {
+      "scenario_name": "partial_prefix_sharing",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "shared 2 + new 2 imgs, text variant 0",
+          "request_count": 8,
+          "total_prompt_tokens": 28848,
+          "total_cached_tokens": 25235,
+          "cache_hit_rate": 0.874757348863006,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 290.9966595179867,
+          "p99_ttft_ms": 458.06576004019
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "shared 2 + new 2 imgs, text variant 1",
+          "request_count": 8,
+          "total_prompt_tokens": 28848,
+          "total_cached_tokens": 25239,
+          "cache_hit_rate": 0.874896006655574,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 281.349605997093,
+          "p99_ttft_ms": 376.36771119432524
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "shared 2 + new 2 imgs, text variant 2",
+          "request_count": 8,
+          "total_prompt_tokens": 28848,
+          "total_cached_tokens": 25239,
+          "cache_hit_rate": 0.874896006655574,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 281.3467391533777,
+          "p99_ttft_ms": 373.3279264206066
+        }
+      ],
+      "overall_cache_hit_rate": 0.8748497873913847,
+      "total_prompt_tokens": 86544,
+      "total_cached_tokens": 75713,
+      "page_size": 1,
+      "duration_s": 10.9
+    },
+    {
+      "scenario_name": "multiturn_image",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "round 0, 1 img(s) total",
+          "request_count": 8,
+          "total_prompt_tokens": 8200,
+          "total_cached_tokens": 7168,
+          "cache_hit_rate": 0.8741463414634146,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 73.78403970506042,
+          "p99_ttft_ms": 109.07579890917985
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "round 1, 2 img(s) total",
+          "request_count": 8,
+          "total_prompt_tokens": 16168,
+          "total_cached_tokens": 13172,
+          "cache_hit_rate": 0.8146956952003959,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 159.17384735075757,
+          "p99_ttft_ms": 212.07880640169606
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "round 2, 3 img(s) total",
+          "request_count": 8,
+          "total_prompt_tokens": 24136,
+          "total_cached_tokens": 19148,
+          "cache_hit_rate": 0.7933377527345045,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 226.13839351106435,
+          "p99_ttft_ms": 302.2004729346372
+        },
+        {
+          "phase_index": 3,
+          "phase_label": "round 3, 4 img(s) total",
+          "request_count": 8,
+          "total_prompt_tokens": 32104,
+          "total_cached_tokens": 25124,
+          "cache_hit_rate": 0.7825816097682532,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 298.5038758488372,
+          "p99_ttft_ms": 398.2569332164712
+        },
+        {
+          "phase_index": 4,
+          "phase_label": "round 4, 5 img(s) total",
+          "request_count": 8,
+          "total_prompt_tokens": 40072,
+          "total_cached_tokens": 31100,
+          "cache_hit_rate": 0.7761030145737672,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 369.386127917096,
+          "p99_ttft_ms": 496.59894671291113
+        },
+        {
+          "phase_index": 5,
+          "phase_label": "round 5, 6 img(s) total",
+          "request_count": 8,
+          "total_prompt_tokens": 48040,
+          "total_cached_tokens": 37076,
+          "cache_hit_rate": 0.7717735220649459,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 435.1617736683693,
+          "p99_ttft_ms": 594.0815355023369
+        }
+      ],
+      "overall_cache_hit_rate": 0.787031768610716,
+      "total_prompt_tokens": 168720,
+      "total_cached_tokens": 132788,
+      "page_size": 1,
+      "duration_s": 20.5
+    }
+  ],
+  "duration_s": 47.5
+}
