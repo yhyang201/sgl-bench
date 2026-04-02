@@ -1,0 +1,75 @@
+{
+  "experiment_id": "20260402_030335",
+  "description": "baseline(main): internvl2-8b OCRBench",
+  "gpu_ids": "2",
+  "server_config": "internvl2_8b",
+  "bench_config": "ocr",
+  "started_at": "2026-04-02T03:03:35.646962",
+  "finished_at": "2026-04-02T03:03:47.147193",
+  "status": "failed",
+  "error": "Server process exited with code -9.\nCheck server.log for details.",
+  "config": {
+    "server": {
+      "model_path": "OpenGVLab/InternVL2-8B",
+      "extra_args": "--port 30003 --tp-size 1 --enable-multimodal --trust-remote-code --sampling-backend pytorch",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "ocrbench"
+      ],
+      "extra_args": "--max-tokens 8192 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "main",
+    "git_commit": "4f5b55e37947177e77b1ca754089edcd2b879150",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path OpenGVLab/InternVL2-8B --port 30003 --tp-size 1 --enable-multimodal --trust-remote-code --sampling-backend pytorch"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null
+}
