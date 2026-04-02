@@ -1,0 +1,114 @@
+{
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "image_resolution": "720p",
+  "scenarios": [
+    {
+      "scenario_name": "same_image_reuse",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "cold",
+          "request_count": 4,
+          "total_prompt_tokens": 3652,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 270.83218697225675,
+          "p99_ttft_ms": 826.4078587433321
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "warm (image prefix cached)",
+          "request_count": 4,
+          "total_prompt_tokens": 3652,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 68.77616868587211,
+          "p99_ttft_ms": 70.78613054007292
+        }
+      ],
+      "overall_cache_hit_rate": 0.0,
+      "total_prompt_tokens": 7304,
+      "total_cached_tokens": 0,
+      "page_size": 1,
+      "duration_s": 2.0
+    },
+    {
+      "scenario_name": "partial_prefix_sharing",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "cold",
+          "request_count": 4,
+          "total_prompt_tokens": 7240,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 175.3421613248065,
+          "p99_ttft_ms": 230.51607451168817
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "warm (shared prefix)",
+          "request_count": 4,
+          "total_prompt_tokens": 7240,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 164.5043947501108,
+          "p99_ttft_ms": 189.9872540310025
+        }
+      ],
+      "overall_cache_hit_rate": 0.0,
+      "total_prompt_tokens": 14480,
+      "total_cached_tokens": 0,
+      "page_size": 1,
+      "duration_s": 2.1
+    },
+    {
+      "scenario_name": "multiturn_image",
+      "phases": [
+        {
+          "phase_index": 0,
+          "phase_label": "cold",
+          "request_count": 4,
+          "total_prompt_tokens": 3844,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 79.46592051303014,
+          "p99_ttft_ms": 116.59432720625772
+        },
+        {
+          "phase_index": 1,
+          "phase_label": "round 1 (+img)",
+          "request_count": 4,
+          "total_prompt_tokens": 7636,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 159.87310191849247,
+          "p99_ttft_ms": 177.15964311035347
+        },
+        {
+          "phase_index": 2,
+          "phase_label": "round 2 (+img)",
+          "request_count": 4,
+          "total_prompt_tokens": 11428,
+          "total_cached_tokens": 0,
+          "cache_hit_rate": 0.0,
+          "expected_min_cached": 0,
+          "mean_ttft_ms": 235.59937346726656,
+          "p99_ttft_ms": 291.0264575853944
+        }
+      ],
+      "overall_cache_hit_rate": 0.0,
+      "total_prompt_tokens": 22908,
+      "total_cached_tokens": 0,
+      "page_size": 1,
+      "duration_s": 2.9
+    }
+  ],
+  "duration_s": 11.0
+}
