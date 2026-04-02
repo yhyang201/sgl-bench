@@ -1,0 +1,79 @@
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report
+Waiting for sglang server on port 30000 (timeout=600s)...
+Server ready! (took 36s)
+
+============================================================
+Cache Hit Rate Benchmark
+Model: Qwen/Qwen3-VL-8B-Instruct
+Page Size: 1
+Image Resolution: 720p (1280x720)
+Scenarios: identical_requests, same_image_reuse, partial_prefix_sharing, multiturn_image
+============================================================
+
+--- Scenario: identical_requests ---
+  Sending 4 identical requests sequentially...
+    req 0: prompt=907 cached=0 (0.0%) ttft=865ms
+    req 1: prompt=907 cached=906 (99.9%) ttft=88ms
+    req 2: prompt=907 cached=906 (99.9%) ttft=78ms
+    req 3: prompt=907 cached=906 (99.9%) ttft=67ms
+  Phase 0 (1st request):      0/907 cached (  0.0%)  TTFT: 865ms
+  Phase 1 (req 2-4, identical):   2718/2721 cached ( 99.9%)  TTFT: 78ms
+  Overall: 2718/3628 (74.9%)  Duration: 1.4s
+
+--- Scenario: same_image_reuse ---
+  Phase 0: sending 1 requests...
+  Phase 1: sending 1 requests...
+  Phase 2: sending 1 requests...
+  Phase 3: sending 1 requests...
+  Phase 0 (same imgs, text variant 0):      0/2669 cached (  0.0%)  TTFT: 344ms
+  Phase 1 (same imgs, text variant 1):   2651/2669 cached ( 99.3%)  TTFT: 213ms
+  Phase 2 (same imgs, text variant 2):   2651/2669 cached ( 99.3%)  TTFT: 209ms
+  Phase 3 (same imgs, text variant 3):   2651/2669 cached ( 99.3%)  TTFT: 210ms
+  Overall: 7953/10676 (74.5%)  Duration: 1.3s
+
+--- Scenario: partial_prefix_sharing ---
+  Phase 0: 4 shared + 4 divergent images, 1 requests...
+  Phase 1: 4 shared + 4 divergent images, 1 requests...
+  Phase 2: 4 shared + 4 divergent images, 1 requests...
+  Phase 3: 4 shared + 4 divergent images, 1 requests...
+  Phase 4: 4 shared + 4 divergent images, 1 requests...
+  Phase 5: 4 shared + 4 divergent images, 1 requests...
+  Phase 0 (shared 4 + new 4 imgs, text variant 0):      0/7086 cached (  0.0%)  TTFT: 928ms
+  Phase 1 (shared 4 + new 4 imgs, text variant 1):      4/7086 cached (  0.1%)  TTFT: 762ms
+  Phase 2 (shared 4 + new 4 imgs, text variant 2):      4/7086 cached (  0.1%)  TTFT: 759ms
+  Phase 3 (shared 4 + new 4 imgs, text variant 3):      4/7086 cached (  0.1%)  TTFT: 770ms
+  Phase 4 (shared 4 + new 4 imgs, text variant 4):      4/7086 cached (  0.1%)  TTFT: 759ms
+  Phase 5 (shared 4 + new 4 imgs, text variant 5):      4/7086 cached (  0.1%)  TTFT: 774ms
+  Overall: 20/42516 (0.0%)  Duration: 5.7s
+
+--- Scenario: multiturn_image ---
+  Round 0: 1 clients, 1 image(s) in conversation...
+  Round 1: 1 clients, 2 image(s) in conversation...
+  Round 2: 1 clients, 3 image(s) in conversation...
+  Round 3: 1 clients, 4 image(s) in conversation...
+  Round 4: 1 clients, 5 image(s) in conversation...
+  Round 5: 1 clients, 6 image(s) in conversation...
+  Round 6: 1 clients, 7 image(s) in conversation...
+  Round 7: 1 clients, 8 image(s) in conversation...
+  Phase 0 (round 0, 1 img(s) total):      0/929 cached (  0.0%)  TTFT: 97ms
+  Phase 1 (round 1, 2 img(s) total):      4/1861 cached (  0.2%)  TTFT: 212ms
+  Phase 2 (round 2, 3 img(s) total):      4/2793 cached (  0.1%)  TTFT: 300ms
+  Phase 3 (round 3, 4 img(s) total):      4/3725 cached (  0.1%)  TTFT: 471ms
+  Phase 4 (round 4, 5 img(s) total):      4/4657 cached (  0.1%)  TTFT: 489ms
+  Phase 5 (round 5, 6 img(s) total):      4/5589 cached (  0.1%)  TTFT: 583ms
+  Phase 6 (round 6, 7 img(s) total):      4/6521 cached (  0.1%)  TTFT: 674ms
+  Phase 7 (round 7, 8 img(s) total):      4/7453 cached (  0.1%)  TTFT: 766ms
+  Overall: 28/33528 (0.1%)  Duration: 4.3s
+
+============================================================
+Summary
+============================================================
+  identical_requests             cache_hit= 74.9%  2718/3628 tokens  1.4s
+  same_image_reuse               cache_hit= 74.5%  7953/10676 tokens  1.3s
+  partial_prefix_sharing         cache_hit=  0.0%  20/42516 tokens  5.7s
+  multiturn_image                cache_hit=  0.1%  28/33528 tokens  4.3s
+Total duration: 17.0s
+============================================================
+Report saved to: records/20260402/20260402_083733_cache_all_scenarios/3_qwen3_vl_8b_x_mm_all/cache_report.json
+Shutting down server...
+Server stopped.

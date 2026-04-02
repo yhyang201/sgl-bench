@@ -1,0 +1,373 @@
+{
+  "experiment_id": "20260402_083733",
+  "description": "cache all scenarios",
+  "gpu_ids": "0",
+  "server_config": "3_qwen3_vl_8b",
+  "bench_config": "mm_all",
+  "started_at": "2026-04-02T08:37:33.615988",
+  "finished_at": "2026-04-02T08:38:27.146628",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "cache": {
+      "scenarios": [
+        "identical_requests",
+        "same_image_reuse",
+        "partial_prefix_sharing",
+        "multiturn_image"
+      ],
+      "output_len": 16,
+      "image_resolution": "720p",
+      "text_input_len": 64,
+      "max_concurrency": 1,
+      "seed": 42,
+      "identical_requests": {
+        "num_images": 1,
+        "num_requests": 4
+      },
+      "same_image_reuse": {
+        "num_images": 3,
+        "num_phases": 4,
+        "requests_per_phase": 1
+      },
+      "partial_prefix_sharing": {
+        "shared_images": 4,
+        "divergent_images": 4,
+        "num_phases": 6,
+        "requests_per_phase": 1
+      },
+      "multiturn_image": {
+        "num_clients": 1,
+        "num_rounds": 8,
+        "sub_question_len": 32
+      }
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "main",
+    "git_commit": "24997fe42c5fe4aafffec8370873d2e43567bb7a",
+    "git_dirty": true,
+    "git_diff_summary": "2 files changed, 2 insertions(+), 2 deletions(-)",
+    "git_dirty_warning": "Working tree has uncommitted changes, not exactly this commit"
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal --trust-remote-code --enable-cache-report"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": {
+    "model": "Qwen/Qwen3-VL-8B-Instruct",
+    "image_resolution": "720p",
+    "scenarios": [
+      {
+        "scenario_name": "identical_requests",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "1st request",
+            "request_count": 1,
+            "total_prompt_tokens": 907,
+            "total_cached_tokens": 0,
+            "cache_hit_rate": 0.0,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 865.4929099138826,
+            "p99_ttft_ms": 865.4929099138826
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "req 2-4, identical",
+            "request_count": 3,
+            "total_prompt_tokens": 2721,
+            "total_cached_tokens": 2718,
+            "cache_hit_rate": 0.9988974641675854,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 77.56382133811712,
+            "p99_ttft_ms": 87.71821539383382
+          }
+        ],
+        "overall_cache_hit_rate": 0.7491730981256891,
+        "total_prompt_tokens": 3628,
+        "total_cached_tokens": 2718,
+        "page_size": 1,
+        "duration_s": 1.4
+      },
+      {
+        "scenario_name": "same_image_reuse",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "same imgs, text variant 0",
+            "request_count": 1,
+            "total_prompt_tokens": 2669,
+            "total_cached_tokens": 0,
+            "cache_hit_rate": 0.0,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 343.83610589429736,
+            "p99_ttft_ms": 343.83610589429736
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "same imgs, text variant 1",
+            "request_count": 1,
+            "total_prompt_tokens": 2669,
+            "total_cached_tokens": 2651,
+            "cache_hit_rate": 0.9932559010865493,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 212.7144760452211,
+            "p99_ttft_ms": 212.7144760452211
+          },
+          {
+            "phase_index": 2,
+            "phase_label": "same imgs, text variant 2",
+            "request_count": 1,
+            "total_prompt_tokens": 2669,
+            "total_cached_tokens": 2651,
+            "cache_hit_rate": 0.9932559010865493,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 208.69274297729135,
+            "p99_ttft_ms": 208.69274297729135
+          },
+          {
+            "phase_index": 3,
+            "phase_label": "same imgs, text variant 3",
+            "request_count": 1,
+            "total_prompt_tokens": 2669,
+            "total_cached_tokens": 2651,
+            "cache_hit_rate": 0.9932559010865493,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 210.32419218681753,
+            "p99_ttft_ms": 210.32419218681753
+          }
+        ],
+        "overall_cache_hit_rate": 0.7449419258149119,
+        "total_prompt_tokens": 10676,
+        "total_cached_tokens": 7953,
+        "page_size": 1,
+        "duration_s": 1.3
+      },
+      {
+        "scenario_name": "partial_prefix_sharing",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "shared 4 + new 4 imgs, text variant 0",
+            "request_count": 1,
+            "total_prompt_tokens": 7086,
+            "total_cached_tokens": 0,
+            "cache_hit_rate": 0.0,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 928.1149129383266,
+            "p99_ttft_ms": 928.1149129383266
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "shared 4 + new 4 imgs, text variant 1",
+            "request_count": 1,
+            "total_prompt_tokens": 7086,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0005644933672029354,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 761.5883389953524,
+            "p99_ttft_ms": 761.5883389953524
+          },
+          {
+            "phase_index": 2,
+            "phase_label": "shared 4 + new 4 imgs, text variant 2",
+            "request_count": 1,
+            "total_prompt_tokens": 7086,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0005644933672029354,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 759.3691200017929,
+            "p99_ttft_ms": 759.3691200017929
+          },
+          {
+            "phase_index": 3,
+            "phase_label": "shared 4 + new 4 imgs, text variant 3",
+            "request_count": 1,
+            "total_prompt_tokens": 7086,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0005644933672029354,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 769.83024016954,
+            "p99_ttft_ms": 769.83024016954
+          },
+          {
+            "phase_index": 4,
+            "phase_label": "shared 4 + new 4 imgs, text variant 4",
+            "request_count": 1,
+            "total_prompt_tokens": 7086,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0005644933672029354,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 759.4022310804576,
+            "p99_ttft_ms": 759.4022310804576
+          },
+          {
+            "phase_index": 5,
+            "phase_label": "shared 4 + new 4 imgs, text variant 5",
+            "request_count": 1,
+            "total_prompt_tokens": 7086,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0005644933672029354,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 773.7755118869245,
+            "p99_ttft_ms": 773.7755118869245
+          }
+        ],
+        "overall_cache_hit_rate": 0.00047041113933577947,
+        "total_prompt_tokens": 42516,
+        "total_cached_tokens": 20,
+        "page_size": 1,
+        "duration_s": 5.7
+      },
+      {
+        "scenario_name": "multiturn_image",
+        "phases": [
+          {
+            "phase_index": 0,
+            "phase_label": "round 0, 1 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 929,
+            "total_cached_tokens": 0,
+            "cache_hit_rate": 0.0,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 97.06918196752667,
+            "p99_ttft_ms": 97.06918196752667
+          },
+          {
+            "phase_index": 1,
+            "phase_label": "round 1, 2 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 1861,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0021493820526598604,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 212.26545283570886,
+            "p99_ttft_ms": 212.26545283570886
+          },
+          {
+            "phase_index": 2,
+            "phase_label": "round 2, 3 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 2793,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0014321518080916578,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 299.7511560097337,
+            "p99_ttft_ms": 299.7511560097337
+          },
+          {
+            "phase_index": 3,
+            "phase_label": "round 3, 4 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 3725,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0010738255033557046,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 471.4218392036855,
+            "p99_ttft_ms": 471.4218392036855
+          },
+          {
+            "phase_index": 4,
+            "phase_label": "round 4, 5 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 4657,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0008589220528237063,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 489.4405659288168,
+            "p99_ttft_ms": 489.4405659288168
+          },
+          {
+            "phase_index": 5,
+            "phase_label": "round 5, 6 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 5589,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0007156915369475756,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 582.9007679130882,
+            "p99_ttft_ms": 582.9007679130882
+          },
+          {
+            "phase_index": 6,
+            "phase_label": "round 6, 7 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 6521,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0006134028523232633,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 674.0477399434894,
+            "p99_ttft_ms": 674.0477399434894
+          },
+          {
+            "phase_index": 7,
+            "phase_label": "round 7, 8 img(s) total",
+            "request_count": 1,
+            "total_prompt_tokens": 7453,
+            "total_cached_tokens": 4,
+            "cache_hit_rate": 0.0005366966322286328,
+            "expected_min_cached": 0,
+            "mean_ttft_ms": 765.6563778873533,
+            "p99_ttft_ms": 765.6563778873533
+          }
+        ],
+        "overall_cache_hit_rate": 0.0008351228823669769,
+        "total_prompt_tokens": 33528,
+        "total_cached_tokens": 28,
+        "page_size": 1,
+        "duration_s": 4.3
+      }
+    ],
+    "duration_s": 17.0
+  }
+}
