@@ -1,0 +1,52 @@
+# Cache: Prefix cache hit rate benchmark (1 client per scenario)
+#
+# All scenarios use requests_per_phase=1 / num_clients=1 to eliminate
+# within-phase self-caching noise (the 7/8=87.5% effect), so the results
+# purely reflect cross-phase / cross-round cache reuse.
+#
+# Expected mm-split vs main gap:
+#   identical_requests     — both ~99% (sanity check)
+#   same_image_reuse       — both high (same images, mm-split not needed)
+#   partial_prefix_sharing — mm-split ~80% vs main ~0% on phase 1+
+#   multiturn_image        — mm-split increasing vs main ~0%
+
+[cache]
+scenarios = ["identical_requests", "same_image_reuse", "partial_prefix_sharing", "multiturn_image"]
+output_len = 16
+image_resolution = "720p"
+text_input_len = 64
+max_concurrency = 1
+seed = 42
+
+# --- Scenario 0: identical requests (sanity) ---
+# Send N identical requests sequentially. 2nd+ should fully cache on any branch.
+[cache.identical_requests]
+num_images = 1
+num_requests = 4
+
+# --- Scenario A: same images, different text per phase ---
+# No flush between phases. 1 request per phase, so the only cache source is
+# the shared image prefix from the previous phase.
+[cache.same_image_reuse]
+num_images = 3
+num_phases = 4
+requests_per_phase = 1
+
+# --- Scenario B: shared + divergent images (mm_split key test) ---
+# 4 shared images stay the same, 4 divergent images change per phase.
+# mm-split: ~50% of image tokens cached cross-phase
+# main: bundle hash changes → 0% cross-phase cache
+[cache.partial_prefix_sharing]
+shared_images = 4
+divergent_images = 4
+num_phases = 6
+requests_per_phase = 1
+
+# --- Scenario C: multi-turn, each round adds a new image ---
+# Single conversation. Each round appends 1 new image + question.
+# mm-split: previous images independently cached → hit rate increases
+# main: image bundle invalidation → hit rate stays low
+[cache.multiturn_image]
+num_clients = 1
+num_rounds = 8
+sub_question_len = 32
