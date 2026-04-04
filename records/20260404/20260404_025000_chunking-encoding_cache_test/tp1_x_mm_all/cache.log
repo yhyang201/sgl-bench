@@ -1,0 +1,30 @@
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal --enable-cache-report
+Waiting for sglang server on port 7893 (timeout=600s)...
+
+Error: Server process exited with code -9.
+Check server.log for details.
+
+--- Last 20 lines of server.log ---
+  File "/sgl-workspace/sglang/python/sglang/srt/utils/common.py", line 644, in make_layers
+    + get_offloader().wrap_modules(
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/utils/offloader.py", line 36, in wrap_modules
+    return list(all_modules_generator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/utils/common.py", line 646, in <genexpr>
+    layer_fn(idx=idx, prefix=add_prefix(idx, prefix))
+  File "/sgl-workspace/sglang/python/sglang/srt/models/qwen2.py", line 296, in <lambda>
+    lambda idx, prefix: decoder_layer_type(
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/models/qwen3.py", line 319, in __init__
+    rope_theta = config.rope_parameters["rope_theta"]
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/configuration_utils.py", line 207, in __getattribute__
+    return super().__getattribute__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Qwen3VLConfig' object has no attribute 'rope_parameters'
+
+[2026-04-04 02:50:25] Received sigquit from a child process. It usually means the child failed.
+--- End of server.log ---
+Shutting down server...
+Server stopped (cleaned up orphan children).
