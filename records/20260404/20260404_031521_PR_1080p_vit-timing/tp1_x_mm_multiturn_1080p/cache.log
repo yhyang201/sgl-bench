@@ -1,0 +1,40 @@
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal --enable-cache-report
+Waiting for sglang server on port 7893 (timeout=600s)...
+Server ready! (took 56s)
+
+============================================================
+Cache Hit Rate Benchmark
+Model: Qwen/Qwen3-VL-8B-Instruct
+Page Size: 1
+Image Resolution: 1080p (1920x1080)
+Scenarios: multiturn_image
+============================================================
+
+--- Scenario: multiturn_image ---
+  Round 0: 1 clients, 1 image(s) in conversation...
+  Round 1: 1 clients, 2 image(s) in conversation...
+  Round 2: 1 clients, 3 image(s) in conversation...
+  Round 3: 1 clients, 4 image(s) in conversation...
+  Round 4: 1 clients, 5 image(s) in conversation...
+  Round 5: 1 clients, 6 image(s) in conversation...
+  Round 6: 1 clients, 7 image(s) in conversation...
+  Round 7: 1 clients, 8 image(s) in conversation...
+  Phase 0 (round 0, 1 img(s) total):      0/2089 cached (  0.0%)  TTFT: 990ms
+  Phase 1 (round 1, 2 img(s) total):   2105/4181 cached ( 50.3%)  TTFT: 392ms
+  Phase 2 (round 2, 3 img(s) total):   4197/6273 cached ( 66.9%)  TTFT: 522ms
+  Phase 3 (round 3, 4 img(s) total):   6289/8365 cached ( 75.2%)  TTFT: 662ms
+  Phase 4 (round 4, 5 img(s) total):   8381/10457 cached ( 80.1%)  TTFT: 806ms
+  Phase 5 (round 5, 6 img(s) total):  10473/12549 cached ( 83.5%)  TTFT: 975ms
+  Phase 6 (round 6, 7 img(s) total):  12565/14641 cached ( 85.8%)  TTFT: 1084ms
+  Phase 7 (round 7, 8 img(s) total):  14657/16733 cached ( 87.6%)  TTFT: 1223ms
+  Overall: 58667/75288 (77.9%)  Duration: 7.5s
+
+============================================================
+Summary
+============================================================
+  multiturn_image                cache_hit= 77.9%  58667/75288 tokens  7.5s
+Total duration: 9.0s
+============================================================
+Report saved to: records/20260404/20260404_031521_PR_1080p_vit-timing/tp1_x_mm_multiturn_1080p/cache_report.json
+Shutting down server...
+Server stopped.
