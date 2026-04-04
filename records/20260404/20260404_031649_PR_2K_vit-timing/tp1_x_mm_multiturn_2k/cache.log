@@ -1,0 +1,40 @@
+Launching server: /usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal --enable-cache-report
+Waiting for sglang server on port 7893 (timeout=600s)...
+Server ready! (took 41s)
+
+============================================================
+Cache Hit Rate Benchmark
+Model: Qwen/Qwen3-VL-8B-Instruct
+Page Size: 1
+Image Resolution: 1440x2560 (2560x1440)
+Scenarios: multiturn_image
+============================================================
+
+--- Scenario: multiturn_image ---
+  Round 0: 1 clients, 1 image(s) in conversation...
+  Round 1: 1 clients, 2 image(s) in conversation...
+  Round 2: 1 clients, 3 image(s) in conversation...
+  Round 3: 1 clients, 4 image(s) in conversation...
+  Round 4: 1 clients, 5 image(s) in conversation...
+  Round 5: 1 clients, 6 image(s) in conversation...
+  Round 6: 1 clients, 7 image(s) in conversation...
+  Round 7: 1 clients, 8 image(s) in conversation...
+  Phase 0 (round 0, 1 img(s) total):      0/3649 cached (  0.0%)  TTFT: 1349ms
+  Phase 1 (round 1, 2 img(s) total):   3665/7301 cached ( 50.2%)  TTFT: 686ms
+  Phase 2 (round 2, 3 img(s) total):   7317/10953 cached ( 66.8%)  TTFT: 945ms
+  Phase 3 (round 3, 4 img(s) total):  10969/14605 cached ( 75.1%)  TTFT: 1197ms
+  Phase 4 (round 4, 5 img(s) total):  14621/18257 cached ( 80.1%)  TTFT: 1460ms
+  Phase 5 (round 5, 6 img(s) total):  18273/21909 cached ( 83.4%)  TTFT: 1688ms
+  Phase 6 (round 6, 7 img(s) total):  21925/25561 cached ( 85.8%)  TTFT: 1965ms
+  Phase 7 (round 7, 8 img(s) total):  25577/29213 cached ( 87.6%)  TTFT: 2172ms
+  Overall: 102347/131448 (77.9%)  Duration: 12.4s
+
+============================================================
+Summary
+============================================================
+  multiturn_image                cache_hit= 77.9%  102347/131448 tokens  12.4s
+Total duration: 14.4s
+============================================================
+Report saved to: records/20260404/20260404_031649_PR_2K_vit-timing/tp1_x_mm_multiturn_2k/cache_report.json
+Shutting down server...
+Server stopped.
