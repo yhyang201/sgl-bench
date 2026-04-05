@@ -1,0 +1,15 @@
+# ViT batching benchmark - high concurrency, 1080p
+# Larger images amplify ViT encoding cost, making the batching optimization more visible.
+
+[benchmark]
+extra_args = """
+    --backend sglang
+    --dataset-name image
+    --num-prompts 128
+    --request-rate inf
+    --max-concurrency 16
+    --random-input-len 512
+    --random-output-len 64
+    --image-count 1
+    --image-resolution 1080p
+"""
