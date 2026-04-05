@@ -1,0 +1,77 @@
+{
+  "experiment_id": "20260405_140141",
+  "description": "probe max images, tp1 ipc-on, Qwen3-VL-8B",
+  "gpu_ids": "0",
+  "server_config": "tp1_ipc_on",
+  "bench_config": "probe_720p",
+  "started_at": "2026-04-05T14:01:41.413987",
+  "finished_at": "2026-04-05T14:06:19.920364",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 30000 --tp-size 1 --enable-multimodal",
+      "env": {
+        "SGLANG_USE_CUDA_IPC_TRANSPORT": "1"
+      },
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "main",
+    "git_commit": "34d5765e2f2466c47d4b13efbebe99ae33663563",
+    "git_dirty": true,
+    "git_diff_summary": "1 file changed, 1 insertion(+), 1 deletion(-)",
+    "git_dirty_warning": "Working tree has uncommitted changes, not exactly this commit"
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 30000 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}
