@@ -1,0 +1,16 @@
+# ViT batching benchmark - high concurrency (demonstrates cross-request ViT batching)
+# Many requests arrive simultaneously, so multiple images land in the same prefill batch.
+# Old code: N ViT calls. New code: 1 ViT call.
+
+[benchmark]
+extra_args = """
+    --backend sglang
+    --dataset-name image
+    --num-prompts 128
+    --request-rate inf
+    --max-concurrency 16
+    --random-input-len 512
+    --random-output-len 64
+    --image-count 1
+    --image-resolution 720p
+"""
