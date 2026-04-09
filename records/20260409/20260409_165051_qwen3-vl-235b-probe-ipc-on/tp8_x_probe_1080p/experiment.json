@@ -1,0 +1,75 @@
+{
+  "experiment_id": "20260409_165937",
+  "description": "qwen3-vl-235b-probe-ipc-on",
+  "gpu_ids": "0,1,2,3,4,5,6,7",
+  "server_config": "tp8",
+  "bench_config": "probe_1080p",
+  "started_at": "2026-04-09T16:59:37.554139",
+  "finished_at": "2026-04-09T17:15:39.472911",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "extra_args": "--port 30000 --tp-size 8 --enable-multimodal --mem-fraction-static 0.80",
+      "env": {
+        "SGLANG_USE_CUDA_IPC_TRANSPORT": "0"
+      },
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "main",
+    "git_commit": "dd73e9a62ea65c7272dae4cf8a6b8e994814a80d",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-235B-A22B-Instruct --port 30000 --tp-size 8 --enable-multimodal --mem-fraction-static 0.80"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}
