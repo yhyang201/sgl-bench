@@ -1,0 +1,146 @@
+{
+  "experiment_id": "20260414_224048",
+  "description": "Perf Qwen3-VL-8B vLLM",
+  "gpu_ids": "0",
+  "server_config": "qwen3_vl_8b_vllm",
+  "bench_config": "image_n5_720p_c128",
+  "started_at": "2026-04-14T22:40:48.448908",
+  "finished_at": "2026-04-14T22:45:24.045665",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "backend": "vllm",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": "    --backend sglang\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 128\n    --random-input-len 512\n    --random-output-len 32\n    --image-count 5\n    --image-resolution 720p\n"
+    },
+    "run": {
+      "runs": 3
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": true
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "13.0",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "not_found"
+  },
+  "server": {
+    "command": "/sgl-workspace/envs/vllm-env/bin/python3 -m vllm.entrypoints.openai.api_server --model Qwen/Qwen3-VL-8B-Instruct --port 7893 --tensor-parallel-size 1"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [
+    {
+      "run_index": 0,
+      "seed": 297206,
+      "command": "(native runner: --backend sglang\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 128\n    --random-input-len 512\n    --random-output-len 32\n    --image-count 5\n    --image-resolution 720p)",
+      "results": {
+        "completed": 128,
+        "failed": 0,
+        "total_input": 634486,
+        "total_input_text": 70006,
+        "total_input_vision": 564480,
+        "total_output": 4096,
+        "duration_s": 47.49416482122615,
+        "request_throughput": 2.6950679200657106,
+        "output_throughput": 86.24217344210274,
+        "mean_ttft_ms": 25389.749458678125,
+        "median_ttft_ms": 25334.83417937532,
+        "p99_ttft_ms": 45998.368951263845,
+        "mean_itl_ms": 12.236497992016002,
+        "median_itl_ms": 5.6829750537872314,
+        "p99_itl_ms": 146.94485547952354,
+        "mean_e2e_latency_ms": 25760.969845447107,
+        "median_e2e_latency_ms": 25704.167064279318,
+        "p99_e2e_latency_ms": 46366.94896611385
+      },
+      "error": null
+    },
+    {
+      "run_index": 1,
+      "seed": 662426,
+      "command": "(native runner: --backend sglang\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 128\n    --random-input-len 512\n    --random-output-len 32\n    --image-count 5\n    --image-resolution 720p)",
+      "results": {
+        "completed": 128,
+        "failed": 0,
+        "total_input": 634419,
+        "total_input_text": 69939,
+        "total_input_vision": 564480,
+        "total_output": 4096,
+        "duration_s": 47.04477889323607,
+        "request_throughput": 2.720812022317813,
+        "output_throughput": 87.06598471417001,
+        "mean_ttft_ms": 24956.643634461216,
+        "median_ttft_ms": 24801.5981502831,
+        "p99_ttft_ms": 45544.31717024651,
+        "mean_itl_ms": 12.154065566470477,
+        "median_itl_ms": 5.6906272657215595,
+        "p99_itl_ms": 146.9739447440952,
+        "mean_e2e_latency_ms": 25325.743672114186,
+        "median_e2e_latency_ms": 25177.445622626692,
+        "p99_e2e_latency_ms": 45917.73925225716
+      },
+      "error": null
+    },
+    {
+      "run_index": 2,
+      "seed": 427718,
+      "command": "(native runner: --backend sglang\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 128\n    --random-input-len 512\n    --random-output-len 32\n    --image-count 5\n    --image-resolution 720p)",
+      "results": {
+        "completed": 128,
+        "failed": 0,
+        "total_input": 634424,
+        "total_input_text": 69944,
+        "total_input_vision": 564480,
+        "total_output": 4096,
+        "duration_s": 46.669889538083225,
+        "request_throughput": 2.7426677300264526,
+        "output_throughput": 87.76536736084648,
+        "mean_ttft_ms": 24705.435239236976,
+        "median_ttft_ms": 24529.43604858592,
+        "p99_ttft_ms": 45166.5522518754,
+        "mean_itl_ms": 12.307065403800223,
+        "median_itl_ms": 5.711839068681002,
+        "p99_itl_ms": 147.38747598603365,
+        "mean_e2e_latency_ms": 25077.92164554121,
+        "median_e2e_latency_ms": 24905.538944061846,
+        "p99_e2e_latency_ms": 45546.42998733558
+      },
+      "error": null
+    }
+  ],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}
