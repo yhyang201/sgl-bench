@@ -468,6 +468,115 @@ def stress(server_path: str, bench_path: str, description: str, gpus: str | None
 
 @cli.command()
 @click.option("-s", "--server", "server_path", required=True,
+              help="Server config: file, directory, or preset name.")
+@click.option("-b", "--bench", "bench_path", required=True,
+              help="Cache config: file or preset name in presets/cache/.")
+@click.option("-d", "--description", required=True, help="Experiment description.")
+@click.option("-g", "--gpus", default=None, help="GPU IDs to use. Default: auto.")
+def cache(server_path: str, bench_path: str, description: str, gpus: str | None):
+    """Cache hit rate benchmark: measure prefix cache efficiency with multimodal workloads."""
+    from .cache import run_cache_test
+
+    server_paths = _resolve_paths(server_path, ["server"])
+    bench_paths = _resolve_paths(bench_path, ["cache"])
+
+    if len(server_paths) != 1 or len(bench_paths) != 1:
+        raise click.UsageError("Cache test requires exactly one server and one cache config.")
+
+    s_path = server_paths[0]
+    b_path = bench_paths[0]
+    s_cfg = load_toml(s_path)
+    b_cfg = load_toml(b_path)
+    s_name = Path(s_path).stem
+    b_name = Path(b_path).stem
+
+    # Auto-inject --enable-cache-report so the server returns cached_tokens
+    server_args = s_cfg.get("server", {}).get("extra_args", "")
+    if "--enable-cache-report" not in server_args:
+        s_cfg.setdefault("server", {})
+        s_cfg["server"]["extra_args"] = server_args + " --enable-cache-report"
+        print("Auto-added --enable-cache-report to server args.", flush=True)
+
+    config = merge_configs(s_cfg, b_cfg)
+
+    print("Detecting environment...", flush=True)
+    sglang_info = detect_sglang_install()
+    gpu_info = detect_gpu_info()
+
+    gpu_ids, gpu_str = _resolve_gpus(gpus, config)
+
+    # Create session and experiment
+    base_dir = config.get("output", {}).get("dir", "./records")
+    session = Session.create(description, base_dir)
+    exp = session.create_experiment(config, gpu_str, s_name, b_name)
+    exp.create_directory()
+    exp.copy_configs(s_path, b_path)
+    exp.sglang_info = sglang_info
+    exp.gpu_info = gpu_info
+
+    # Tee stdout/stderr to cache.log in experiment dir
+    _cache_log_file = open(exp.output_dir / "cache.log", "w")
+    _orig_stdout, _orig_stderr = sys.stdout, sys.stderr
+    sys.stdout = _TeeStream(_orig_stdout, _cache_log_file)
+    sys.stderr = _TeeStream(_orig_stderr, _cache_log_file)
+
+    # Find port and launch server
+    desired_port = get_server_port(config)
+    port = find_available_port(desired_port)
+    if port != desired_port:
+        print(f"Port {desired_port} is in use, switching to {port}.", flush=True)
+        _override_port_in_cfg(s_cfg, port)
+        config = merge_configs(s_cfg, b_cfg)
+
+    check_gpu_available(gpu_ids)
+    server_cmd = build_server_command(config)
+    exp.server_cmd = " ".join(server_cmd)
+    exp.save_partial()
+
+    print(f"Launching server: {exp.server_cmd}", flush=True)
+    log_path = str(exp.output_dir / "server.log")
+    extra_env = config.get("server", {}).get("env")
+    server_process = launch_server(server_cmd, log_path, gpu_ids, extra_env=extra_env)
+
+    try:
+        backend = get_server_backend(config)
+        timeout = s_cfg.get("server", {}).get("startup_timeout", 600)
+        wait_for_server(port, timeout, server_process, log_path, backend=backend)
+
+        cache_cfg = config.get("cache", {})
+        model_id = config["server"]["model_path"]
+        base_url = f"http://127.0.0.1:{port}"
+
+        report = run_cache_test(
+            base_url=base_url,
+            model_id=model_id,
+            cache_cfg=cache_cfg,
+            output_file=str(exp.output_dir / "cache_report.json"),
+        )
+
+        exp.cache_report = report.to_dict()
+        exp.save()
+
+    except Exception as e:
+        exp.mark_failed(str(e))
+        print(f"\nError: {e}", file=sys.stderr, flush=True)
+        _print_server_log_tail(log_path)
+
+    finally:
+        shutdown_server(server_process)
+
+    # Restore stdout/stderr and close log
+    sys.stdout, sys.stderr = _orig_stdout, _orig_stderr
+    _cache_log_file.close()
+    print(f"CLI log saved to: {exp.output_dir / 'cache.log'}", flush=True)
+
+    output_cfg = config.get("output", {})
+    if output_cfg.get("auto_commit", True):
+        session.git_commit(auto_push=output_cfg.get("auto_push", False))
+
+
+@cli.command()
+@click.option("-s", "--server", "server_path", required=True,
               help="Server config: file or preset name.")
 @click.option("-d", "--description", default="image limit probe", help="Experiment description.")
 @click.option("-g", "--gpus", default=None, help="GPU IDs to use. Default: auto.")

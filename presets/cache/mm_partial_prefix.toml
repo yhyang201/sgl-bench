@@ -1,0 +1,17 @@
+# Cache: Partial prefix sharing (mm_split key test)
+# 4 shared images + 4 divergent per phase, 1 request per phase.
+# mm-split: ~50% on phase 1+, main: ~0%
+
+[cache]
+scenarios = ["partial_prefix_sharing"]
+output_len = 16
+image_resolution = "720p"
+text_input_len = 64
+max_concurrency = 1
+seed = 42
+
+[cache.partial_prefix_sharing]
+shared_images = 4
+divergent_images = 4
+num_phases = 6
+requests_per_phase = 1

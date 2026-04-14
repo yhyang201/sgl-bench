@@ -1,0 +1,31 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/1] Resolution: 720p (fresh server)
+############################################################
+Traceback (most recent call last):
+  File "/root/.python/sglang/bin/sgl-bench", line 8, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/root/.python/sglang/lib/python3.12/site-packages/click/core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.python/sglang/lib/python3.12/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/root/.python/sglang/lib/python3.12/site-packages/click/core.py", line 1873, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.python/sglang/lib/python3.12/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.python/sglang/lib/python3.12/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sgl-bench/sgl_bench/cli.py", line 550, in probe
+    check_gpu_available(gpu_ids)
+  File "/sgl-workspace/sgl-bench/sgl_bench/server.py", line 75, in check_gpu_available
+    raise RuntimeError(
+RuntimeError: The following GPUs have active compute processes:
+  GPU 00000000:03:00.0: PID=827270, process=/root/.python/sglang/bin/python3, memory=5512 MiB
+Please free these GPUs before launching the server.

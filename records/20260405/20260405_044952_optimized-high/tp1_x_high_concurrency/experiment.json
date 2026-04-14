@@ -1,0 +1,72 @@
+{
+  "experiment_id": "20260405_044952",
+  "description": "optimized-high",
+  "gpu_ids": "0",
+  "server_config": "tp1",
+  "bench_config": "high_concurrency",
+  "started_at": "2026-04-05T04:49:52.357680",
+  "finished_at": "",
+  "status": "running",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": "    --backend sglang\n    --dataset-name image\n    --num-prompts 128\n    --request-rate inf\n    --max-concurrency 16\n    --random-input-len 512\n    --random-output-len 64\n    --image-count 1\n    --image-resolution 720p\n"
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": true
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "improve-vit-cudagraph",
+    "git_commit": "281e86b3023f02240a8e52927d646937901d0873",
+    "git_dirty": false
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}

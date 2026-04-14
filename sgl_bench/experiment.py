@@ -88,6 +88,12 @@ class Session:
                     r.get("task"): "OK" if r.get("returncode") == 0 else f"FAILED({r.get('returncode')})"
                     for r in exp.accuracy_results
                 }
+            # Extract cache results
+            if exp.cache_report:
+                entry["cache"] = {
+                    s["scenario_name"]: f"{s['overall_cache_hit_rate'] * 100:.1f}%"
+                    for s in exp.cache_report.get("scenarios", [])
+                }
             if exp.error:
                 entry["error"] = exp.error
             experiments.append(entry)
@@ -191,6 +197,22 @@ class Session:
                         flush=True,
                     )
 
+        # Print cache results if any
+        cache_exps = [e for e in self.experiments if e.cache_report]
+        if cache_exps:
+            print(f"\n{'server':<20} {'bench':<20} {'scenario':<25} {'cache_hit':>10}", flush=True)
+            print("-" * 78, flush=True)
+            for exp in cache_exps:
+                for s in exp.cache_report.get("scenarios", []):
+                    hit_pct = f"{s['overall_cache_hit_rate'] * 100:.1f}%"
+                    print(
+                        f"{exp.server_config_name:<20} "
+                        f"{exp.bench_config_name:<20} "
+                        f"{s['scenario_name']:<25} "
+                        f"{hit_pct:>10}",
+                        flush=True,
+                    )
+
         print(f"\n{'='*70}", flush=True)
         print(f"Results: {self.session_dir}", flush=True)
         print(f"Summary: {self.session_dir / 'summary.json'}", flush=True)
@@ -212,6 +234,7 @@ class Experiment:
     benchmark_runs: list = field(default_factory=list)
     accuracy_results: list = field(default_factory=list)
     stress_report: dict | None = None
+    cache_report: dict | None = None
     started_at: str = ""
     finished_at: str = ""
     status: str = "running"
@@ -313,6 +336,7 @@ class Experiment:
                 for r in self.accuracy_results
             ],
             "stress_report": self.stress_report,
+            "cache_report": self.cache_report,
         }
         path = self.output_dir / "experiment.json"
         with open(path, "w", encoding="utf-8") as f:

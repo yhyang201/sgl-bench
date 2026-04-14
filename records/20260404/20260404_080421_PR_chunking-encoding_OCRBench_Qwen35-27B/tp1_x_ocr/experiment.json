@@ -1,0 +1,78 @@
+{
+  "experiment_id": "20260404_080421",
+  "description": "PR_chunking-encoding_OCRBench_Qwen35-27B",
+  "gpu_ids": "0",
+  "server_config": "tp1",
+  "bench_config": "ocr",
+  "started_at": "2026-04-04T08:04:21.786817",
+  "finished_at": "",
+  "status": "running",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3.5-27B",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "ocrbench"
+      ],
+      "extra_args": "--max-tokens 8192 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "chunking-encoding",
+    "git_commit": "d63db99aaf8dc333a993e16341894ea76c4b3f35",
+    "git_dirty": true,
+    "git_diff_summary": "1 file changed, 14 insertions(+)",
+    "git_dirty_warning": "Working tree has uncommitted changes, not exactly this commit"
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3.5-27B --port 7893 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}

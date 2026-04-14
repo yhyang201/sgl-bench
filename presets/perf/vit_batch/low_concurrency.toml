@@ -1,0 +1,16 @@
+# ViT batching benchmark - low concurrency (control group)
+# Only 1 request prefills at a time, so the batch always has 1 image.
+# Both old and new code make 1 ViT call — expect no difference.
+
+[benchmark]
+extra_args = """
+    --backend sglang
+    --dataset-name image
+    --num-prompts 128
+    --request-rate 0.5
+    --max-concurrency 1
+    --random-input-len 512
+    --random-output-len 64
+    --image-count 1
+    --image-resolution 720p
+"""

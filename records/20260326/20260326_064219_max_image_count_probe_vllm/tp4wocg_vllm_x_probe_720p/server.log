@@ -1,0 +1,98 @@
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:299] 
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:299]        █     █     █▄   ▄█
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.18.1rc1.dev102+g42e954797
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:299]   █▄█▀ █     █     █     █  model   Qwen/Qwen3-VL-32B-Instruct
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:299] 
+(APIServer pid=1564199) INFO 03-26 06:42:26 [utils.py:233] non-default args: {'port': 30000, 'model': 'Qwen/Qwen3-VL-32B-Instruct', 'enforce_eager': True, 'tensor_parallel_size': 4}
+(APIServer pid=1564199) INFO 03-26 06:42:26 [model.py:541] Resolved architecture: Qwen3VLForConditionalGeneration
+(APIServer pid=1564199) INFO 03-26 06:42:26 [model.py:1645] Using max model len 262144
+(APIServer pid=1564199) INFO 03-26 06:42:26 [scheduler.py:237] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(APIServer pid=1564199) INFO 03-26 06:42:26 [vllm.py:753] Asynchronous scheduling is enabled.
+(APIServer pid=1564199) WARNING 03-26 06:42:26 [vllm.py:811] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=1564199) WARNING 03-26 06:42:26 [vllm.py:822] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=1564199) INFO 03-26 06:42:27 [vllm.py:987] Cudagraph is disabled under eager mode
+(APIServer pid=1564199) Traceback (most recent call last):
+(APIServer pid=1564199)   File "<frozen runpy>", line 198, in _run_module_as_main
+(APIServer pid=1564199)   File "<frozen runpy>", line 88, in _run_code
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 710, in <module>
+(APIServer pid=1564199)     uvloop.run(run_server(args))
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=1564199)     return __asyncio.run(
+(APIServer pid=1564199)            ^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+(APIServer pid=1564199)     return runner.run(main)
+(APIServer pid=1564199)            ^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=1564199)     return self._loop.run_until_complete(task)
+(APIServer pid=1564199)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=1564199)   File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=1564199)   File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+(APIServer pid=1564199)   File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+(APIServer pid=1564199)   File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+(APIServer pid=1564199)   File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+(APIServer pid=1564199)   File "uvloop/cbhandles.pyx", line 61, in uvloop.loop.Handle._run
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=1564199)     return await main
+(APIServer pid=1564199)            ^^^^^^^^^^
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 670, in run_server
+(APIServer pid=1564199)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 684, in run_server_worker
+(APIServer pid=1564199)     async with build_async_engine_client(
+(APIServer pid=1564199)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1564199)     return await anext(self.gen)
+(APIServer pid=1564199)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 100, in build_async_engine_client
+(APIServer pid=1564199)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=1564199)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1564199)     return await anext(self.gen)
+(APIServer pid=1564199)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 124, in build_async_engine_client_from_engine_args
+(APIServer pid=1564199)     vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+(APIServer pid=1564199)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/engine/arg_utils.py", line 1954, in create_engine_config
+(APIServer pid=1564199)     config = VllmConfig(
+(APIServer pid=1564199)              ^^^^^^^^^^^
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+(APIServer pid=1564199)     s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/config/vllm.py", line 1052, in __post_init__
+(APIServer pid=1564199)     self._set_compile_ranges()
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/config/vllm.py", line 1490, in _set_compile_ranges
+(APIServer pid=1564199)     max_size = compilation_config.pass_config.flashinfer_max_size(tp_size)
+(APIServer pid=1564199)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/config/compilation.py", line 188, in flashinfer_max_size
+(APIServer pid=1564199)     max_size_mb = self.default_fi_allreduce_fusion_max_size_mb().get(world_size)
+(APIServer pid=1564199)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/config/compilation.py", line 194, in default_fi_allreduce_fusion_max_size_mb
+(APIServer pid=1564199)     from vllm.compilation.passes.fusion.allreduce_rms_fusion import (
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/compilation/passes/fusion/allreduce_rms_fusion.py", line 40, in <module>
+(APIServer pid=1564199)     import flashinfer.comm as _flashinfer_comm
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/__init__.py", line 24, in <module>
+(APIServer pid=1564199)     from . import jit as jit
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/jit/__init__.py", line 22, in <module>
+(APIServer pid=1564199)     from . import cubin_loader
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/jit/cubin_loader.py", line 30, in <module>
+(APIServer pid=1564199)     from .core import logger
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/jit/core.py", line 14, in <module>
+(APIServer pid=1564199)     from . import env as jit_env
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/jit/env.py", line 143, in <module>
+(APIServer pid=1564199)     FLASHINFER_WORKSPACE_DIR: pathlib.Path = _get_workspace_dir_name()
+(APIServer pid=1564199)                                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/jit/env.py", line 131, in _get_workspace_dir_name
+(APIServer pid=1564199)     compilation_context = CompilationContext()
+(APIServer pid=1564199)                           ^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/flashinfer/compilation_context.py", line 43, in __init__
+(APIServer pid=1564199)     major, minor = torch.cuda.get_device_capability(device)
+(APIServer pid=1564199)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/torch/cuda/__init__.py", line 615, in get_device_capability
+(APIServer pid=1564199)     prop = get_device_properties(device)
+(APIServer pid=1564199)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/torch/cuda/__init__.py", line 632, in get_device_properties
+(APIServer pid=1564199)     _lazy_init()  # will define _get_device_properties
+(APIServer pid=1564199)     ^^^^^^^^^^^^
+(APIServer pid=1564199)   File "/root/.python/vllm/lib/python3.12/site-packages/torch/cuda/__init__.py", line 424, in _lazy_init
+(APIServer pid=1564199)     torch._C._cuda_init()
+(APIServer pid=1564199)   File "/sgl-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 556, in signal_handler
+(APIServer pid=1564199)     raise KeyboardInterrupt("terminated")
+(APIServer pid=1564199) KeyboardInterrupt: terminated

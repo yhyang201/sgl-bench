@@ -1,0 +1,78 @@
+{
+  "experiment_id": "20260402_041353",
+  "description": "LLaVA OneVision 7B OCRBench (mm-split branch)",
+  "gpu_ids": "0",
+  "server_config": "llava_ov_7b_server",
+  "bench_config": "ocr",
+  "started_at": "2026-04-02T04:13:53.069581",
+  "finished_at": "",
+  "status": "running",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "lmms-lab/llava-onevision-qwen2-7b-ov",
+      "extra_args": "--port 30000 --tp-size 1 --enable-multimodal",
+      "env": {
+        "REQUEST_TIMEOUT": "120"
+      },
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "ocrbench"
+      ],
+      "extra_args": "--max-tokens 8192 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.9",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "mm-split",
+    "git_commit": "116de6f36d449a820a141be25df5947375f303f6",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/usr/bin/python3 -m sglang.launch_server --model-path lmms-lab/llava-onevision-qwen2-7b-ov --port 30000 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null
+}

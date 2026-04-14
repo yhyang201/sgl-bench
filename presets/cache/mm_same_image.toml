@@ -1,0 +1,19 @@
+# Cache: Same-image reuse (functional validation)
+# Send identical requests sequentially to verify basic cache works.
+
+[cache]
+scenarios = ["identical_requests", "same_image_reuse"]
+output_len = 16
+image_resolution = "720p"
+text_input_len = 64
+max_concurrency = 1
+seed = 42
+
+[cache.identical_requests]
+num_images = 1
+num_requests = 4
+
+[cache.same_image_reuse]
+num_images = 3
+num_phases = 4
+requests_per_phase = 1

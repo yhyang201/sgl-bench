@@ -96,7 +96,7 @@ def merge_configs(server_cfg: dict, bench_cfg: dict) -> dict:
     merged["server"] = dict(server_cfg.get("server", {}))
 
     # Benchmark / accuracy / stress come from bench_cfg only
-    for section in ["benchmark", "accuracy", "stress"]:
+    for section in ["benchmark", "accuracy", "stress", "cache"]:
         if section in bench_cfg:
             merged[section] = dict(bench_cfg[section])
 
