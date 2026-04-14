@@ -1,0 +1,69 @@
+{
+  "experiment_id": "20260414_160400",
+  "description": "Probe Qwen3-VL-8B SGL-before",
+  "gpu_ids": "0",
+  "server_config": "qwen3_vl_8b",
+  "bench_config": "probe_1440x2560",
+  "started_at": "2026-04-14T16:04:00.789558",
+  "finished_at": "2026-04-14T16:07:00.351694",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "pip",
+    "version": "0.5.10rc0",
+    "location": "/sgl-workspace/sglang-before/python"
+  },
+  "server": {
+    "command": "/sgl-workspace/envs/sgl-before/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}
