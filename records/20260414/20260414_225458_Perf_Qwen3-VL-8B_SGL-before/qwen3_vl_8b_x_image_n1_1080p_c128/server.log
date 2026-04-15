@@ -1,0 +1,934 @@
+/sgl-workspace/sglang-before/python/sglang/launch_server.py:51: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+/sgl-workspace/sglang-before/python/sglang/srt/entrypoints/http_server.py:175: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  from sglang.srt.utils.json_response import (
+[2026-04-14 23:45:45] server_args=ServerArgs(model_path='Qwen/Qwen3-VL-8B-Instruct', tokenizer_path='Qwen/Qwen3-VL-8B-Instruct', tokenizer_mode='auto', tokenizer_worker_num=1, skip_tokenizer_init=False, load_format='auto', model_loader_extra_config='{}', trust_remote_code=False, context_length=None, is_embedding=False, enable_multimodal=True, revision=None, model_impl='auto', host='127.0.0.1', port=7893, fastapi_root_path='', grpc_mode=False, skip_server_warmup=False, warmups=None, nccl_port=None, checkpoint_engine_wait_weights_before_ready=False, ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_keyfile_password=None, enable_ssl_refresh=False, dtype='auto', quantization=None, quantization_param_path=None, kv_cache_dtype='auto', enable_fp32_lm_head=False, modelopt_quant=None, modelopt_checkpoint_restore_path=None, modelopt_checkpoint_save_path=None, modelopt_export_path=None, quantize_and_serve=False, rl_quant_profile=None, mem_fraction_static=0.8387624218749999, max_running_requests=None, max_queued_requests=None, max_total_tokens=None, chunked_prefill_size=8192, enable_dynamic_chunking=False, max_prefill_tokens=16384, prefill_max_requests=None, schedule_policy='fcfs', enable_priority_scheduling=False, disable_priority_preemption=False, default_priority_value=None, abort_on_priority_when_disabled=False, schedule_low_priority_values_first=False, priority_scheduling_preemption_threshold=10, schedule_conservativeness=1.0, page_size=1, swa_full_tokens_ratio=0.8, disable_hybrid_swa_memory=False, radix_eviction_policy='lru', enable_prefill_delayer=False, prefill_delayer_max_delay_passes=30, prefill_delayer_token_usage_low_watermark=None, prefill_delayer_forward_passes_buckets=None, prefill_delayer_wait_seconds_buckets=None, device='cuda', tp_size=1, pp_size=1, pp_max_micro_batch_size=None, pp_async_batch_depth=0, stream_interval=1, incremental_streaming_output=False, enable_streaming_session=False, random_seed=84203255, constrained_json_whitespace_pattern=None, constrained_json_disable_any_whitespace=False, watchdog_timeout=300, soft_watchdog_timeout=None, dist_timeout=None, download_dir=None, model_checksum=None, base_gpu_id=0, gpu_id_step=1, sleep_on_idle=False, use_ray=False, custom_sigquit_handler=None, log_level='info', log_level_http=None, log_requests=False, log_requests_level=2, log_requests_format='text', log_requests_target=None, uvicorn_access_log_exclude_prefixes=[], crash_dump_folder=None, show_time_cost=False, enable_metrics=False, enable_metrics_for_all_schedulers=False, tokenizer_metrics_custom_labels_header='x-custom-labels', tokenizer_metrics_allowed_custom_labels=None, extra_metric_labels=None, bucket_time_to_first_token=None, bucket_inter_token_latency=None, bucket_e2e_request_latency=None, collect_tokens_histogram=False, prompt_tokens_buckets=None, generation_tokens_buckets=None, gc_warning_threshold_secs=0.0, decode_log_interval=40, enable_request_time_stats_logging=False, kv_events_config=None, enable_trace=False, otlp_traces_endpoint='localhost:4317', export_metrics_to_file=False, export_metrics_to_file_dir=None, api_key=None, admin_api_key=None, served_model_name='Qwen/Qwen3-VL-8B-Instruct', weight_version='default', chat_template=None, hf_chat_template_name=None, completion_template=None, file_storage_path='sglang_storage', enable_cache_report=False, reasoning_parser=None, tool_call_parser=None, tool_server=None, sampling_defaults='model', dp_size=1, load_balance_method='round_robin', attn_cp_size=1, moe_dp_size=1, dist_init_addr=None, nnodes=1, node_rank=0, json_model_override_args='{}', preferred_sampling_params=None, enable_lora=None, enable_lora_overlap_loading=None, max_lora_rank=None, lora_target_modules=None, lora_paths=None, max_loaded_loras=None, max_loras_per_batch=8, lora_eviction_policy='lru', lora_backend='csgmv', max_lora_chunk_size=16, attention_backend='fa3', decode_attention_backend=None, prefill_attention_backend=None, sampling_backend='flashinfer', grammar_backend='xgrammar', mm_attention_backend=None, fp8_gemm_runner_backend='auto', fp4_gemm_runner_backend='auto', nsa_prefill_backend=None, nsa_decode_backend=None, disable_flashinfer_autotune=False, mamba_backend='triton', speculative_algorithm=None, speculative_draft_model_path=None, speculative_draft_model_revision=None, speculative_draft_load_format=None, speculative_num_steps=None, speculative_eagle_topk=None, speculative_num_draft_tokens=None, speculative_accept_threshold_single=1.0, speculative_accept_threshold_acc=1.0, speculative_token_map=None, speculative_attention_mode='prefill', speculative_draft_attention_backend=None, speculative_moe_runner_backend='auto', speculative_moe_a2a_backend=None, speculative_draft_model_quantization=None, speculative_ngram_min_match_window_size=1, speculative_ngram_max_match_window_size=12, speculative_ngram_min_bfs_breadth=1, speculative_ngram_max_bfs_breadth=10, speculative_ngram_match_type='BFS', speculative_ngram_max_trie_depth=18, speculative_ngram_capacity=10000000, enable_multi_layer_eagle=False, ep_size=1, moe_a2a_backend='none', moe_runner_backend='auto', flashinfer_mxfp4_moe_precision='default', enable_flashinfer_allreduce_fusion=False, enable_aiter_allreduce_fusion=False, deepep_mode='auto', ep_num_redundant_experts=0, ep_dispatch_algorithm=None, init_expert_location='trivial', enable_eplb=False, eplb_algorithm='auto', eplb_rebalance_num_iterations=1000, eplb_rebalance_layers_per_chunk=None, eplb_min_rebalancing_utilization_threshold=1.0, expert_distribution_recorder_mode=None, expert_distribution_recorder_buffer_size=1000, enable_expert_distribution_metrics=False, deepep_config=None, moe_dense_tp_size=None, elastic_ep_backend=None, enable_elastic_expert_backup=False, mooncake_ib_device=None, max_mamba_cache_size=None, mamba_ssm_dtype=None, mamba_full_memory_ratio=0.9, mamba_scheduler_strategy='no_buffer', mamba_track_interval=256, linear_attn_backend='triton', linear_attn_decode_backend=None, linear_attn_prefill_backend=None, enable_hierarchical_cache=False, hicache_ratio=2.0, hicache_size=0, hicache_write_policy='write_through', hicache_io_backend='kernel', hicache_mem_layout='layer_first', hicache_storage_backend=None, hicache_storage_prefetch_policy='best_effort', hicache_storage_backend_extra_config=None, enable_hisparse=False, hisparse_config=None, enable_lmcache=False, kt_weight_path=None, kt_method='AMXINT4', kt_cpuinfer=None, kt_threadpool_count=2, kt_num_gpu_experts=None, kt_max_deferred_experts_per_token=None, dllm_algorithm=None, dllm_algorithm_config=None, enable_double_sparsity=False, ds_channel_config_path=None, ds_heavy_channel_num=32, ds_heavy_token_num=256, ds_heavy_channel_type='qk', ds_sparse_decode_threshold=4096, cpu_offload_gb=0, offload_group_size=-1, offload_num_in_group=1, offload_prefetch_step=1, offload_mode='cpu', multi_item_scoring_delimiter=None, disable_radix_cache=False, cuda_graph_max_bs=256, cuda_graph_bs=[1, 2, 4, 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256], disable_cuda_graph=False, disable_cuda_graph_padding=False, enable_profile_cuda_graph=False, enable_cudagraph_gc=False, enable_layerwise_nvtx_marker=False, enable_nccl_nvls=False, enable_symm_mem=False, disable_flashinfer_cutlass_moe_fp4_allgather=False, enable_tokenizer_batch_encode=False, disable_tokenizer_batch_decode=False, disable_outlines_disk_cache=False, disable_custom_all_reduce=False, enable_mscclpp=False, enable_torch_symm_mem=False, pre_warm_nccl=False, disable_overlap_schedule=False, enable_mixed_chunk=False, enable_dp_attention=False, enable_dp_lm_head=False, enable_two_batch_overlap=False, enable_single_batch_overlap=False, tbo_token_distribution_threshold=0.48, enable_torch_compile=False, disable_piecewise_cuda_graph=True, enforce_piecewise_cuda_graph=False, enable_torch_compile_debug_mode=False, torch_compile_max_bs=32, piecewise_cuda_graph_max_tokens=8192, piecewise_cuda_graph_tokens=[4, 8, 12, 16, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 832, 896, 960, 1024, 1280, 1536, 1792, 2048, 2304, 2560, 2816, 3072, 3328, 3584, 3840, 4096, 4608, 5120, 5632, 6144, 6656, 7168, 7680, 8192], piecewise_cuda_graph_compiler='eager', torchao_config='', enable_nan_detection=False, enable_p2p_check=False, triton_attention_reduce_in_fp32=False, triton_attention_num_kv_splits=8, triton_attention_split_tile_size=None, num_continuous_decode_steps=1, delete_ckpt_after_loading=False, enable_memory_saver=False, enable_weights_cpu_backup=False, enable_draft_weights_cpu_backup=False, allow_auto_truncate=False, enable_custom_logit_processor=False, flashinfer_mla_disable_ragged=False, disable_shared_experts_fusion=False, disable_chunked_prefix_cache=False, disable_fast_image_processor=False, keep_mm_feature_on_device=False, enable_return_hidden_states=False, enable_return_routed_experts=False, scheduler_recv_interval=1, numa_node=None, enable_deterministic_inference=False, rl_on_policy_target=None, enable_attn_tp_input_scattered=False, gc_threshold=None, enable_nsa_prefill_context_parallel=False, nsa_prefill_cp_mode='round-robin-split', enable_fused_qk_norm_rope=False, enable_precise_embedding_interpolation=False, enable_fused_moe_sum_all_reduce=False, enable_prefill_context_parallel=False, prefill_cp_mode='in-seq-split', enable_dynamic_batch_tokenizer=False, dynamic_batch_tokenizer_batch_size=32, dynamic_batch_tokenizer_batch_timeout=0.002, debug_tensor_dump_output_folder=None, debug_tensor_dump_layers=None, debug_tensor_dump_input_file=None, debug_tensor_dump_inject=False, disaggregation_mode='null', disaggregation_transfer_backend='mooncake', disaggregation_bootstrap_port=8998, disaggregation_ib_device=None, disaggregation_decode_enable_offload_kvcache=False, num_reserved_decode_tokens=512, disaggregation_decode_polling_interval=1, encoder_only=False, language_only=False, encoder_transfer_backend='zmq_to_scheduler', encoder_urls=[], enable_adaptive_dispatch_to_encoder=False, custom_weight_loader=[], weight_loader_disable_mmap=False, remote_instance_weight_loader_seed_instance_ip=None, remote_instance_weight_loader_seed_instance_service_port=None, remote_instance_weight_loader_send_weights_group_ports=None, remote_instance_weight_loader_backend='nccl', remote_instance_weight_loader_start_seed_via_transfer_engine=False, modelexpress_config=None, enable_pdmux=False, pdmux_config_path=None, sm_group_num=8, mm_max_concurrent_calls=32, mm_per_request_timeout=10.0, enable_broadcast_mm_inputs_process=False, enable_prefix_mm_cache=False, mm_enable_dp_encoder=False, mm_process_config={}, limit_mm_data_per_request=None, enable_mm_global_cache=False, decrypted_config_file=None, decrypted_draft_config_file=None, forward_hooks=None)
+[2026-04-14 23:45:45] mp.set_executable /sgl-workspace/envs/sgl-before/bin/python3 -> /tmp/sglang_temp_file_1776210345.8947175_8736423.sh (script='#!/bin/sh\nexec numactl --cpunodebind=0 --membind=0 /sgl-workspace/envs/sgl-before/bin/python3 "$@"')
+[2026-04-14 23:45:45] mp.set_executable revert to /sgl-workspace/envs/sgl-before/bin/python3
+[2026-04-14 23:45:47] Using default HuggingFace chat template with detected content format: openai
+[2026-04-14 23:45:52] NUMA affinity is already constrained for process, skipping NUMA node configuration for GPU. Remove your constraints to allow automatic configuration.
+[2026-04-14 23:45:54] Init torch distributed begin.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[2026-04-14 23:45:54] Init torch distributed ends. elapsed=0.23 s, mem usage=0.09 GB
+[2026-04-14 23:45:54] Load weight begin. avail mem=139.13 GB
+[2026-04-14 23:45:54] Multimodal attention backend not set. Use fa3.
+[2026-04-14 23:45:54] Using fa3 as multimodal attention backend.
+[2026-04-14 23:45:54] Found local HF snapshot for Qwen/Qwen3-VL-8B-Instruct at /root/.cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b; skipping download.
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:01,  1.72it/s]Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.48it/s]Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.44it/s]Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.64it/s]Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.59it/s]
+[2026-04-14 23:45:57] Load weight end. elapsed=2.76 s, type=Qwen3VLForConditionalGeneration, avail mem=122.61 GB, mem usage=16.52 GB.
+[2026-04-14 23:45:57] Using KV cache dtype: torch.bfloat16
+[2026-04-14 23:45:57] KV Cache is allocated. #tokens: 729076, K size: 50.06 GB, V size: 50.06 GB
+[2026-04-14 23:45:57] Memory pool end. avail mem=20.44 GB
+[2026-04-14 23:45:57] Capture cuda graph begin. This can take up to several minutes. avail mem=20.34 GB
+[2026-04-14 23:45:57] Capture cuda graph bs [1, 2, 4, 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256]
+  0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=19.95 GB):   0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=19.95 GB):   3%|▎         | 1/36 [00:00<00:17,  1.95it/s]Capturing batches (bs=248 avail_mem=19.76 GB):   3%|▎         | 1/36 [00:00<00:17,  1.95it/s]Capturing batches (bs=240 avail_mem=19.76 GB):   3%|▎         | 1/36 [00:00<00:17,  1.95it/s]Capturing batches (bs=232 avail_mem=19.76 GB):   3%|▎         | 1/36 [00:00<00:17,  1.95it/s]Capturing batches (bs=232 avail_mem=19.76 GB):  11%|█         | 4/36 [00:00<00:04,  7.32it/s]Capturing batches (bs=224 avail_mem=19.76 GB):  11%|█         | 4/36 [00:00<00:04,  7.32it/s]Capturing batches (bs=216 avail_mem=19.76 GB):  11%|█         | 4/36 [00:00<00:04,  7.32it/s]Capturing batches (bs=216 avail_mem=19.76 GB):  17%|█▋        | 6/36 [00:00<00:02, 10.02it/s]Capturing batches (bs=208 avail_mem=19.75 GB):  17%|█▋        | 6/36 [00:00<00:02, 10.02it/s]Capturing batches (bs=200 avail_mem=19.75 GB):  17%|█▋        | 6/36 [00:00<00:02, 10.02it/s]Capturing batches (bs=200 avail_mem=19.75 GB):  22%|██▏       | 8/36 [00:00<00:02, 12.37it/s]Capturing batches (bs=192 avail_mem=19.75 GB):  22%|██▏       | 8/36 [00:00<00:02, 12.37it/s]Capturing batches (bs=184 avail_mem=19.75 GB):  22%|██▏       | 8/36 [00:00<00:02, 12.37it/s]Capturing batches (bs=176 avail_mem=19.75 GB):  22%|██▏       | 8/36 [00:00<00:02, 12.37it/s]Capturing batches (bs=176 avail_mem=19.75 GB):  31%|███       | 11/36 [00:01<00:01, 15.28it/s]Capturing batches (bs=168 avail_mem=19.75 GB):  31%|███       | 11/36 [00:01<00:01, 15.28it/s]Capturing batches (bs=160 avail_mem=19.74 GB):  31%|███       | 11/36 [00:01<00:01, 15.28it/s]Capturing batches (bs=152 avail_mem=19.74 GB):  31%|███       | 11/36 [00:01<00:01, 15.28it/s]Capturing batches (bs=152 avail_mem=19.74 GB):  39%|███▉      | 14/36 [00:01<00:01, 17.03it/s]Capturing batches (bs=144 avail_mem=19.74 GB):  39%|███▉      | 14/36 [00:01<00:01, 17.03it/s]Capturing batches (bs=136 avail_mem=19.74 GB):  39%|███▉      | 14/36 [00:01<00:01, 17.03it/s]Capturing batches (bs=128 avail_mem=19.74 GB):  39%|███▉      | 14/36 [00:01<00:01, 17.03it/s]Capturing batches (bs=128 avail_mem=19.74 GB):  47%|████▋     | 17/36 [00:01<00:01, 18.02it/s]Capturing batches (bs=120 avail_mem=19.73 GB):  47%|████▋     | 17/36 [00:01<00:01, 18.02it/s]Capturing batches (bs=112 avail_mem=19.73 GB):  47%|████▋     | 17/36 [00:01<00:01, 18.02it/s]Capturing batches (bs=112 avail_mem=19.73 GB):  53%|█████▎    | 19/36 [00:01<00:01, 16.95it/s]Capturing batches (bs=104 avail_mem=19.73 GB):  53%|█████▎    | 19/36 [00:01<00:01, 16.95it/s]Capturing batches (bs=96 avail_mem=19.73 GB):  53%|█████▎    | 19/36 [00:01<00:01, 16.95it/s] Capturing batches (bs=96 avail_mem=19.73 GB):  58%|█████▊    | 21/36 [00:01<00:00, 17.13it/s]Capturing batches (bs=88 avail_mem=19.72 GB):  58%|█████▊    | 21/36 [00:01<00:00, 17.13it/s]Capturing batches (bs=80 avail_mem=19.72 GB):  58%|█████▊    | 21/36 [00:01<00:00, 17.13it/s]Capturing batches (bs=80 avail_mem=19.72 GB):  64%|██████▍   | 23/36 [00:01<00:00, 17.68it/s]Capturing batches (bs=72 avail_mem=19.72 GB):  64%|██████▍   | 23/36 [00:01<00:00, 17.68it/s]Capturing batches (bs=64 avail_mem=19.72 GB):  64%|██████▍   | 23/36 [00:01<00:00, 17.68it/s]Capturing batches (bs=64 avail_mem=19.72 GB):  69%|██████▉   | 25/36 [00:01<00:00, 18.21it/s]Capturing batches (bs=56 avail_mem=19.72 GB):  69%|██████▉   | 25/36 [00:01<00:00, 18.21it/s]Capturing batches (bs=48 avail_mem=19.72 GB):  69%|██████▉   | 25/36 [00:01<00:00, 18.21it/s]Capturing batches (bs=40 avail_mem=19.71 GB):  69%|██████▉   | 25/36 [00:01<00:00, 18.21it/s]Capturing batches (bs=40 avail_mem=19.71 GB):  78%|███████▊  | 28/36 [00:01<00:00, 18.80it/s]Capturing batches (bs=32 avail_mem=19.71 GB):  78%|███████▊  | 28/36 [00:01<00:00, 18.80it/s]Capturing batches (bs=24 avail_mem=19.71 GB):  78%|███████▊  | 28/36 [00:01<00:00, 18.80it/s]Capturing batches (bs=24 avail_mem=19.71 GB):  83%|████████▎ | 30/36 [00:02<00:00, 19.01it/s]Capturing batches (bs=16 avail_mem=19.71 GB):  83%|████████▎ | 30/36 [00:02<00:00, 19.01it/s]Capturing batches (bs=12 avail_mem=19.71 GB):  83%|████████▎ | 30/36 [00:02<00:00, 19.01it/s]Capturing batches (bs=12 avail_mem=19.71 GB):  89%|████████▉ | 32/36 [00:02<00:00, 17.31it/s]Capturing batches (bs=8 avail_mem=19.71 GB):  89%|████████▉ | 32/36 [00:02<00:00, 17.31it/s] Capturing batches (bs=4 avail_mem=19.70 GB):  89%|████████▉ | 32/36 [00:02<00:00, 17.31it/s]Capturing batches (bs=2 avail_mem=19.70 GB):  89%|████████▉ | 32/36 [00:02<00:00, 17.31it/s]Capturing batches (bs=2 avail_mem=19.70 GB):  97%|█████████▋| 35/36 [00:02<00:00, 18.91it/s]Capturing batches (bs=1 avail_mem=19.70 GB):  97%|█████████▋| 35/36 [00:02<00:00, 18.91it/s]Capturing batches (bs=1 avail_mem=19.70 GB): 100%|██████████| 36/36 [00:02<00:00, 15.49it/s]
+[2026-04-14 23:46:00] Capture cuda graph end. Time elapsed: 2.88 s. mem usage=0.65 GB. avail mem=19.70 GB.
+[2026-04-14 23:46:00] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-04-14 23:46:01] max_total_num_tokens=729076, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=2048, context_len=262144, available_gpu_mem=19.70 GB
+[2026-04-14 23:46:01] INFO:     Started server process [2287453]
+[2026-04-14 23:46:01] INFO:     Waiting for application startup.
+[2026-04-14 23:46:01] Using default chat sampling params from model generation config: {'repetition_penalty': 1.0, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}
+[2026-04-14 23:46:01] INFO:     Application startup complete.
+[2026-04-14 23:46:01] INFO:     Uvicorn running on http://127.0.0.1:7893 (Press CTRL+C to quit)
+[2026-04-14 23:46:02] INFO:     127.0.0.1:53692 - "GET /model_info HTTP/1.1" 200 OK
+[2026-04-14 23:46:03] INFO:     127.0.0.1:53712 - "GET /health_generate HTTP/1.1" 503 Service Unavailable
+[2026-04-14 23:46:03] Prefill batch, #new-seq: 1, #new-token: 78, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.00
+[2026-04-14 23:46:03] INFO:     127.0.0.1:53698 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-04-14 23:46:03] The server is fired up and ready to roll!
+[2026-04-14 23:46:08] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 18.17
+[2026-04-14 23:46:09] INFO:     127.0.0.1:53722 - "GET /health_generate HTTP/1.1" 200 OK
+/sgl-workspace/envs/sgl-before/lib/python3.12/site-packages/fastapi/routing.py:120: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  response = await f(request)
+[2026-04-14 23:46:15] INFO:     127.0.0.1:49678 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:46:15] INFO:     127.0.0.1:49694 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:46:18] INFO:     127.0.0.1:49710 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:46:18] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:46:18] Prefill batch, #new-seq: 1, #new-token: 69, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 0.10
+[2026-04-14 23:46:19] INFO:     127.0.0.1:49718 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:46:19] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:46:19] INFO:     127.0.0.1:49726 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:46:19] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:46:19] INFO:     127.0.0.1:49742 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:46:19] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:46:19] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 68, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 59.83
+[2026-04-14 23:46:19] Prefill batch, #new-seq: 2, #new-token: 307, #cached-token: 0, token usage: 0.00, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 325.11
+[2026-04-14 23:46:19] Decode batch, #running-req: 3, #token: 421, token usage: 0.00, cuda graph: True, gen throughput (token/s): 2.54, #queue-req: 0
+[2026-04-14 23:46:19] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:46:19] INFO:     127.0.0.1:49756 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:46:19] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:46:19] INFO:     127.0.0.1:49770 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:46:29] INFO:     127.0.0.1:55222 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:46:29] INFO:     127.0.0.1:55232 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:46:59] INFO:     127.0.0.1:34758 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:46:59] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:46:59] Prefill batch, #new-seq: 1, #new-token: 185, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 7.62
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43018 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 1, #new-token: 199, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 110.52
+[2026-04-14 23:47:01] Decode batch, #running-req: 1, #token: 202, token usage: 0.00, cuda graph: True, gen throughput (token/s): 1.10, #queue-req: 0
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43032 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 1, #new-token: 99, #cached-token: 0, token usage: 0.00, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 3957.59
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43046 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43052 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43066 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 3, #new-token: 320, #cached-token: 0, token usage: 0.00, #running-req: 2, #queue-req: 0, cuda graph: False, input throughput (token/s): 1786.65
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43076 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43082 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:42996 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 2, #new-token: 342, #cached-token: 0, token usage: 0.00, #running-req: 3, #queue-req: 0, cuda graph: False, input throughput (token/s): 6428.04
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43088 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 2, #new-token: 219, #cached-token: 184, token usage: 0.00, #running-req: 5, #queue-req: 0, cuda graph: False, input throughput (token/s): 13991.26
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43098 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43118 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43126 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43136 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43150 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43006 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 1, #new-token: 276, #cached-token: 0, token usage: 0.00, #running-req: 6, #queue-req: 0, cuda graph: False, input throughput (token/s): 3407.33
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 4, #new-token: 1282, #cached-token: 0, token usage: 0.00, #running-req: 7, #queue-req: 0, cuda graph: False, input throughput (token/s): 10005.28
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 1, #new-token: 445, #cached-token: 0, token usage: 0.00, #running-req: 11, #queue-req: 0, cuda graph: False, input throughput (token/s): 707045.52
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43332 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43346 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43362 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43364 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43376 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43380 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43400 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43402 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43406 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43422 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43430 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43438 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43448 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43462 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43472 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43478 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43496 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 4, #new-token: 739, #cached-token: 0, token usage: 0.01, #running-req: 9, #queue-req: 0, cuda graph: False, input throughput (token/s): 4088.54
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 11, #new-token: 2869, #cached-token: 0, token usage: 0.01, #running-req: 13, #queue-req: 0, cuda graph: False, input throughput (token/s): 16164.78
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 2, #new-token: 767, #cached-token: 0, token usage: 0.01, #running-req: 24, #queue-req: 0, cuda graph: False, input throughput (token/s): 160030.38
+[2026-04-14 23:47:01] Decode batch, #running-req: 25, #token: 5903, token usage: 0.01, cuda graph: True, gen throughput (token/s): 582.93, #queue-req: 0
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43856 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43866 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43882 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43894 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43910 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43912 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43916 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43922 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43926 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43938 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43950 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43952 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43958 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43966 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43974 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43982 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:43994 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44012 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44022 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44038 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44042 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Prefill batch, #new-seq: 1, #new-token: 358, #cached-token: 0, token usage: 0.01, #running-req: 13, #queue-req: 0, cuda graph: False, input throughput (token/s): 6868.38
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44048 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44064 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44076 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44078 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44090 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44096 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44124 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44130 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44138 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44150 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44152 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:01] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:01] INFO:     127.0.0.1:44154 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43026 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43868 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:44000 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:44108 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 10, #new-token: 3256, #cached-token: 0, token usage: 0.01, #running-req: 14, #queue-req: 0, cuda graph: False, input throughput (token/s): 4978.53
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43062 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 10, #new-token: 2996, #cached-token: 0, token usage: 0.02, #running-req: 24, #queue-req: 0, cuda graph: False, input throughput (token/s): 61109.64
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43112 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43116 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43220 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43222 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43238 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 16, #new-token: 5121, #cached-token: 0, token usage: 0.02, #running-req: 34, #queue-req: 0, cuda graph: False, input throughput (token/s): 22803.44
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43260 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43266 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43280 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43300 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43310 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43326 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43504 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 1, #new-token: 456, #cached-token: 0, token usage: 0.02, #running-req: 50, #queue-req: 0, cuda graph: False, input throughput (token/s): 295115.93
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43520 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43530 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43540 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43556 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43598 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43608 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43632 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43644 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43656 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43666 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43680 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43702 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43728 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43740 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 4, #new-token: 900, #cached-token: 0, token usage: 0.02, #running-req: 51, #queue-req: 0, cuda graph: False, input throughput (token/s): 19703.60
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43742 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43758 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43762 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43764 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43794 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43808 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43820 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43850 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43166 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 9, #new-token: 2450, #cached-token: 0, token usage: 0.03, #running-req: 55, #queue-req: 0, cuda graph: False, input throughput (token/s): 21977.28
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43172 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43178 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43182 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43192 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43194 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43210 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43244 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 12, #new-token: 2449, #cached-token: 0, token usage: 0.03, #running-req: 64, #queue-req: 0, cuda graph: False, input throughput (token/s): 44327.81
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43294 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43308 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43330 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43392 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43494 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43572 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43586 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43614 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43622 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43654 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43696 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43714 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43754 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43778 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43834 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:43706 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 10, #new-token: 3933, #cached-token: 0, token usage: 0.04, #running-req: 76, #queue-req: 0, cuda graph: False, input throughput (token/s): 24374.91
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 6, #new-token: 1489, #cached-token: 0, token usage: 0.04, #running-req: 86, #queue-req: 0, cuda graph: False, input throughput (token/s): 111713.88
+[2026-04-14 23:47:02] Prefill batch, #new-seq: 17, #new-token: 4800, #cached-token: 0, token usage: 0.04, #running-req: 92, #queue-req: 0, cuda graph: False, input throughput (token/s): 15109.01
+[2026-04-14 23:47:02] Decode batch, #running-req: 11, #token: 1885, token usage: 0.00, cuda graph: True, gen throughput (token/s): 2089.73, #queue-req: 0
+[2026-04-14 23:47:02] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:44156 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:47:02] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:47:02] INFO:     127.0.0.1:44168 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:47:10] INFO:     127.0.0.1:44176 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:47:10] INFO:     127.0.0.1:44180 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:47:41] INFO:     127.0.0.1:58140 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:41] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:41] Prefill batch, #new-seq: 1, #new-token: 220, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 124.29
+[2026-04-14 23:47:42] INFO:     127.0.0.1:58158 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:42] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:42] Prefill batch, #new-seq: 1, #new-token: 127, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 126.44
+[2026-04-14 23:47:42] INFO:     127.0.0.1:58164 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:42] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:42] INFO:     127.0.0.1:58180 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 1, #new-token: 172, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 3056.33
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58184 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58198 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Decode batch, #running-req: 1, #token: 488, token usage: 0.00, cuda graph: True, gen throughput (token/s): 1.32, #queue-req: 0
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 1, #new-token: 314, #cached-token: 0, token usage: 0.00, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 4844.64
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58236 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 1, #new-token: 24, #cached-token: 0, token usage: 0.00, #running-req: 2, #queue-req: 0, cuda graph: False, input throughput (token/s): 19420.35
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 1, #new-token: 440, #cached-token: 0, token usage: 0.00, #running-req: 3, #queue-req: 0, cuda graph: False, input throughput (token/s): 21435.45
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58254 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58264 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58278 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58294 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 2, #new-token: 649, #cached-token: 0, token usage: 0.00, #running-req: 4, #queue-req: 0, cuda graph: False, input throughput (token/s): 11577.13
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58328 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58352 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58362 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 1, #new-token: 212, #cached-token: 0, token usage: 0.00, #running-req: 6, #queue-req: 0, cuda graph: False, input throughput (token/s): 42580.16
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 2, #new-token: 745, #cached-token: 0, token usage: 0.00, #running-req: 7, #queue-req: 0, cuda graph: False, input throughput (token/s): 11827.89
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58310 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 3, #new-token: 880, #cached-token: 0, token usage: 0.00, #running-req: 9, #queue-req: 0, cuda graph: False, input throughput (token/s): 99697.48
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 1, #new-token: 395, #cached-token: 0, token usage: 0.01, #running-req: 12, #queue-req: 0, cuda graph: False, input throughput (token/s): 41392.50
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58484 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58500 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58696 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58712 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58714 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58724 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58734 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58738 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58748 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58754 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58770 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58772 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58780 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58792 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58798 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58802 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58804 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 2, #new-token: 843, #cached-token: 0, token usage: 0.01, #running-req: 11, #queue-req: 0, cuda graph: False, input throughput (token/s): 4120.96
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58816 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58818 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58830 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58848 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58850 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58860 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58874 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58884 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58152 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59234 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59244 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59266 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59274 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 7, #new-token: 2250, #cached-token: 1, token usage: 0.01, #running-req: 13, #queue-req: 0, cuda graph: False, input throughput (token/s): 15006.44
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 7, #new-token: 1623, #cached-token: 0, token usage: 0.02, #running-req: 20, #queue-req: 0, cuda graph: False, input throughput (token/s): 91444.60
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58160 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58938 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] [http_server] Error: No data iterator found for token: <|video_pad|>
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58954 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58960 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58986 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58994 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59010 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59014 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58588 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58192 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 14, #new-token: 3020, #cached-token: 219, token usage: 0.02, #running-req: 27, #queue-req: 0, cuda graph: False, input throughput (token/s): 23572.33
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59016 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59020 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59030 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59050 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 9, #new-token: 1718, #cached-token: 0, token usage: 0.02, #running-req: 41, #queue-req: 0, cuda graph: False, input throughput (token/s): 67892.13
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59060 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59068 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59070 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59086 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59098 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59106 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59108 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59118 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59126 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59152 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 3, #new-token: 914, #cached-token: 0, token usage: 0.02, #running-req: 47, #queue-req: 0, cuda graph: False, input throughput (token/s): 42442.07
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59226 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58208 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58210 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58222 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58246 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58306 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 6, #new-token: 2132, #cached-token: 0, token usage: 0.02, #running-req: 50, #queue-req: 0, cuda graph: False, input throughput (token/s): 26522.18
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58312 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58314 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58338 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58340 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58372 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58386 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 5, #new-token: 912, #cached-token: 0, token usage: 0.02, #running-req: 56, #queue-req: 0, cuda graph: False, input throughput (token/s): 59294.46
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 5, #new-token: 1277, #cached-token: 0, token usage: 0.02, #running-req: 61, #queue-req: 0, cuda graph: False, input throughput (token/s): 54079.22
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58400 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58414 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58418 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58420 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58430 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58442 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58462 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58464 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58466 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 7, #new-token: 2544, #cached-token: 0, token usage: 0.02, #running-req: 66, #queue-req: 0, cuda graph: False, input throughput (token/s): 22517.04
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58452 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58460 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58472 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58516 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58518 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58530 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58544 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58560 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58576 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58584 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58602 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58616 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58620 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58622 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 9, #new-token: 2877, #cached-token: 0, token usage: 0.03, #running-req: 64, #queue-req: 0, cuda graph: False, input throughput (token/s): 35866.50
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58630 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58642 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58656 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58672 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58680 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58496 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58512 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58728 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58842 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58890 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58902 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58904 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58906 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58912 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58924 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 13, #new-token: 4028, #cached-token: 1, token usage: 0.04, #running-req: 72, #queue-req: 0, cuda graph: False, input throughput (token/s): 29272.10
+[2026-04-14 23:47:43] INFO:     127.0.0.1:58972 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59046 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59138 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59160 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59174 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59178 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59190 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59206 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59218 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] INFO:     127.0.0.1:59252 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 6, #new-token: 1675, #cached-token: 0, token usage: 0.04, #running-req: 85, #queue-req: 0, cuda graph: False, input throughput (token/s): 102164.24
+[2026-04-14 23:47:43] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 10, #new-token: 2461, #cached-token: 0, token usage: 0.04, #running-req: 91, #queue-req: 0, cuda graph: False, input throughput (token/s): 29470.09
+[2026-04-14 23:47:43] Prefill batch, #new-seq: 10, #new-token: 3974, #cached-token: 0, token usage: 0.04, #running-req: 101, #queue-req: 0, cuda graph: False, input throughput (token/s): 25283.37
+[2026-04-14 23:47:44] Decode batch, #running-req: 36, #token: 8022, token usage: 0.01, cuda graph: True, gen throughput (token/s): 1789.22, #queue-req: 0
+[2026-04-14 23:47:44] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:47:44] INFO:     127.0.0.1:59280 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:47:44] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:47:44] INFO:     127.0.0.1:59290 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:47:51] INFO:     127.0.0.1:41786 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:47:51] INFO:     127.0.0.1:41800 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-04-14 23:48:22] INFO:     127.0.0.1:40236 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:22] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:22] Prefill batch, #new-seq: 1, #new-token: 220, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 102.42
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40246 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40248 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 219, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 130.61
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 1, #new-token: 432, #cached-token: 0, token usage: 0.00, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 826.03
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40262 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 1, #new-token: 277, #cached-token: 0, token usage: 0.00, #running-req: 2, #queue-req: 0, cuda graph: False, input throughput (token/s): 13057.29
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40268 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40298 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 1, #new-token: 181, #cached-token: 0, token usage: 0.00, #running-req: 3, #queue-req: 0, cuda graph: False, input throughput (token/s): 5732.32
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 1, #new-token: 473, #cached-token: 0, token usage: 0.00, #running-req: 4, #queue-req: 0, cuda graph: False, input throughput (token/s): 139238.49
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40330 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Decode batch, #running-req: 4, #token: 1330, token usage: 0.00, cuda graph: True, gen throughput (token/s): 5.34, #queue-req: 0
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40334 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 2, #new-token: 626, #cached-token: 0, token usage: 0.00, #running-req: 4, #queue-req: 0, cuda graph: False, input throughput (token/s): 15427.30
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40346 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40372 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40374 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40382 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40390 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 3, #new-token: 423, #cached-token: 1, token usage: 0.00, #running-req: 5, #queue-req: 0, cuda graph: False, input throughput (token/s): 10942.04
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 2, #new-token: 636, #cached-token: 0, token usage: 0.00, #running-req: 8, #queue-req: 0, cuda graph: False, input throughput (token/s): 196505.37
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40436 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40452 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40454 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40456 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40470 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40480 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40484 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40500 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40516 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40526 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40528 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40542 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40546 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40678 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40684 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 1, #new-token: 334, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, cuda graph: False, input throughput (token/s): 2990.66
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40698 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40708 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40722 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40730 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40742 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40744 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40746 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40750 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40758 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40764 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40780 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40806 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 8, #new-token: 2418, #cached-token: 0, token usage: 0.01, #running-req: 1, #queue-req: 0, cuda graph: False, input throughput (token/s): 8943.16
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40822 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40836 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40846 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40850 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40854 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40868 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40880 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40892 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40896 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40906 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40922 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40926 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40948 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40960 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40964 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40970 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:40984 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:41000 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:41016 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:41018 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:41032 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] INFO:     127.0.0.1:41046 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:24] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:24] Prefill batch, #new-seq: 6, #new-token: 2068, #cached-token: 0, token usage: 0.01, #running-req: 9, #queue-req: 0, cuda graph: False, input throughput (token/s): 41433.59
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41300 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41312 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41318 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41322 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41338 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 11, #new-token: 3280, #cached-token: 0, token usage: 0.02, #running-req: 15, #queue-req: 0, cuda graph: False, input throughput (token/s): 33802.71
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41344 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41350 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41362 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41370 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41374 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41386 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40282 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41062 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41066 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41076 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41092 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41106 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41110 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41142 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41146 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41152 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41156 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41162 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 23, #new-token: 5747, #cached-token: 0, token usage: 0.02, #running-req: 26, #queue-req: 0, cuda graph: False, input throughput (token/s): 25652.14
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41170 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41174 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41190 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41196 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41200 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40314 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40322 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 5, #new-token: 1281, #cached-token: 0, token usage: 0.03, #running-req: 49, #queue-req: 0, cuda graph: False, input throughput (token/s): 131921.46
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40350 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40352 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 18, #new-token: 4291, #cached-token: 0, token usage: 0.03, #running-req: 54, #queue-req: 0, cuda graph: False, input throughput (token/s): 15681.58
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40358 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40552 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40576 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40624 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40632 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40638 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40648 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40662 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41058 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41222 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41228 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41242 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41256 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41266 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41272 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41280 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41290 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 7, #new-token: 2371, #cached-token: 0, token usage: 0.03, #running-req: 72, #queue-req: 0, cuda graph: False, input throughput (token/s): 81987.98
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40402 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40410 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40416 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 2, #new-token: 848, #cached-token: 0, token usage: 0.04, #running-req: 79, #queue-req: 0, cuda graph: False, input throughput (token/s): 111625.84
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40424 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40426 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40564 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40592 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40600 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40604 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40618 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40620 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40654 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40794 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40914 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:40936 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41056 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41126 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41206 - "POST /generate HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Warning: More image data items provided than corresponding tokens found in the prompt.
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 17, #new-token: 5353, #cached-token: 0, token usage: 0.04, #running-req: 81, #queue-req: 0, cuda graph: False, input throughput (token/s): 6943.53
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 2, #new-token: 390, #cached-token: 0, token usage: 0.04, #running-req: 98, #queue-req: 0, cuda graph: False, input throughput (token/s): 263728.59
+[2026-04-14 23:48:25] Prefill batch, #new-seq: 16, #new-token: 3897, #cached-token: 0, token usage: 0.04, #running-req: 100, #queue-req: 0, cuda graph: False, input throughput (token/s): 5051.69
+[2026-04-14 23:48:25] Decode batch, #running-req: 94, #token: 24776, token usage: 0.03, cuda graph: True, gen throughput (token/s): 845.93, #queue-req: 0
+[2026-04-14 23:48:25] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41402 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:48:25] Endpoint '/get_server_info' is deprecated and will be removed in a future version. Please use '/server_info' instead.
+[2026-04-14 23:48:25] INFO:     127.0.0.1:41410 - "GET /get_server_info HTTP/1.1" 200 OK
+[2026-04-14 23:48:27] SIGTERM received. signum=None frame=None. Draining requests and shutting down...
+[2026-04-14 23:48:28] Gracefully exiting... Remaining number of requests 1. Remaining requests remaining_rids=['42519e58af434b198d45c70e0d1b7041'].
+[2026-04-14 23:48:33] Gracefully exiting... Remaining number of requests 1. Remaining requests remaining_rids=['42519e58af434b198d45c70e0d1b7041'].
