@@ -1,0 +1,90 @@
+Loading processor for prompt generation...
+
+############################################################
+[1/3] Resolution: 720p (fresh server)
+############################################################
+Launching server: /sgl-workspace/envs/sgl-after/bin/python3 -m sglang.launch_server --model-path moonshotai/Kimi-K2.5 --port 30000 --tp-size 8 --enable-multimodal --trust-remote-code
+Waiting for sglang server on port 30000 (timeout=600s)...
+
+Error: Server did not become ready within 600s. Check server.log for details.
+
+--- Last 20 lines of server.log ---
+[2026-04-15 05:52:42 TP3] FlashInfer workspace initialized for rank 3, world_size 8, backend trtllm
+[2026-04-15 05:52:42 TP4] FlashInfer workspace initialized for rank 4, world_size 8, backend trtllm
+[2026-04-15 05:52:42 TP5] FlashInfer workspace initialized for rank 5, world_size 8, backend trtllm
+[2026-04-15 05:52:42 TP7] FlashInfer workspace initialized for rank 7, world_size 8, backend trtllm
+[2026-04-15 05:52:42 TP6] FlashInfer workspace initialized for rank 6, world_size 8, backend trtllm
+
+Capturing batches (bs=512 avail_mem=22.48 GB):   2%|▏         | 1/52 [03:31<2:59:44, 211.47s/it]
+Capturing batches (bs=496 avail_mem=17.82 GB):   2%|▏         | 1/52 [03:31<2:59:44, 211.47s/it]
+Capturing batches (bs=496 avail_mem=17.82 GB):   4%|▍         | 2/52 [03:31<1:12:44, 87.29s/it]
+Capturing batches (bs=480 avail_mem=17.81 GB):   4%|▍         | 2/52 [03:31<1:12:44, 87.29s/it]
+Capturing batches (bs=480 avail_mem=17.81 GB):   6%|▌         | 3/52 [03:32<38:49, 47.55s/it]
+Capturing batches (bs=464 avail_mem=17.81 GB):   6%|▌         | 3/52 [03:32<38:49, 47.55s/it]
+Capturing batches (bs=464 avail_mem=17.81 GB):   8%|▊         | 4/52 [03:32<23:05, 28.87s/it]
+Capturing batches (bs=448 avail_mem=17.80 GB):   8%|▊         | 4/52 [03:32<23:05, 28.87s/it]
+Capturing batches (bs=448 avail_mem=17.80 GB):  10%|▉         | 5/52 [03:32<14:31, 18.55s/it]
+Capturing batches (bs=432 avail_mem=17.79 GB):  10%|▉         | 5/52 [03:32<14:31, 18.55s/it]
+Capturing batches (bs=432 avail_mem=17.79 GB):  12%|█▏        | 6/52 [03:32<09:27, 12.33s/it]
+Capturing batches (bs=416 avail_mem=17.78 GB):  12%|█▏        | 6/52 [03:32<09:27, 12.33s/it]
+Capturing batches (bs=416 avail_mem=17.78 GB):  13%|█▎        | 7/52 [03:33<06:17,  8.38s/it]
+Capturing batches (bs=400 avail_mem=17.77 GB):  13%|█▎        | 7/52 [03:33<06:17,  8.38s/it]
+--- End of server.log ---
+Shutting down server...
+Server stopped.
+
+############################################################
+[2/3] Resolution: 1080p (fresh server)
+############################################################
+Launching server: /sgl-workspace/envs/sgl-after/bin/python3 -m sglang.launch_server --model-path moonshotai/Kimi-K2.5 --port 30000 --tp-size 8 --enable-multimodal --trust-remote-code
+Waiting for sglang server on port 30000 (timeout=600s)...
+Server ready! (took 136s)
+
+============================================================
+Probing: 1080p (1920x1080)
+============================================================
+  Warmup: sending 3 requests (1~3 images)...
+    warmup [1 images] FAILED
+    warmup [2 images] FAILED
+    warmup [3 images] FAILED
+  Warmup done.
+
+  [1 images] Generating 1x 1080p... (0.1s) Sending... FAILED: 500: {"object":"error","message":"Internal server error: An exception occurred while loading multimodal data: ","type":"
+
+  Result: 1080p max = 0 images
+Shutting down server...
+Server stopped.
+
+############################################################
+[3/3] Resolution: 1440x2560 (fresh server)
+############################################################
+Launching server: /sgl-workspace/envs/sgl-after/bin/python3 -m sglang.launch_server --model-path moonshotai/Kimi-K2.5 --port 30000 --tp-size 8 --enable-multimodal --trust-remote-code
+Waiting for sglang server on port 30000 (timeout=600s)...
+Server ready! (took 121s)
+
+============================================================
+Probing: 1440x2560 (2560x1440)
+============================================================
+  Warmup: sending 3 requests (1~3 images)...
+    warmup [1 images] FAILED
+    warmup [2 images] FAILED
+    warmup [3 images] FAILED
+  Warmup done.
+
+  [1 images] Generating 1x 1440x2560... (0.1s) Sending... FAILED: 500: {"object":"error","message":"Internal server error: An exception occurred while loading multimodal data: ","type":"
+
+  Result: 1440x2560 max = 0 images
+Shutting down server...
+Server stopped.
+
+Combined report: records/20260415/20260415_054606_Probe_Kimi-K25_SGL-after/probe_report.json
+
+============================================================
+Image Limit Probe Summary
+============================================================
+Resolution        Max Images    Failed At
+--------------- ------------ ------------
+720p                       0          N/A
+1080p                      0            1
+1440x2560                  0            1
+============================================================
