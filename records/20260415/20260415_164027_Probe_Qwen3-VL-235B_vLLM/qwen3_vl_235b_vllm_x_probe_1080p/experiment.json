@@ -1,0 +1,72 @@
+{
+  "experiment_id": "20260415_164030",
+  "description": "Probe Qwen3-VL-235B vLLM",
+  "gpu_ids": "external",
+  "server_config": "qwen3_vl_235b_vllm",
+  "bench_config": "probe_1080p",
+  "started_at": "2026-04-15T16:40:30.237756",
+  "finished_at": "2026-04-15T16:40:30.238387",
+  "status": "failed",
+  "error": "No server responds at http://127.0.0.1:8000 (tried /health and /health_generate).",
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "backend": "vllm",
+      "extra_args": "--port 30000 --tp-size 8 --enable-multimodal --gpu-memory-utilization 0.80",
+      "startup_timeout": 900
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10.post2.dev368+g8998e97d0",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "fix/kimi-k25-grid-thws-cpu",
+    "git_commit": "8998e97d0b33d3085ae48a36e6af4e3eb8a2ef2f",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "(external server on port 8000)"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}
