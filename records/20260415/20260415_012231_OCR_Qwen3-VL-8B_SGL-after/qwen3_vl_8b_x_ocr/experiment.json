@@ -1,0 +1,82 @@
+{
+  "experiment_id": "20260415_012232",
+  "description": "OCR Qwen3-VL-8B SGL-after",
+  "gpu_ids": "0",
+  "server_config": "qwen3_vl_8b",
+  "bench_config": "ocr",
+  "started_at": "2026-04-15T01:22:32.232547",
+  "finished_at": "2026-04-15T01:25:59.690397",
+  "status": "completed",
+  "error": null,
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal",
+      "backend": "sglang",
+      "startup_timeout": 600
+    },
+    "accuracy": {
+      "tasks": [
+        "ocrbench"
+      ],
+      "extra_args": "--max-tokens 8192 --stream",
+      "api_key": "empty"
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "12.8",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "editable",
+    "version": "0.5.10.post2.dev345+g1588856e9",
+    "location": "/sgl-workspace/sglang/python",
+    "git_branch": "HEAD",
+    "git_commit": "1588856e9b7c275e25db67aeba9118f5c8d434a6",
+    "git_dirty": true
+  },
+  "server": {
+    "command": "/sgl-workspace/envs/sgl-after/bin/python3 -m sglang.launch_server --model-path Qwen/Qwen3-VL-8B-Instruct --port 7893 --tp-size 1 --enable-multimodal"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [
+    {
+      "task": "ocrbench",
+      "command": "uv run python eval.py ocrbench --model kimi/Qwen/Qwen3-VL-8B-Instruct --max-tokens 8192 --stream",
+      "returncode": 0
+    }
+  ],
+  "stress_report": null,
+  "cache_report": null
+}
