@@ -1,0 +1,32 @@
+# Cache: Prefix cache hit rate benchmark (4 scenarios)
+#
+# Scenarios: identical_requests / same_image_reuse / partial_prefix_sharing / multiturn_image
+# Single client per scenario to eliminate within-phase self-caching noise.
+
+[cache]
+scenarios = ["identical_requests", "same_image_reuse", "partial_prefix_sharing", "multiturn_image"]
+output_len = 16
+image_resolution = "720p"
+text_input_len = 64
+max_concurrency = 1
+seed = 42
+
+[cache.identical_requests]
+num_images = 1
+num_requests = 4
+
+[cache.same_image_reuse]
+num_images = 3
+num_phases = 4
+requests_per_phase = 1
+
+[cache.partial_prefix_sharing]
+shared_images = 4
+divergent_images = 4
+num_phases = 6
+requests_per_phase = 1
+
+[cache.multiturn_image]
+num_clients = 1
+num_rounds = 8
+sub_question_len = 32

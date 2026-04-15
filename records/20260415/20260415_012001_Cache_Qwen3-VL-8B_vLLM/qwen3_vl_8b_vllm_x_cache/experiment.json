@@ -1,0 +1,100 @@
+{
+  "experiment_id": "20260415_012001",
+  "description": "Cache Qwen3-VL-8B vLLM",
+  "gpu_ids": "0",
+  "server_config": "qwen3_vl_8b_vllm",
+  "bench_config": "cache",
+  "started_at": "2026-04-15T01:20:01.085854",
+  "finished_at": "2026-04-15T01:20:11.621237",
+  "status": "failed",
+  "error": "Server process exited with code 2.\nCheck server.log for details.",
+  "config": {
+    "server": {
+      "model_path": "Qwen/Qwen3-VL-8B-Instruct",
+      "backend": "vllm",
+      "extra_args": "--port 7893 --tp-size 1 --enable-multimodal --enable-cache-report",
+      "startup_timeout": 600
+    },
+    "cache": {
+      "scenarios": [
+        "identical_requests",
+        "same_image_reuse",
+        "partial_prefix_sharing",
+        "multiturn_image"
+      ],
+      "output_len": 16,
+      "image_resolution": "720p",
+      "text_input_len": 64,
+      "max_concurrency": 1,
+      "seed": 42,
+      "identical_requests": {
+        "num_images": 1,
+        "num_requests": 4
+      },
+      "same_image_reuse": {
+        "num_images": 3,
+        "num_phases": 4,
+        "requests_per_phase": 1
+      },
+      "partial_prefix_sharing": {
+        "shared_images": 4,
+        "divergent_images": 4,
+        "num_phases": 6,
+        "requests_per_phase": 1
+      },
+      "multiturn_image": {
+        "num_clients": 1,
+        "num_rounds": 8,
+        "sub_question_len": 32
+      }
+    },
+    "benchmark": {
+      "extra_args": ""
+    },
+    "warmup": {
+      "num_prompts": 3,
+      "seed": 8413927,
+      "enabled": false
+    },
+    "accuracy": {
+      "api_key": "empty"
+    },
+    "output": {
+      "dir": "./records",
+      "auto_commit": true,
+      "auto_push": true
+    },
+    "run": {
+      "runs": 1
+    }
+  },
+  "platform": {
+    "device_count": 8,
+    "devices": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "cuda_version": "13.0",
+    "driver_version": "580.126.09"
+  },
+  "sglang_info": {
+    "install_type": "not_found"
+  },
+  "server": {
+    "command": "/sgl-workspace/envs/vllm-env/bin/python3 -m vllm.entrypoints.openai.api_server --model Qwen/Qwen3-VL-8B-Instruct --port 7893 --tensor-parallel-size 1 --enable-cache-report"
+  },
+  "warmup": {
+    "command": null,
+    "seed": 8413927
+  },
+  "benchmark_runs": [],
+  "accuracy_results": [],
+  "stress_report": null,
+  "cache_report": null
+}
